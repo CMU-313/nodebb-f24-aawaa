@@ -92,11 +92,13 @@ topicsAPI.reply = async function (caller, data) {
 	if (data.anon === 'true') {
         payload.username = 'Anonymous User';
         payload.userslug = null;
+        payload.uid = 100;
         console.log('Anonymous post detected, making it anonymous');
     }
-
-	apiHelpers.setDefaultPostData(caller, payload);
-
+    console.log('This is the payload', payload)
+    apiHelpers.setDefaultPostData(caller, payload);
+    console.log('Payload being sent to topics.reply:', payload);
+	
 	await meta.blacklist.test(caller.ip);
 	const shouldQueue = await posts.shouldQueue(caller.uid, payload);
 	if (shouldQueue) {
