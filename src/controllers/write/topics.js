@@ -17,7 +17,9 @@ Topics.get = async (req, res) => {
 Topics.create = async (req, res) => {
 	const id = await lockPosting(req, '[[error:already-posting]]');
 	try {
+		console.log("Anonymous flag received in create:", req.body.anonymous);
 		const payload = await api.topics.create(req, req.body);
+		console.log("Post object before save:", payload);
 		if (payload.queued) {
 			helpers.formatApiResponse(202, res, payload);
 		} else {
@@ -31,6 +33,20 @@ Topics.create = async (req, res) => {
 Topics.reply = async (req, res) => {
 	const id = await lockPosting(req, '[[error:already-posting]]');
 	try {
+<<<<<<< Updated upstream
+=======
+		console.log("Anonymous flag received in reply:", isAnonymous);
+		const isAnonymous = req.body.anon;
+        let replyData = { ...req.body, tid: req.params.tid };
+        if (isAnonymous) {
+            console.log("Post is anonymous. Modifying the username and userslug.");
+            replyData.username = 'Anonymous User';
+            replyData.userslug = null;
+        } else {
+            console.log("Post is not anonymous.");
+        }
+        console.log("Final reply data being sent:", replyData);
+>>>>>>> Stashed changes
 		const payload = await api.topics.reply(req, { ...req.body, tid: req.params.tid });
 		helpers.formatApiResponse(200, res, payload);
 	} finally {
