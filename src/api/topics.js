@@ -89,11 +89,15 @@ topicsAPI.reply = async function (caller, data) {
 	}
 	const payload = { ...data };
 
+	console.log('Check data.anon', data.anon);
+
 	if (data.anon === 'true') {
-        payload.username = 'Anonymous User';
-        payload.userslug = null;
-        console.log('Anonymous post detected, making it anonymous');
-    }
+		payload.username = 'Anonymous User';
+		payload.userslug = null;
+		console.log('Anonymous post detected, making it anonymous');
+	}
+
+	console.log('Changed Payload: ', payload);
 
 	apiHelpers.setDefaultPostData(caller, payload);
 
@@ -105,6 +109,13 @@ topicsAPI.reply = async function (caller, data) {
 
 	const postData = await topics.reply(payload); // postData seems to be a subset of postObj, refactor?
 	const postObj = await posts.getPostSummaryByPids([postData.pid], caller.uid, {});
+
+	if (data.anon === 'true') {
+		postObj[0].user.username = 'Anonymous User';
+		postObj[0].user.displayname = 'Anonymous User';
+		postObj[0].user.userslug = 'Anonymous User';
+		console.log('Change postObj to make anonymous');
+	}
 
 	const result = {
 		posts: [postData],
@@ -121,6 +132,7 @@ topicsAPI.reply = async function (caller, data) {
 
 	socketHelpers.notifyNew(caller.uid, 'newPost', result);
 
+	console.log('postObj: ', postObj[0]);
 	return postObj[0];
 };
 
