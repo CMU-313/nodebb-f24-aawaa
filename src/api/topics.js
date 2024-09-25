@@ -83,11 +83,43 @@ topicsAPI.create = async function (caller, data) {
 	return result.topicData;
 };
 
+const MIN_POST_LENGTH = 20; // Minimum content length
+const MAX_POST_LENGTH = 500; // Maximum content length
+const SENSITIVE_WORDS = ['badword1', 'badword2', 'offensive']; // Replace with actual sensitive words
+
+function isValidContent(content) {
+	// Check if content length is within the allowed range
+	if (content.length < MIN_POST_LENGTH || content.length > MAX_POST_LENGTH) {
+		throw new Error(`Post length must be between ${MIN_POST_LENGTH} and ${MAX_POST_LENGTH} characters.`);
+	}
+
+	// Check for sensitive words
+	const containsSensitiveWord = SENSITIVE_WORDS.some(word => content.includes(word));
+	if (containsSensitiveWord) {
+		throw new Error('Post contains sensitive content.');
+	}
+
+	// If both checks pass, return true
+	return true;
+}
+
+// Integrating the content verification into your reply function:
 topicsAPI.reply = async function (caller, data) {
 	if (!data || !data.tid || (meta.config.minimumPostLength !== 0 && !data.content)) {
 		throw new Error('[[error:invalid-data]]');
 	}
+
+	// Validate post content length and sensitive words
+	isValidContent(data.content);
+
 	const payload = { ...data };
+
+	if (data.anon === 'true') {
+		payload.username = 'Anonymous User';
+		payload.userslug = null;
+		console.log('Anonymous post detected, making it anonymous');
+	}
+
 	apiHelpers.setDefaultPostData(caller, payload);
 
 	await meta.blacklist.test(caller.ip);
@@ -96,7 +128,7 @@ topicsAPI.reply = async function (caller, data) {
 		return await posts.addToQueue(payload);
 	}
 
-	const postData = await topics.reply(payload); // postData seems to be a subset of postObj, refactor?
+	const postData = await topics.reply(payload);
 	const postObj = await posts.getPostSummaryByPids([postData.pid], caller.uid, {});
 
 	const result = {

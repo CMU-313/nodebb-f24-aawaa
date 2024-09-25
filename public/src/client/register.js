@@ -149,18 +149,38 @@ define('forum/register', [
 		const password_confirm_notify = $('#password-confirm-notify');
 		password_notify.text('');
 		password_confirm_notify.text('');
+	
 		try {
-			utils.assertPasswordValidity(password, zxcvbn);
-
-			if (password === $('#username').val()) {
-				throw new Error('[[user:password-same-as-username]]');
+			// Check password against strength requirements
+			if (!/[a-z]/.test(password)) {
+				throw new Error('[user:password-no-lowercase]');
 			}
-
+			if (!/[A-Z]/.test(password)) {
+				throw new Error('[user:password-no-uppercase]');
+			}
+			if (!/[0-9]/.test(password)) {
+				throw new Error('[user:password-no-number]');
+			}
+			if (!/[\W_]/.test(password)) {
+				throw new Error('[user:password-no-special-character]');
+			}
+			if (password.length < 8) {
+				throw new Error('[user:password-too-short]');
+			}
+	
+			utils.assertPasswordValidity(password, zxcvbn);
+	
+			if (password === $('#username').val()) {
+				throw new Error('[user:password-same-as-username]');
+			}
+	
+			// If all validations pass
 			showSuccess(passwordInput, password_notify, successIcon);
 		} catch (err) {
 			showError(passwordInput, password_notify, err.message);
 		}
-
+	
+		// Confirm password match
 		if (password !== password_confirm && password_confirm !== '') {
 			showError(passwordInput, password_confirm_notify, '[[user:change-password-error-match]]');
 		}
