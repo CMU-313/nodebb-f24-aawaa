@@ -34,7 +34,10 @@ Topics.reply = async (req, res) => {
 	const id = await lockPosting(req, '[[error:already-posting]]');
 	try {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		console.log("Anonymous flag received in reply:", isAnonymous);
 		const isAnonymous = req.body.anon;
         let replyData = { ...req.body, tid: req.params.tid };
