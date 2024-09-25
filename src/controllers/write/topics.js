@@ -33,14 +33,13 @@ Topics.create = async (req, res) => {
 Topics.reply = async (req, res) => {
 	const id = await lockPosting(req, '[[error:already-posting]]');
 	try {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 		console.log("Anonymous flag received in reply:", isAnonymous);
 		const isAnonymous = req.body.anon;
         let replyData = { ...req.body, tid: req.params.tid };
+
+		// Sanitize content to avoid XSS attacks
+		replyData.content = validator.escape(replyData.content);
+
         if (isAnonymous) {
             console.log("Post is anonymous. Modifying the username and userslug.");
             replyData.username = 'Anonymous User';
@@ -49,12 +48,11 @@ Topics.reply = async (req, res) => {
             console.log("Post is not anonymous.");
         }
         console.log("Final reply data being sent:", replyData);
->>>>>>> Stashed changes
 		const payload = await api.topics.reply(req, { ...req.body, tid: req.params.tid });
 		helpers.formatApiResponse(200, res, payload);
 	} finally {
 		await db.deleteObjectField('locks', id);
-	}
+	}gi
 };
 
 async function lockPosting(req, error) {
