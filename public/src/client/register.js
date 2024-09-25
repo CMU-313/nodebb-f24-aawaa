@@ -185,7 +185,6 @@ define('forum/register', [
 			showError(passwordInput, password_confirm_notify, '[[user:change-password-error-match]]');
 		}
 	}
-	
 
 	function validatePasswordConfirm(password, password_confirm) {
 		const passwordConfirmInput = $('#password-confirm');
