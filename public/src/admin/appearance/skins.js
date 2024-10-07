@@ -12,6 +12,7 @@ define('admin/appearance/skins', [
 			method: 'get',
 			url: 'https://bootswatch.com/api/5.json',
 		}).done((bsData) => {
+			console.log("Hello, world!3");
 			hooks.on('action:settings.sorted-list.loaded', (data) => {
 				if (data.hash === 'custom-skins') {
 					// slugify all custom-skin ids after load
@@ -22,11 +23,12 @@ define('admin/appearance/skins', [
 				}
 			});
 			settings.load('custom-skins', $('.custom-skin-settings'));
-			setThemeBasedOnTime(bsData);  // Call the theme selection logic
+			// setThemeBasedOnTime(bsData);  // Call the theme selection logic
 			Skins.render(bsData);
 		});
 
 		$('#save-custom-skins').on('click', function () {
+			console.log("Hello, world!3");
 			settings.save('custom-skins', $('.custom-skin-settings'), function () {
 				alerts.success('[[admin/appearance/skins:save-custom-skins-success]]');
 			});
@@ -35,6 +37,7 @@ define('admin/appearance/skins', [
 
 
 		$('#skins').on('click', function (e) {
+			console.log("Hello, world!3");
 			let target = $(e.target);
 
 			if (!target.attr('data-action')) {
