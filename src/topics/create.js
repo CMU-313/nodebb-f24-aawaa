@@ -168,6 +168,13 @@ module.exports = function (Topics) {
 		const { tid } = data;
 		const { uid } = data;
 
+		const isAnonymous = data.isAnonymous;
+
+		if (isAnonymous) {
+			data.handle = 'anonymous';
+			data.uid = 0;
+		}
+
 		const [topicData, isAdmin] = await Promise.all([
 			Topics.getTopicData(tid),
 			privileges.users.isAdministrator(uid),
@@ -295,6 +302,10 @@ module.exports = function (Topics) {
 		}
 		const { tid, uid } = data;
 		const { cid, deleted, locked, scheduled } = topicData;
+
+		if (uid === 0 && data.isAnonymous) {
+			return true;
+		}
 
 		const [canReply, canSchedule, isAdminOrMod] = await Promise.all([
 			privileges.topics.can('topics:reply', tid, uid),
