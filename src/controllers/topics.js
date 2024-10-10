@@ -47,20 +47,19 @@ topicsController.get = async function getTopic(req, res, next) {
 
 	console.log(posts);
 
-	const pids = await topics.getPidsFromSet(`tid:${tid}:posts`, 0, -1);
+	// const postsArray = await posts.getPostsByTid(tid, req.uid, req.query.page, req.query);
 
-	// Fetch the posts by post IDs
-	const postsArray = await posts.getPostsByPids(pids);
+	// // Iterate over the posts to set 'canMarkAsSolved' and 'solved'
+	// postsArray.forEach(async (post) => {
+    // const canMarkAsSolved = (req.uid === post.uid || await privileges.isAdminOrMod(req.uid));
+    // post.canMarkAsSolved = canMarkAsSolved;
 
-	// Add 'canMarkAsSolved' and 'solved' to each post
-	postsArray.forEach(async (post) => {
-		const canMarkAsSolved = (req.uid === post.uid || await privileges.isAdminOrMod(req.uid));
-		post.canMarkAsSolved = canMarkAsSolved;
-		post.solved = post.solved || false;
-	});
+    // // Ensure 'solved' status is passed correctly
+    // post.solved = post.solved || false;
+	// });
 
-	// Pass the updated posts and other data to the template
-	res.render('topic', { topicData, posts: postsArray, userPrivileges, settings });
+	// // Pass the updated posts and other necessary data to the template
+	// res.render('topic', { topicData, posts: postsArray, userPrivileges, settings });
 
 	let currentPage = parseInt(req.query.page, 10) || 1;
 	const pageCount = Math.max(1, Math.ceil((topicData && topicData.postcount) / settings.postsPerPage));
