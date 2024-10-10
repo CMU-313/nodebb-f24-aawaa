@@ -9,6 +9,8 @@ UserObject:
       type: string
       description: A friendly name for a given user account
       example: Dragon Fruit
+    role:
+      type: string
     userslug:
       type: string
       description: An URL-safe variant of the username (i.e. lower-cased, spaces removed, etc.)
