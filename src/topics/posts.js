@@ -133,8 +133,13 @@ module.exports = function (Topics) {
 			if (postObj) {
 				postObj.user = postObj.uid ? userData[postObj.uid] : { ...userData[postObj.uid] };
 				const isAdmin = user.isAdministrator(postObj.user);
-                const isMod = user.isModerator(postObj.user);
-                postObj.user.role = isAdmin ? 'Administrator' : (isMod ? 'Moderator' : 'user'); 
+				const isMod = user.isModerator(postObj.user);
+				postObj.user.role = 'user';
+				if (isAdmin) {
+					postObj.user.role = 'Administrator';
+				} else if (isMod) {
+					postObj.user.role = 'Moderator';
+				}
 				postObj.editor = postObj.editor ? editors[postObj.editor] : null;
 				postObj.bookmarked = bookmarks[i];
 				postObj.upvoted = voteData.upvotes[i];
