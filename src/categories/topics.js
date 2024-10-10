@@ -32,7 +32,7 @@ module.exports = function (Categories) {
 		);
 
 		topicsData.forEach((topic, index) => {
-			topic.authorRole = userRoles[index] || 'user';
+			topic.role = userRoles[index] || 'user';
 		});
 		if (!topicsData.length) {
 			return { topics: [], uid: data.uid };

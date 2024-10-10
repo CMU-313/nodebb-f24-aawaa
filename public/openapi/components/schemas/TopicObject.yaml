@@ -82,6 +82,7 @@ TopicObject:
             - uid
             - username
             - userslug
+            - role
             - reputation
             - postcount
             - picture
@@ -105,6 +106,8 @@ TopicObject:
               type: number
               description: A topic identifier
             authorRole:
+              type: string
+            role:
               type: string
               description: topic poster's role
             content:
@@ -184,6 +187,8 @@ TopicObject:
           description: A topic identifier
         thumb:
           type: string
+        role:
+          type: string
         pinExpiry:
           type: number
           description: A UNIX timestamp indicating when a pinned topic will no longer be pinned (i.e. the pin has expired)
@@ -205,6 +210,8 @@ TopicObjectSlim:
         uid:
           type: number
           description: A user identifier
+        role:
+          type: string
         cid:
           type: number
           description: A category identifier
