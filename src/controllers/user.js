@@ -7,12 +7,15 @@ const accountHelpers = require('./accounts/helpers');
 const userController = module.exports;
 
 userController.getCurrentUser = async function (req, res) {
-	if (!req.loggedIn) {
-		return res.status(401).json('not-authorized');
-	}
-	const userslug = await user.getUserField(req.uid, 'userslug');
-	const userData = await accountHelpers.getUserDataByUserSlug(userslug, req.uid, req.query);
-	res.json(userData);
+    if (!req.loggedIn) {
+        return res.status(401).json('not-authorized');
+    }
+    const userslug = await user.getUserField(req.uid, 'userslug');
+    const role = await user.isAdministrator(req.uid) ? 'Administrator' : 
+    (user.isModerator(req.uid) ? 'Moderator' : 'user');
+    const userData = await accountHelpers.getUserDataByUserSlug(userslug, req.uid, req.query);
+    userData.role = role;
+    res.json(userData);
 };
 
 userController.getUserByUID = async function (req, res, next) {

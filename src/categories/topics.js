@@ -16,7 +16,25 @@ module.exports = function (Categories) {
 		const tids = await Categories.getTopicIds(results);
 		let topicsData = await topics.getTopicsByTids(tids, data.uid);
 		topicsData = await user.blocks.filter(data.uid, topicsData);
+		
+		const userRoles = await Promise.all(
+            topicsData.map(async (topic) => {
+                const isAdmin = await user.isAdministrator(topic.uid);
+                const isMod = await user.isModerator(topic.uid);
+        
+                if (isAdmin) {
+                    return 'Administrator';
+                } else if (isMod) {
+                    return 'Moderator';
+                } else {
+                    return 'user'; 
+                }
+            })
+        );
 
+        topicsData.forEach((topic, index) => {
+            topic.authorRole = userRoles[index] || 'user';  
+        });
 		if (!topicsData.length) {
 			return { topics: [], uid: data.uid };
 		}
