@@ -84,6 +84,24 @@ describe('Topic Events', () => {
 		});
 	});
 
+	describe('.getUserRole()', () => {
+		it('should ensure each topic has a user with a role', async () => {
+			const topicData = await topics.getTopic(topic.topicData.tid);
+			assert(topicData);
+			assert(topicData.user);
+			let role = 'user';
+			const isAdmin = await user.isAdministrator(topicData.user.uid);
+			const isMod = await user.isModerator(topicData.user.uid);
+			if (isAdmin) {
+				role = 'Administrator';
+			} else if (isMod) {
+				role = 'Moderator';
+			}
+
+			assert.strictEqual(topicData.user.role, role);
+		});
+	});
+
 	describe('.purge()', () => {
 		let eventIds;
 

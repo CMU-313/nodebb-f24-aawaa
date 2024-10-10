@@ -41,6 +41,8 @@ PostObject:
           type: string
           description: An URL-safe variant of the username (i.e. lower-cased, spaces
             removed, etc.)
+        role:
+          type: string
         picture:
           type: string
           nullable: true
