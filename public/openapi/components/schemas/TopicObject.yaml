@@ -47,6 +47,9 @@ TopicObject:
               type: string
               description: An URL-safe variant of the username (i.e. lower-cased, spaces
                 removed, etc.)
+            role:
+              type: string
+            description: A description of the user's role
             reputation:
               type: number
             postcount:
@@ -101,6 +104,9 @@ TopicObject:
             tid:
               type: number
               description: A topic identifier
+            authorRole:
+              type: string
+              description: topic poster's role
             content:
               type: string
             timestampISO:
