@@ -180,7 +180,7 @@ usersAPI.follow = async function (caller, data) {
 		toUid: data.uid,
 	});
 
-	const userData = await user.getUserFields(caller.uid, ['username', 'userslug']);
+	const userData = await user.getUserFields(caller.uid, ['username', 'userslug', 'role']);
 	const { displayname } = userData;
 
 	const notifObj = await notifications.create({

@@ -170,6 +170,7 @@ UserObject:
     - uid
     - username
     - userslug
+    - role
     - 'email:confirmed'
     - joindate
     - lastonline

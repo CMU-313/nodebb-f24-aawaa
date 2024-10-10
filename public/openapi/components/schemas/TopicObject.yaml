@@ -82,6 +82,7 @@ TopicObject:
             - uid
             - username
             - userslug
+            - role
             - reputation
             - postcount
             - picture
