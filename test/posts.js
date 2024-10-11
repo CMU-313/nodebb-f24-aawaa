@@ -1215,19 +1215,13 @@ describe('Posts\'', async () => {
 		});
 	});
 });
-
-
 describe('Basic Anonymous User Test', () => {
 	it('should create an anonymous user object with a handle', async () => {
-	  // Simulate an anonymous user object with a handle
-	  const anonymousUser = {
-		uid: 0,  // Anonymous user ID
-		handle: 'AnonymousUser',  // Anonymized handle
-	  };
-  
-	  // Check if the anonymous user object was set up correctly
-	  assert.strictEqual(anonymousUser.uid, 0);
-	  assert.strictEqual(anonymousUser.handle, 'AnonymousUser');
+		const anonymousUser = {
+			uid: 0,
+			handle: 'AnonymousUser',
+		};
+		assert.strictEqual(anonymousUser.uid, 0);
+		assert.strictEqual(anonymousUser.handle, 'AnonymousUser');
 	});
-  });
-  
+});
