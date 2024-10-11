@@ -58,10 +58,13 @@ define('quickreply', [
 			}
 
 			const replyMsg = components.get('topic/quickreply/text').val();
+			const replyAt = $('#replyAt').val();  // Capture the scheduled date and time
+
 			const replyData = {
 				tid: ajaxify.data.tid,
 				handle: undefined,
 				content: replyMsg,
+				scheduledDate: replyAt || null  // Add the scheduled date to the request if it exists
 			};
 			const replyLen = replyMsg.length;
 			if (replyLen < parseInt(config.minimumPostLength, 10)) {
@@ -70,12 +73,17 @@ define('quickreply', [
 				return alerts.error('[[error:content-too-long, ' + config.maximumPostLength + ']]');
 			}
 
+			console.log("Sending reply data to backend:", replyData);
+
+
 			ready = false;
 			api.post(`/topics/${ajaxify.data.tid}`, replyData, function (err, data) {
 				ready = true;
 				if (err) {
 					return alerts.error(err);
 				}
+				console.log("Response from backend:", data);
+
 				if (data && data.queued) {
 					alerts.alert({
 						type: 'success',
