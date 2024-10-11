@@ -45,6 +45,22 @@ topicsController.get = async function getTopic(req, res, next) {
 		user.auth.getFeedToken(req.uid),
 	]);
 
+	console.log(posts);
+
+	// const postsArray = await posts.getPostsByTid(tid, req.uid, req.query.page, req.query);
+
+	// // Iterate over the posts to set 'canMarkAsSolved' and 'solved'
+	// postsArray.forEach(async (post) => {
+    // const canMarkAsSolved = (req.uid === post.uid || await privileges.isAdminOrMod(req.uid));
+    // post.canMarkAsSolved = canMarkAsSolved;
+
+    // // Ensure 'solved' status is passed correctly
+    // post.solved = post.solved || false;
+	// });
+
+	// // Pass the updated posts and other necessary data to the template
+	// res.render('topic', { topicData, posts: postsArray, userPrivileges, settings });
+
 	let currentPage = parseInt(req.query.page, 10) || 1;
 	const pageCount = Math.max(1, Math.ceil((topicData && topicData.postcount) / settings.postsPerPage));
 	const invalidPagination = (settings.usePagination && (currentPage < 1 || currentPage > pageCount));

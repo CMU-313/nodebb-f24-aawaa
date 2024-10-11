@@ -121,6 +121,40 @@ SocketTopics.getMyNextPostIndex = async function (socket, data) {
 	return await posts.getPidIndex(userPidsInTopic[0], data.tid, data.sort);
 };
 
+SocketTopics.markAsSolved = async function (socket, data) {
+    if (!socket.uid) {
+        throw new Error('[[error:not-logged-in]]');
+    }
+
+    if (!data || !data.tid || !data.pid) {
+        throw new Error('[[error:invalid-data]]');
+    }
+
+    // Fetch the topic and check if the user has permission to mark as solved
+    const topic = await topics.getTopicData(data.tid);
+    const canMarkAsSolved = await privileges.posts.canEdit(data.pid, socket.uid);
+    
+    if (!canMarkAsSolved) {
+        throw new Error('[[error:no-privileges]]');
+    }
+
+    // Mark the post as solved in the database
+    await posts.setPostField(data.pid, 'solved', 1);
+
+    // Optionally mark the entire topic as solved
+    await topics.setTopicField(data.tid, 'solved', 1);
+
+    // Emit an event or log the action if necessary
+    events.log({
+        type: 'post-mark-solved',
+        uid: socket.uid,
+        tid: data.tid,
+        pid: data.pid,
+    });
+
+    return { message: 'Post marked as solved.' };
+};
+
 SocketTopics.getPostCountInTopic = async function (socket, tid) {
 	if (!socket.uid || !tid) {
 		return 0;

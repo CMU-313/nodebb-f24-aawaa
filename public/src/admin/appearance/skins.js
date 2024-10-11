@@ -12,6 +12,7 @@ define('admin/appearance/skins', [
 			method: 'get',
 			url: 'https://bootswatch.com/api/5.json',
 		}).done((bsData) => {
+			console.log("Hello, world!3");
 			hooks.on('action:settings.sorted-list.loaded', (data) => {
 				if (data.hash === 'custom-skins') {
 					// slugify all custom-skin ids after load
@@ -22,10 +23,12 @@ define('admin/appearance/skins', [
 				}
 			});
 			settings.load('custom-skins', $('.custom-skin-settings'));
+			// setThemeBasedOnTime(bsData);  // Call the theme selection logic
 			Skins.render(bsData);
 		});
 
 		$('#save-custom-skins').on('click', function () {
+			console.log("Hello, world!3");
 			settings.save('custom-skins', $('.custom-skin-settings'), function () {
 				alerts.success('[[admin/appearance/skins:save-custom-skins-success]]');
 			});
@@ -34,6 +37,7 @@ define('admin/appearance/skins', [
 
 
 		$('#skins').on('click', function (e) {
+			console.log("Hello, world!3");
 			let target = $(e.target);
 
 			if (!target.attr('data-action')) {
@@ -122,6 +126,38 @@ define('admin/appearance/skins', [
 				.removeClass('btn-primary')
 				.addClass('btn-success');
 		});
+	}
+
+	function setThemeBasedOnTime() {
+		console.log("Hello, world!1");  // Logs a message
+
+		const hour = new Date().getHours();
+		const isNight = (hour >= 18 || hour < 6);  // Night from 6 PM to 6 AM
+	
+		if (isNight) {
+			// Assuming `dark-theme` is the theme ID for dark mode
+			const darkTheme = bsData.themes.find(theme => theme.name.toLowerCase().includes('dark'));
+			if (darkTheme) {
+				applyTheme(darkTheme);
+			}
+		} else {
+			// Assuming `light-theme` is the theme ID for light mode
+			const lightTheme = bsData.themes.find(theme => theme.name.toLowerCase().includes('light'));
+			if (lightTheme) {
+				applyTheme(lightTheme);
+			}
+		}
+	}
+	
+	function applyTheme(theme) {
+		console.log("Hello, world!2");  // Logs a message
+		const cssSrc = theme.css;  // Assuming the theme object contains a 'css' property
+		const themeId = theme.name;
+		
+		// Update the theme using similar logic as the 'click' event for user selection
+		$('link#theme').attr('href', cssSrc);
+		app.config.bootswatchSkin = themeId;
+		highlightSelectedTheme(themeId);  // Reuse the existing function
 	}
 
 	return Skins;

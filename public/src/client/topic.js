@@ -70,6 +70,16 @@ define('forum/topic', [
 		handleBookmark(tid);
 		handleThumbs();
 
+		$(document).on('click', '.mark-as-solved', function(e) {
+			e.preventDefault();
+			const postIndex = $(this).closest('[data-index]').attr('data-index');
+			const tid = ajaxify.data.tid;
+			const pid = $(this).attr('data-pid');  // Assuming the post has a data-pid attribute
+		
+			markAsSolved(postIndex, tid, pid);
+		});
+		
+
 		$(window).on('scroll', utils.debounce(updateTopicTitle, 250));
 
 		handleTopicSearch();
@@ -207,6 +217,18 @@ define('forum/topic', [
 		});
 	}
 
+	function markAsSolved(postIndex, tid, pid) {
+		socket.emit('plugins.markAsSolved', { tid: tid, pid: pid }, function(err, data) {
+			if (err) {
+				alerts.error(err.message);
+			} else {
+				alerts.success('Marked as Solved!');
+				// Optionally update the UI to reflect the solved status
+				$('[data-index="' + postIndex + '"]').addClass('solved-post');
+			}
+		});
+	}
+	
 	function addBlockQuoteHandler() {
 		components.get('topic').on('click', 'blockquote .toggle', function () {
 			const blockQuote = $(this).parent('blockquote');
