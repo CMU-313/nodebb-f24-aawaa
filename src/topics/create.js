@@ -165,8 +165,16 @@ module.exports = function (Topics) {
 
 	Topics.reply = async function (data) {
 		data = await plugins.hooks.fire('filter:topic.reply', data);
-		const { tid } = data;
-		const { uid } = data;
+		const { tid, uid, content, cid, isAnonymous } = data;
+		// const { tid } = data;
+		// const { uid } = data;
+
+		// const isAnonymous = data.isAnonymous;
+
+		if (isAnonymous) {
+			data.handle = 'anonymous';
+			data.uid = 0;
+		}
 
 		const [topicData, isAdmin] = await Promise.all([
 			Topics.getTopicData(tid),
@@ -175,13 +183,13 @@ module.exports = function (Topics) {
 
 		await canReply(data, topicData);
 
-		data.cid = topicData.cid;
+		data.cid = cid;
 
 		await guestHandleValid(data);
-		data.content = String(data.content || '').trimEnd();
+		data.content = String(content || '').trimEnd();
 
 		if (!data.fromQueue && !isAdmin) {
-			await user.isReadyToPost(uid, data.cid);
+			await user.isReadyToPost(uid, cid);
 			Topics.checkContent(data.content);
 			if (!await posts.canUserPostContentWithLinks(uid, data.content)) {
 				throw new Error(`[[error:not-enough-reputation-to-post-links, ${meta.config['min:rep:post-links']}]]`);
@@ -194,31 +202,34 @@ module.exports = function (Topics) {
 		}
 
 		data.ip = data.req ? data.req.ip : null;
+
 		let postData = await posts.create(data);
+
+		const { pid, user: postUser } = postData;
+
 		postData = await onNewPost(postData, data);
 
-		const settings = await user.getSettings(uid);
-		if (uid > 0 && settings.followTopicsOnReply) {
-			await Topics.follow(postData.tid, uid);
-		}
-
-		if (parseInt(uid, 10)) {
-			user.setUserField(uid, 'lastonline', Date.now());
+		if (postUser && uid > 0) {
+			const settings = await user.getSettings(uid);
+			if (settings.followTopicsOnReply) {
+				await Topics.follow(postData.tid, uid);
+			}
+			postUser.setUserField(uid, 'lastonline', Date.now());
 		}
 
 		if (parseInt(uid, 10) || meta.config.allowGuestReplyNotifications) {
-			const { displayname } = postData.user;
+			const { displayname } = postData || { displayname: 'anonymous' };
 
 			Topics.notifyFollowers(postData, uid, {
 				type: 'new-reply',
 				bodyShort: translator.compile('notifications:user-posted-to', displayname, postData.topic.title),
-				nid: `new_post:tid:${postData.topic.tid}:pid:${postData.pid}:uid:${uid}`,
+				nid: `new_post:tid:${postData.topic.tid}:pid:${pid}:uid:${uid}`,
 				mergeId: `notifications:user-posted-to|${postData.topic.tid}`,
 			});
 		}
 
-		analytics.increment(['posts', `posts:byCid:${data.cid}`]);
-		plugins.hooks.fire('action:topic.reply', { post: _.clone(postData), data: data });
+		analytics.increment(['posts', `posts:byCid:${cid}`]);
+		plugins.hooks.fire('action:topic.reply', { post: _.clone(postData), data });
 
 		return postData;
 	};
@@ -295,6 +306,10 @@ module.exports = function (Topics) {
 		}
 		const { tid, uid } = data;
 		const { cid, deleted, locked, scheduled } = topicData;
+
+		if (uid === 0 && data.isAnonymous) {
+			return true;
+		}
 
 		const [canReply, canSchedule, isAdminOrMod] = await Promise.all([
 			privileges.topics.can('topics:reply', tid, uid),

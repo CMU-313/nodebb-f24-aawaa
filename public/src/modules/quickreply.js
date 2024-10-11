@@ -59,10 +59,10 @@ define('quickreply', [
 
 			const replyMsg = components.get('topic/quickreply/text').val();
 			const replyAt = $('#replyAt').val();  // Capture the scheduled date and time
-
+			const isAnon = components.get('topic/quickreply/anonymousCheckbox').is(':checked');
 			const replyData = {
 				tid: ajaxify.data.tid,
-				handle: undefined,
+				handle: isAnon ? 'anonymous' : undefined,
 				content: replyMsg,
 				scheduledDate: replyAt || null  // Add the scheduled date to the request if it exists
 			};
