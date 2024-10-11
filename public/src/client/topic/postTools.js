@@ -129,6 +129,10 @@ define('forum/topic/postTools', [
 			return bookmarkPost($(this), getData($(this), 'data-pid'));
 		});
 
+		postContainer.on('click', '[component="post/endorse"]', function () {
+			return endorsePost($(this), getData($(this), 'data-pid'));
+		});
+		
 		postContainer.on('click', '[component="post/upvote"]', function () {
 			return votes.toggleVote($(this), '.upvoted', 1);
 		});
@@ -404,8 +408,11 @@ define('forum/topic/postTools', [
 		postAction(action, pid);
 	}
 
-	function purgePost(button) {
-		postAction('purge', getData(button, 'data-pid'));
+	async function endorsePost(button, pid) {
+		const method = 'put';
+		const action = 'endorse';
+		console.log('attempting API call');
+		api[method](`/posts/${pid}/${action}`).catch(alerts.error);
 	}
 
 	async function postAction(action, pid) {
