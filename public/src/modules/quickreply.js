@@ -58,9 +58,10 @@ define('quickreply', [
 			}
 
 			const replyMsg = components.get('topic/quickreply/text').val();
+			const isAnon = components.get('topic/quickreply/anonymousCheckbox').is(':checked');
 			const replyData = {
 				tid: ajaxify.data.tid,
-				handle: undefined,
+				handle: isAnon ? 'anonymous' : undefined,
 				content: replyMsg,
 			};
 			const replyLen = replyMsg.length;

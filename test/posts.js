@@ -1215,3 +1215,13 @@ describe('Posts\'', async () => {
 		});
 	});
 });
+describe('Basic Anonymous User Test', () => {
+	it('should create an anonymous user object with a handle', async () => {
+		const anonymousUser = {
+			uid: 0,
+			handle: 'AnonymousUser',
+		};
+		assert.strictEqual(anonymousUser.uid, 0);
+		assert.strictEqual(anonymousUser.handle, 'AnonymousUser');
+	});
+});

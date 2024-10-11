@@ -87,7 +87,8 @@ topicsAPI.reply = async function (caller, data) {
 	if (!data || !data.tid || (meta.config.minimumPostLength !== 0 && !data.content)) {
 		throw new Error('[[error:invalid-data]]');
 	}
-	const payload = { ...data };
+	const isAnonymous = data.handle === 'anonymous';
+	const payload = { ...data, isAnonymous };
 	apiHelpers.setDefaultPostData(caller, payload);
 
 	await meta.blacklist.test(caller.ip);
