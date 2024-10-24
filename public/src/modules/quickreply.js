@@ -58,13 +58,13 @@ define('quickreply', [
 			}
 
 			const replyMsg = components.get('topic/quickreply/text').val();
-			const replyAt = $('#replyAt').val();  // Capture the scheduled date and time
+			const replyAt = $('#replyAt').val();
 			const isAnon = components.get('topic/quickreply/anonymousCheckbox').is(':checked');
 			const replyData = {
 				tid: ajaxify.data.tid,
 				handle: isAnon ? 'anonymous' : undefined,
 				content: replyMsg,
-				scheduledDate: replyAt || null  // Add the scheduled date to the request if it exists
+				scheduledDate: replyAt || null
 			};
 			const replyLen = replyMsg.length;
 			if (replyLen < parseInt(config.minimumPostLength, 10)) {
@@ -73,7 +73,7 @@ define('quickreply', [
 				return alerts.error('[[error:content-too-long, ' + config.maximumPostLength + ']]');
 			}
 
-			console.log("Sending reply data to backend:", replyData);
+			console.log('Sending reply data to backend:', replyData);
 
 
 			ready = false;
@@ -82,7 +82,7 @@ define('quickreply', [
 				if (err) {
 					return alerts.error(err);
 				}
-				console.log("Response from backend:", data);
+				console.log('Response from backend:', data);
 
 				if (data && data.queued) {
 					alerts.alert({
