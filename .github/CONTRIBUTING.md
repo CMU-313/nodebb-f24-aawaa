@@ -1,4 +1,4 @@
-# Submitting a Pull Request to NodeBB?
+# Submitting a Pull Request to NodeBB? 
 
 First of all, thank you! Before submission, please run `npm test` to lint and run the automated NodeBB tests. If everything passes, you're good to go. If you have any errors, please fix them and re-run `npm test` to make sure there aren't any others.
 
