@@ -16,6 +16,8 @@ PostObject:
       type: number
     deleted:
       type: boolean
+    endorse:
+      type: number
     upvotes:
       type: number
     downvotes:

@@ -281,6 +281,14 @@ describe('Post\'s', () => {
 		});
 	});
 
+	describe('endorsing', () => {
+		it('should endorse a post', async () => {
+			const data = await apiPosts.endorse({ uid: voterUid }, { pid: postData.pid, room_id: `topic_${postData.tid}` });
+			const isEndorsed = await posts.getPostField(postData.pid, 'endorse');
+			assert.strictEqual(isEndorsed, 1);
+		});
+	});
+
 	describe('post tools', () => {
 		it('should error if data is invalid', (done) => {
 			socketPosts.loadPostTools({ uid: globalModUid }, null, (err) => {
