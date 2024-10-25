@@ -32,6 +32,25 @@ const path = require('path');
 
 const file = require('./src/file');
 
+const Iroh = require('iroh');
+let stage = new Iroh.Stage(`
+	function example() {
+		console.log("Hello from Iroh tracking!");
+	}
+	example();
+	`);
+	
+	stage.addListener(Iroh.CALL).on("before", (e) => {
+		console.log("Calling function:", e.name);
+	});
+	
+	eval(stage.script);  
+	
+	nconf.argv().env({
+		separator: '__',
+	});
+
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 global.env = process.env.NODE_ENV || 'production';
 
