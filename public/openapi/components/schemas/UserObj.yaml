@@ -9,6 +9,8 @@ UserObj:
     userslug:
       type: string
       example: dragon-fruit
+    role:
+      type: string
     email:
       type: string
       example: dragonfruit@example.org

@@ -4,6 +4,8 @@ TokenObject:
     uid:
       type: number
       description: A valid user id
+    role:
+      type: string
     description:
       type: string
       description: Optional descriptor to differentiate tokens.
