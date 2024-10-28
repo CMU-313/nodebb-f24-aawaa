@@ -1,4 +1,5 @@
 
+/* @flow */
 'use strict';
 
 const _ = require('lodash');
@@ -132,6 +133,14 @@ module.exports = function (Topics) {
 		postData.forEach((postObj, i) => {
 			if (postObj) {
 				postObj.user = postObj.uid ? userData[postObj.uid] : { ...userData[postObj.uid] };
+				const isAdmin = user.isAdministrator(postObj.user);
+				const isMod = user.isModerator(postObj.user);
+				postObj.user.role = 'user';
+				if (isAdmin) {
+					postObj.user.role = 'Administrator';
+				} else if (isMod) {
+					postObj.user.role = 'Moderator';
+				}
 				postObj.editor = postObj.editor ? editors[postObj.editor] : null;
 				postObj.bookmarked = bookmarks[i];
 				postObj.upvoted = voteData.upvotes[i];
@@ -144,6 +153,7 @@ module.exports = function (Topics) {
 				if (meta.config.allowGuestHandles && postObj.uid === 0 && postObj.handle) {
 					postObj.user.username = validator.escape(String(postObj.handle));
 					postObj.user.displayname = postObj.user.username;
+					postObj.user.role = 'guest';
 				}
 			}
 		});

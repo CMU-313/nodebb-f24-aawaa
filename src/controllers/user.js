@@ -11,7 +11,16 @@ userController.getCurrentUser = async function (req, res) {
 		return res.status(401).json('not-authorized');
 	}
 	const userslug = await user.getUserField(req.uid, 'userslug');
+	let role = 'user';
+	const isAdmin = await user.isAdministrator(req.uid);
+	const isMod = await user.isModerator(req.uid);
+	if (isAdmin) {
+		role = 'Administrator';
+	} else if (isMod) {
+		role = 'Moderator';
+	}
 	const userData = await accountHelpers.getUserDataByUserSlug(userslug, req.uid, req.query);
+	userData.role = role;
 	res.json(userData);
 };
 
