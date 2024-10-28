@@ -40,6 +40,9 @@ define('forum/topic/events', [
 		'posts.bookmark': togglePostBookmark,
 		'posts.unbookmark': togglePostBookmark,
 
+		'posts.endorse': toggleEndorse,
+		'posts.unendorse': toggleEndorse,
+
 		'posts.upvote': togglePostVote,
 		'posts.downvote': togglePostVote,
 		'posts.unvote': togglePostVote,
@@ -222,6 +225,9 @@ define('forum/topic/events', [
 		el.find('[component="post/bookmark/off"]').toggleClass('hidden', data.isBookmarked);
 	}
 
+	function toggleEndorse() {
+		console.log('inside toggle endorse function');
+	}
 	function togglePostVote(data) {
 		const post = $('[data-pid="' + data.post.pid + '"]');
 		post.find('[component="post/upvote"]').filter(function (index, el) {
