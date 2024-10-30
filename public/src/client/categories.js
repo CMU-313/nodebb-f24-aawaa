@@ -1,3 +1,4 @@
+/* global define, $, app, ajaxify */
 'use strict'
 
 define('forum/categories', ['categorySelector'], function (categorySelector) {

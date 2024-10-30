@@ -1,3 +1,4 @@
+/* global config, utils, socket, $, overrides, app, ajaxify */
 'use strict'
 
 window.$ = require('jquery')

@@ -1,3 +1,4 @@
+/* global define, app */
 'use strict'
 
 define('forum/recent', ['topicList'], function (topicList) {

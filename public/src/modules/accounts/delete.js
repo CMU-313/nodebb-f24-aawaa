@@ -1,3 +1,4 @@
+/* global define */
 'use strict'
 
 define('accounts/delete', ['api', 'bootbox', 'alerts'], function (api, bootbox, alerts) {

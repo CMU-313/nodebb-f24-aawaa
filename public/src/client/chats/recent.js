@@ -1,3 +1,4 @@
+/* global utils, $, define, app, ajaxify */
 'use strict'
 
 define('forum/chats/recent', ['alerts', 'api', 'chat'], function (alerts, api, chat) {

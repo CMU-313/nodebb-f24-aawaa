@@ -1,3 +1,4 @@
+/* global utils, $, define, app, ajaxify */
 'use strict'
 
 define('forum/chats/user-list', ['api'], function (api) {

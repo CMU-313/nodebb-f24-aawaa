@@ -1,3 +1,4 @@
+/* global config, define, $, app */
 'use strict'
 
 define('uploader', ['jquery-form'], function () {

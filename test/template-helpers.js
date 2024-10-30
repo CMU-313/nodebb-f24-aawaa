@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 const nconf = require('nconf')
 const assert = require('assert')

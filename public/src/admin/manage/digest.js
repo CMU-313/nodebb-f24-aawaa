@@ -1,3 +1,4 @@
+/* global define, $, socket */
 'use strict'
 
 define('admin/manage/digest', ['bootbox', 'alerts'], function (bootbox, alerts) {

@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 const { SMTPServer } = require('smtp-server')
 const assert = require('assert')

@@ -1,3 +1,4 @@
+/* global define */
 'use strict'
 
 define('forum/account/ignored', ['forum/account/header', 'forum/account/topics'], function (header, topics) {

@@ -1,3 +1,4 @@
+/* global $, define, bootbox, app, ajaxify */
 'use strict'
 
 define('forum/chats/manage', [

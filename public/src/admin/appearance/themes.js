@@ -1,3 +1,4 @@
+/* global config, socket, $, define, app */
 'use strict'
 
 define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function (bootbox, translator, alerts) {

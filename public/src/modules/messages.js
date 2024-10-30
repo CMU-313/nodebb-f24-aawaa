@@ -1,3 +1,4 @@
+/* global config, utils, $, define, app, ajaxify */
 'use strict'
 
 define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], function (bootbox, translator, storage, alerts, hooks) {

@@ -1,3 +1,4 @@
+/* global utils, define, $, ajaxify */
 'use strict'
 
 define('forum/pagination', ['bootbox'], function (bootbox) {

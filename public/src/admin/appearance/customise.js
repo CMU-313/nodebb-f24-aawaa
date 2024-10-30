@@ -1,3 +1,4 @@
+/* global define, $, app, socket */
 'use strict'
 
 define('admin/appearance/customise', ['admin/settings', 'ace/ace'], function (Settings, ace) {

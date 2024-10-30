@@ -1,3 +1,4 @@
+/* global define, $ */
 'use strict'
 
 define('admin/settings/general', ['admin/settings'], function () {

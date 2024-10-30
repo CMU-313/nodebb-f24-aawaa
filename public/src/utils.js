@@ -1,3 +1,4 @@
+/* global ajaxify */
 /* eslint-disable no-redeclare */
 
 'use strict'

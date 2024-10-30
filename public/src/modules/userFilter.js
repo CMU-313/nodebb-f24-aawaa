@@ -1,3 +1,4 @@
+/* global utils, define, $, app */
 'use strict'
 
 define('userFilter', ['api', 'hooks', 'slugify', 'benchpress'], function (api, hooks, slugify, benchpress) {

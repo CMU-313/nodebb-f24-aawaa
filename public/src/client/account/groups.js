@@ -1,3 +1,4 @@
+/* global define, $, ajaxify */
 'use strict'
 
 define('forum/account/groups', ['forum/account/header'], function (header) {

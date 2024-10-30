@@ -1,3 +1,4 @@
+/* global config, define, $ */
 'use strict'
 
 define('topicThumbs', [

@@ -1,3 +1,4 @@
+/* global utils, $, define, app, ajaxify */
 'use strict'
 
 define('categoryFilter', ['categorySearch', 'api', 'hooks'], function (categorySearch, api, hooks) {

@@ -1,3 +1,4 @@
+/* global define, $, socket, ajaxify */
 'use strict'
 
 define('forum/account/uploads', ['forum/account/header', 'alerts'], function (header, alerts) {

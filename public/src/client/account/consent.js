@@ -1,3 +1,4 @@
+/* global define, $, socket, ajaxify */
 'use strict'
 
 define('forum/account/consent', ['forum/account/header', 'alerts', 'api'], function (header, alerts, api) {

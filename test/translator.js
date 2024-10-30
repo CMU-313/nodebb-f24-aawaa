@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 // For tests relating to Transifex configuration, check i18n.js
 

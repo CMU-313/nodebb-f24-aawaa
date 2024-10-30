@@ -1,3 +1,4 @@
+/* global config, history, utils, socket, $, define, app, ajaxify */
 'use strict'
 
 define('forum/topic/events', [

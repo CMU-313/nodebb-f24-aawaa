@@ -1,3 +1,4 @@
+/* global config, utils, $, define, ajaxify */
 'use strict'
 
 define('handleBack', [

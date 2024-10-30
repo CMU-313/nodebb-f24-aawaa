@@ -1,3 +1,4 @@
+/* global utils, define, $, app */
 'use strict'
 
 define('forum/chats/user-search', [

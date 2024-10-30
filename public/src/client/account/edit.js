@@ -1,3 +1,4 @@
+/* global config, $, define, socket, ajaxify */
 'use strict'
 
 define('forum/account/edit', [

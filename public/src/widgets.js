@@ -1,3 +1,4 @@
+/* global $, ajaxify */
 'use strict'
 
 module.exports.render = function (template) {

@@ -1,3 +1,4 @@
+/* global define, $, socket, ajaxify */
 'use strict'
 
 define('admin/settings/email', ['ace/ace', 'alerts', 'admin/settings'], function (ace, alerts) {

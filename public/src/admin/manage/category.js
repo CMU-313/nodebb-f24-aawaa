@@ -1,3 +1,4 @@
+/* global config, alert, $, app, define, socket, ajaxify */
 'use strict'
 
 define('admin/manage/category', [

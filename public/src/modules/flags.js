@@ -1,3 +1,4 @@
+/* global define, $, app */
 'use strict'
 
 define('flags', ['hooks', 'components', 'api', 'alerts'], function (hooks, components, api, alerts) {

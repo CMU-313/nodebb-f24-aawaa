@@ -1,3 +1,4 @@
+/* global utils, $, ajaxify */
 import {
   Chart,
   LineController,

@@ -1,3 +1,4 @@
+/* global config, history, utils, socket, $, app, ajaxify */
 'use strict'
 
 const benchpress = require('benchpressjs')

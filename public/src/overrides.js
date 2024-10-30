@@ -1,3 +1,4 @@
+/* global config, overrides, $, jQuery, ajaxify */
 'use strict'
 
 const translator = require('./modules/translator')

@@ -1,3 +1,4 @@
+/* global config, define, $, utils */
 'use strict'
 
 define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {

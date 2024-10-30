@@ -1,3 +1,4 @@
+/* global config, define, $, ajaxify */
 'use strict'
 
 define('forum/account/sessions', ['forum/account/header', 'components', 'api', 'alerts'], function (header, components, api, alerts) {

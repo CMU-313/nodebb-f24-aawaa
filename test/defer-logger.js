@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 const winston = require('winston')
 const Transport = require('winston-transport')

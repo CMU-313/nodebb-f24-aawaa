@@ -1,3 +1,4 @@
+/* global define */
 'use strict'
 
 define('forum/account/followers', ['forum/account/header'], function (header) {

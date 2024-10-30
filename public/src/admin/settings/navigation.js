@@ -1,3 +1,4 @@
+/* global define, $, socket, ajaxify */
 'use strict'
 
 define('admin/settings/navigation', [

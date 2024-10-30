@@ -1,3 +1,4 @@
+/* global define, $, ajaxify */
 'use strict'
 
 define('forum/account/categories', ['forum/account/header', 'alerts', 'api'], function (header, alerts, api) {

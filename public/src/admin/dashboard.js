@@ -1,3 +1,4 @@
+/* global config, utils, $, app, localStorage, socket */
 import {
   Chart,
   LineController,

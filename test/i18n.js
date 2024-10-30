@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 // For tests relating to the translator module, check translator.js
 

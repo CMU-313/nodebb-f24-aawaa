@@ -1,3 +1,4 @@
+/* global define, ajaxify */
 'use strict'
 
 define('admin/dashboard/logins', ['admin/modules/dashboard-line-graph'], (graph) => {

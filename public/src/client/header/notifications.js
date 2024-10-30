@@ -1,3 +1,4 @@
+/* global define, $, socket */
 'use strict'
 
 define('forum/header/notifications', function () {

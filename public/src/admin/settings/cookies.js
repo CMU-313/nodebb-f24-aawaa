@@ -1,3 +1,4 @@
+/* global config, define, $, socket */
 'use strict'
 
 define('admin/settings/cookies', ['alerts'], function (alerts) {

@@ -1,3 +1,4 @@
+/* global define, $, app, ajaxify */
 'use strict'
 
 define('accounts/invite', ['api', 'benchpress', 'bootbox', 'alerts'], function (api, Benchpress, bootbox, alerts) {

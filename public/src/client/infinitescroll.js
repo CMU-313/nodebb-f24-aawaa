@@ -1,3 +1,4 @@
+/* global config, utils, $, app, define, location, socket */
 'use strict'
 
 define('forum/infinitescroll', ['hooks', 'alerts', 'api'], function (hooks, alerts, api) {

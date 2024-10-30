@@ -1,3 +1,4 @@
+/* global define, $, app, ajaxify */
 'use strict'
 
 define('forum/flags/detail', [

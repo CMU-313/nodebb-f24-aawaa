@@ -1,3 +1,4 @@
+/* global config, history, utils, $, app, define, self, socket, ajaxify */
 'use strict'
 
 define('forum/chats', [

@@ -1,3 +1,4 @@
+/* global utils, socket, $, MutationObserver, define, app, ajaxify */
 'use strict'
 
 define('forum/topic/threadTools', [

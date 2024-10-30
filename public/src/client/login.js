@@ -1,3 +1,4 @@
+/* global config, utils, $, define, app */
 'use strict'
 
 define('forum/login', ['hooks', 'translator', 'jquery-form'], function (hooks, translator) {

@@ -1,3 +1,4 @@
+/* global self, caches */
 'use strict'
 
 self.addEventListener('fetch', function (event) {

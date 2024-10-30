@@ -1,3 +1,4 @@
+/* global config, socket, $, define, app, ajaxify */
 'use strict'
 
 define('notifications', [

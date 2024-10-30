@@ -1,3 +1,4 @@
+/* global config, $, define, app, ajaxify */
 'use strict'
 
 define('forum/topic/replies', ['forum/topic/posts', 'hooks', 'alerts', 'api'], function (posts, hooks, alerts, api) {

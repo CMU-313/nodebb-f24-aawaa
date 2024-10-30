@@ -1,3 +1,4 @@
+/* global utils, define, app, socket */
 'use strict'
 
 define('forum/chats/message-search', [

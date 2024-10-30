@@ -1,3 +1,4 @@
+/* global config, define, app */
 'use strict'
 
 define('forum/topic/diffs', ['api', 'bootbox', 'alerts', 'forum/topic/images'], function (api, bootbox, alerts) {

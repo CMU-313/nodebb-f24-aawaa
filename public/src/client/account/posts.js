@@ -1,3 +1,4 @@
+/* global config, utils, $, define, app, ajaxify */
 'use strict'
 
 define('forum/account/posts', ['forum/account/header', 'forum/infinitescroll', 'hooks'], function (header, infinitescroll, hooks) {

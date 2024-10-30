@@ -1,3 +1,4 @@
+/* global config, jQuery */
 'use strict'
 
 // add default escape function for escaping HTML entities

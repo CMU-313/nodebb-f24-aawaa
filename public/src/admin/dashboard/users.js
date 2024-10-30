@@ -1,3 +1,4 @@
+/* global config, define, app, ajaxify */
 'use strict'
 
 define('admin/dashboard/users', ['admin/modules/dashboard-line-graph', 'hooks'], (graph, hooks) => {

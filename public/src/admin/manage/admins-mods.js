@@ -1,3 +1,4 @@
+/* global socket, $, define, app, ajaxify */
 'use strict'
 
 define('admin/manage/admins-mods', [

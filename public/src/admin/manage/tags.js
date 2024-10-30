@@ -1,3 +1,4 @@
+/* global utils, $, app, define, socket, ajaxify */
 'use strict'
 
 define('admin/manage/tags', [

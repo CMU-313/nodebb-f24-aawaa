@@ -1,3 +1,4 @@
+/* global config, $, jQuery */
 'use strict'
 
 module.exports = function (utils, load, warn) {

@@ -1,3 +1,4 @@
+/* global utils, $, app, define, socket */
 'use strict'
 
 define('forum/header', [

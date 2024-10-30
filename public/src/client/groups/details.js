@@ -1,3 +1,4 @@
+/* global config, utils, $, app, define, socket, ajaxify */
 'use strict'
 
 define('forum/groups/details', [

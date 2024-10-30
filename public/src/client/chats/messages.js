@@ -1,3 +1,4 @@
+/* global config, $, app, define, socket */
 'use strict'
 
 define('forum/chats/messages', [

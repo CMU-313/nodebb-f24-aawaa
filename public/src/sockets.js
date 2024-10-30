@@ -1,3 +1,4 @@
+/* global config, app, location, socket, ajaxify */
 'use strict'
 
 // eslint-disable-next-line no-redeclare

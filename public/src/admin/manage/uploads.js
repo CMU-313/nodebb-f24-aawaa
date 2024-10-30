@@ -1,3 +1,4 @@
+/* global config, define, $, ajaxify */
 'use strict'
 
 define('admin/manage/uploads', ['api', 'bootbox', 'alerts', 'uploader'], function (api, bootbox, alerts, uploader) {

@@ -1,3 +1,4 @@
+/* global config, $, define, app, ajaxify */
 'use strict'
 
 define('forum/account/edit/username', [

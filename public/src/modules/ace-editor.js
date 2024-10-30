@@ -1,3 +1,4 @@
+/* global ace */
 /* eslint-disable import/first */
 
 export * from 'ace-builds'

@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-env mocha */
 
 const async = require('async')
 const assert = require('assert')

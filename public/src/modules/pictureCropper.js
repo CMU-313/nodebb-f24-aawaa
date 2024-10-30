@@ -1,3 +1,4 @@
+/* global utils, $, app, define, socket, FileReader */
 'use strict'
 
 define('pictureCropper', ['alerts'], function (alerts) {

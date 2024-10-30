@@ -1,3 +1,4 @@
+/* global socket, $, define, app, ajaxify */
 'use strict'
 
 define('settings', ['hooks', 'alerts'], function (hooks, alerts) {

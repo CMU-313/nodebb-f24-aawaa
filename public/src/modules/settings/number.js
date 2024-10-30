@@ -1,3 +1,4 @@
+/* global define */
 'use strict'
 
 define('settings/number', function () {

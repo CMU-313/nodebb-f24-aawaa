@@ -1,3 +1,4 @@
+/* global socket, $, define, scrollBy, app, ajaxify */
 'use strict'
 
 define('admin/settings', [

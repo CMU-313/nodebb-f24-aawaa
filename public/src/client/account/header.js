@@ -1,3 +1,4 @@
+/* global config, $, app, define, socket, ajaxify */
 'use strict'
 
 define('forum/account/header', [

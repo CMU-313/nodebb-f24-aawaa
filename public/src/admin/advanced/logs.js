@@ -1,3 +1,4 @@
+/* global define, $, socket */
 'use strict'
 
 define('admin/advanced/logs', ['alerts'], function (alerts) {

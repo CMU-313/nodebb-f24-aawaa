@@ -1,3 +1,4 @@
+/* global utils, define, $ */
 'use strict'
 
 define('forum/topic/images', [], function () {

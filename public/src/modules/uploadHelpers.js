@@ -1,3 +1,4 @@
+/* global config, utils, $, define, app */
 'use strict'
 
 define('uploadHelpers', ['alerts'], function (alerts) {

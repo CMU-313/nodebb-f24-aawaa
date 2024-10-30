@@ -1,3 +1,4 @@
+/* global config, utils, $, define, socket, ajaxify */
 'use strict'
 
 define('forum/reset_code', ['alerts', 'zxcvbn'], function (alerts, zxcvbn) {

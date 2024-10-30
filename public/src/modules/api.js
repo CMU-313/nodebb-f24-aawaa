@@ -1,3 +1,4 @@
+/* global config, $, ajaxify */
 /* eslint-disable import/no-unresolved */
 
 'use strict'

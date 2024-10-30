@@ -1,3 +1,4 @@
+/* global utils, $, define, socket, ajaxify */
 'use strict'
 
 define('forum/groups/list', [

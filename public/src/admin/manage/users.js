@@ -1,3 +1,4 @@
+/* global config, history, utils, $, app, define, socket, ajaxify */
 'use strict'
 
 define('admin/manage/users', [

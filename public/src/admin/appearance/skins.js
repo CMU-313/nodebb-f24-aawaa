@@ -1,3 +1,4 @@
+/* global define, $, socket, app */
 'use strict'
 
 define('admin/appearance/skins', [

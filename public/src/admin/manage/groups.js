@@ -1,3 +1,4 @@
+/* global utils, socket, $, define, app, ajaxify */
 'use strict'
 
 define('admin/manage/groups', [

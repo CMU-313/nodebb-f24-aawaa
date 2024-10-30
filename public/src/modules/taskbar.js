@@ -1,3 +1,4 @@
+/* global define, $, app */
 'use strict'
 
 define('taskbar', ['translator', 'hooks'], function (translator, hooks) {

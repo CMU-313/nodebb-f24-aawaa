@@ -1,3 +1,4 @@
+/* global define, $, app, socket */
 'use strict'
 
 define('forum/header/chat', [

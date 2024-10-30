@@ -1,3 +1,4 @@
+/* global utils, $, app, socket */
 'use strict'
 
 import * as components from './components'

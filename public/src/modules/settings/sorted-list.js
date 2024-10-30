@@ -1,3 +1,4 @@
+/* global utils, $, define, app, ajaxify */
 'use strict'
 
 define('settings/sorted-list', [

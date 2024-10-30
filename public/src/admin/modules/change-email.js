@@ -1,3 +1,4 @@
+/* global utils, define */
 'use strict'
 
 define('admin/modules/change-email', [

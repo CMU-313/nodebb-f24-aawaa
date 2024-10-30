@@ -1,3 +1,4 @@
+/* global $, app, define, jQuery, socket, ajaxify */
 'use strict'
 
 define('autocomplete', ['api', 'alerts'], function (api, alerts) {

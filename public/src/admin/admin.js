@@ -1,3 +1,4 @@
+/* global config, $, app */
 'use strict'
 
 require('../app')

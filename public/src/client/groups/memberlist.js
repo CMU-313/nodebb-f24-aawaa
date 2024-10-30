@@ -1,3 +1,4 @@
+/* global utils, $, app, define, socket, ajaxify */
 'use strict'
 
 define('forum/groups/memberlist', ['api', 'bootbox', 'alerts', 'helpers'], function (api, bootbox, alerts, helpers) {
