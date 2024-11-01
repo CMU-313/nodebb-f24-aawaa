@@ -23,7 +23,7 @@ app = window.app || {}
 Object.defineProperty(app, 'isFocused', {
   get () {
     return document.visibilityState === 'visible'
-  }
+  },
 })
 app.currentRoom = null
 app.widgets = {}
@@ -109,7 +109,7 @@ if (document.readyState === 'loading') {
       'messages',
       'search',
       'forum/header',
-      'hooks'
+      'hooks',
     ], function (taskbar, helpers, pagination, messages, search, header, hooks) {
       header.prepareDOM()
       taskbar.init()
@@ -158,7 +158,7 @@ if (document.readyState === 'loading') {
       const previousRoom = app.currentRoom
       app.currentRoom = room
       socket.emit('meta.rooms.enter', {
-        enter: room
+        enter: room,
       }, function (err) {
         if (err) {
           app.currentRoom = previousRoom
@@ -224,7 +224,7 @@ if (document.readyState === 'loading') {
         selector: '.avatar.avatar-tooltip',
         placement: placement || 'top',
         container: '#content',
-        animation: false
+        animation: false,
       })
     }
   }
@@ -235,7 +235,7 @@ if (document.readyState === 'loading') {
         selector: '.fa-circle.status',
         placement: 'top',
         container: '#content',
-        animation: false
+        animation: false,
       })
 
       $('#content').on('inserted.bs.tooltip', function (ev) {
@@ -287,7 +287,7 @@ if (document.readyState === 'loading') {
       }
       params = {
         cid: params,
-        tags: arguments[1] || (ajaxify.data.tag ? [ajaxify.data.tag] : [])
+        tags: arguments[1] || (ajaxify.data.tag ? [ajaxify.data.tag] : []),
       }
     }
 
@@ -303,7 +303,7 @@ if (document.readyState === 'loading') {
     if (typeof params !== 'object') {
       console.warn('[deprecated] app.newReply(tid) please pass in an object')
       params = {
-        tid: params
+        tid: params,
       }
     }
 
@@ -324,7 +324,7 @@ if (document.readyState === 'loading') {
       'jquery-ui/widgets/autocomplete',
       'jquery-ui/widgets/sortable',
       'jquery-ui/widgets/resizable',
-      'jquery-ui/widgets/draggable'
+      'jquery-ui/widgets/draggable',
     ], function () {
       callback()
     })

@@ -17,7 +17,7 @@ define('forum/chats', [
   'alerts',
   'chat',
   'api',
-  'uploadHelpers'
+  'uploadHelpers',
 ], function (
   components, mousetrap, recentChats, create,
   manage, messages, userList, messageSearch, pinnedMessages,
@@ -26,7 +26,7 @@ define('forum/chats', [
 ) {
   const Chats = {
     initialised: false,
-    activeAutocomplete: {}
+    activeAutocomplete: {},
   }
 
   let newMessage = false
@@ -48,7 +48,7 @@ define('forum/chats', [
     if (!utils.isMobile()) {
       $('.chats-full [data-bs-toggle="tooltip"]').tooltip({
         trigger: 'hover',
-        container: '#content'
+        container: '#content',
       })
     }
     socket.emit('modules.chats.enterPublic', ajaxify.data.publicRooms.map(r => r.roomId))
@@ -113,7 +113,7 @@ define('forum/chats', [
       pasteEl: $('[component="chat/input"]'),
       uploadFormEl: $('[component="chat/upload"]'),
       uploadBtnEl: $('[component="chat/upload/button"]'),
-      inputEl: $('[component="chat/input"]')
+      inputEl: $('[component="chat/input"]'),
     })
 
     $('[data-action="close"]').on('click', function () {
@@ -142,7 +142,7 @@ define('forum/chats', [
               data.scores.push(idx)
             })
             await api.put('/chats/sort', data)
-          }
+          },
         })
       })
     }
@@ -156,7 +156,7 @@ define('forum/chats', [
     containerEl.find('[data-manual-tooltip]').tooltip({
       trigger: 'manual',
       animation: false,
-      placement: 'bottom'
+      placement: 'bottom',
     }).on('mouseenter', function (ev) {
       const target = $(ev.target)
       const isDropdown = target.hasClass('dropdown-menu') || !!target.parents('.dropdown-menu').length
@@ -172,7 +172,7 @@ define('forum/chats', [
       placement: 'top',
       container: '#content',
       animation: false,
-      trigger: 'hover'
+      trigger: 'hover',
     })
   }
 
@@ -185,7 +185,7 @@ define('forum/chats', [
       $this.find('i.fa-check').removeClass('hidden')
       notifSettingEl.find('[component="chat/notification/setting/icon"]').attr('class', `fa ${$this.attr('data-icon')}`)
       await api.put(`/chats/${roomId}/watch`, {
-        value: $this.attr('data-value')
+        value: $this.attr('data-value'),
       })
     })
   }
@@ -218,7 +218,7 @@ define('forum/chats', [
           text = text + (!text.endsWith('\n') ? '\n' : '') + (upload.isImage ? '!' : '') + `[${upload.filename}](${upload.url})\n`
         })
         inputEl.val(text).trigger('input')
-      }
+      },
     })
   }
 
@@ -501,7 +501,7 @@ define('forum/chats', [
               }
             }).catch(alerts.error)
           }
-        }
+        },
       })
     })
   }
@@ -525,7 +525,7 @@ define('forum/chats', [
               }
             }).catch(alerts.error)
           }
-        }
+        },
       })
     })
   }
@@ -534,7 +534,7 @@ define('forum/chats', [
     buttonEl.on('click', async function () {
       const { roomName } = await api.get(`/chats/${roomId}`)
       const html = await app.parseAndTranslate('modals/rename-room', {
-        name: roomName
+        name: roomName,
       })
       const modal = bootbox.dialog({
         title: '[[modules:chat.rename-room]]',
@@ -546,14 +546,14 @@ define('forum/chats', [
             className: 'btn-primary',
             callback: function () {
               api.put(`/chats/${roomId}`, {
-                name: modal.find('#roomName').val()
+                name: modal.find('#roomName').val(),
               }).then(() => {
                 modal.modal('hide')
               }).catch(alerts.error)
               return false
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
   }
@@ -587,12 +587,12 @@ define('forum/chats', [
         style: {
           'z-index': 20000,
           flex: 0,
-          top: 'inherit'
+          top: 'inherit',
         },
         placement: 'top',
         className: `chat-autocomplete-dropdown-${roomId} dropdown-menu textcomplete-dropdown`,
-        ...options
-      }
+        ...options,
+      },
     }
 
     $(window).trigger('chat:autocomplete:init', data)
@@ -664,7 +664,7 @@ define('forum/chats', [
         messages.scrollToBottomAfterImageLoad(mainWrapper.find('[component="chat/message/content"]'))
         if (history.pushState) {
           history.pushState({
-            url
+            url,
           }, null, window.location.protocol + '//' + window.location.host + config.relative_path + '/' + url)
         }
       })
@@ -700,7 +700,7 @@ define('forum/chats', [
             const recentEl = components.get('chat/recent')
             const html = await app.parseAndTranslate('chats', 'rooms', {
               rooms: [room],
-              showBottomHr: true
+              showBottomHr: true,
             })
             recentEl.prepend(html)
           }
@@ -725,7 +725,7 @@ define('forum/chats', [
         updateTeaser(data.roomId, {
           content: utils.stripHTMLTags(utils.decodeHTMLEntities(data.message.content)),
           user: data.message.fromUser,
-          timestampISO: data.message.timestampISO
+          timestampISO: data.message.timestampISO,
         })
       }
     })
@@ -734,7 +734,7 @@ define('forum/chats', [
       const roomEl = $(`[data-roomid="${roomId}"]`)
       if (roomEl.length) {
         const html = await app.parseAndTranslate('partials/chats/room-teaser', {
-          teaser
+          teaser,
         })
         roomEl.find('[component="chat/room/teaser"]').html(html[0].outerHTML)
         roomEl.find('.timeago').timeago()

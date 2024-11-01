@@ -18,9 +18,9 @@ define('uploadHelpers', ['alerts'], function (alerts) {
           uploadHelpers.ajaxSubmit({
             uploadForm: formEl,
             upload,
-            callback: options.callback
+            callback: options.callback,
           })
-        }
+        },
       })
     }
 
@@ -31,9 +31,9 @@ define('uploadHelpers', ['alerts'], function (alerts) {
           uploadHelpers.ajaxSubmit({
             uploadForm: formEl,
             upload,
-            callback: options.callback
+            callback: options.callback,
           })
-        }
+        },
       })
     }
 
@@ -50,9 +50,9 @@ define('uploadHelpers', ['alerts'], function (alerts) {
             uploadForm: formEl,
             upload: {
               files,
-              fileNames: Array.from(files).map(f => f.name)
+              fileNames: Array.from(files).map(f => f.name),
             },
-            callback: options.callback
+            callback: options.callback,
           })
         }
       })
@@ -93,7 +93,7 @@ define('uploadHelpers', ['alerts'], function (alerts) {
         }
         options.callback({
           files,
-          formData
+          formData,
         })
       }
 
@@ -146,7 +146,7 @@ define('uploadHelpers', ['alerts'], function (alerts) {
         options.callback({
           files,
           fileNames,
-          formData
+          formData,
         })
       }
     })
@@ -169,7 +169,7 @@ define('uploadHelpers', ['alerts'], function (alerts) {
     options.uploadForm.off('submit').on('submit', function () {
       $(this).ajaxSubmit({
         headers: {
-          'x-csrf-token': config.csrf_token
+          'x-csrf-token': config.csrf_token,
         },
         resetForm: true,
         clearForm: true,
@@ -189,7 +189,7 @@ define('uploadHelpers', ['alerts'], function (alerts) {
         uploadProgress: function (event, position, total, percent) {
           alerts.alert({
             alert_id,
-            message: '[[modules:composer.uploading, ' + percent + '%]]'
+            message: '[[modules:composer.uploading, ' + percent + '%]]',
           })
         },
 
@@ -207,7 +207,7 @@ define('uploadHelpers', ['alerts'], function (alerts) {
         complete: function () {
           options.uploadForm[0].reset()
           setTimeout(alerts.remove, 100, alert_id)
-        }
+        },
       })
 
       return false

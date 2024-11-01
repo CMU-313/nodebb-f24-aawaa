@@ -2,7 +2,7 @@
 'use strict'
 
 define('admin/manage/users', [
-  'translator', 'benchpress', 'autocomplete', 'api', 'slugify', 'bootbox', 'alerts', 'accounts/invite', 'helpers', 'admin/modules/change-email'
+  'translator', 'benchpress', 'autocomplete', 'api', 'slugify', 'bootbox', 'alerts', 'accounts/invite', 'helpers', 'admin/modules/change-email',
 ], function (translator, Benchpress, autocomplete, api, slugify, bootbox, alerts, AccountInvite, helpers, changeEmail) {
   const Users = {}
 
@@ -25,7 +25,7 @@ define('admin/manage/users', [
           clickfn: function () {
             window.location.href = config.relative_path + '/api/admin/users/csv'
           },
-          timeout: 0
+          timeout: 0,
         })
       })
 
@@ -48,7 +48,7 @@ define('admin/manage/users', [
         { label: '[[admin/manage/users:export-field-location]]', field: 'location', selected: false },
         { label: '[[admin/manage/users:export-field-birthday]]', field: 'birthday', selected: false },
         { label: '[[admin/manage/users:export-field-signature]]', field: 'signature', selected: false },
-        { label: '[[admin/manage/users:export-field-aboutme]]', field: 'aboutme', selected: false }
+        { label: '[[admin/manage/users:export-field-aboutme]]', field: 'aboutme', selected: false },
       ]
       const options = defaultFields.map((field, i) => (`
 				<div class="form-check mb-2">
@@ -76,12 +76,12 @@ define('admin/manage/users', [
                 alerts.alert({
                   alert_id: 'export-users-start',
                   message: '[[admin/manage/users:export-users-started]]',
-                  timeout: Math.max(5000, (ajaxify.data.userCount / 5000) * 500)
+                  timeout: Math.max(5000, (ajaxify.data.userCount / 5000) * 500),
                 })
               })
-            }
-          }
-        }
+            },
+          },
+        },
       })
 
       return false
@@ -158,7 +158,7 @@ define('admin/manage/users', [
           const modal = bootbox.dialog({
             message: html,
             title: '[[admin/manage/users:manage-groups]]',
-            onEscape: true
+            onEscape: true,
           })
           modal.on('shown.bs.modal', function () {
             autocomplete.group(modal.find('.group-search'), function (ev, ui) {
@@ -215,7 +215,7 @@ define('admin/manage/users', [
               }
               socket.emit('admin.user.setReputation', {
                 value: newReputation,
-                uids
+                uids,
               }).then(() => {
                 uids.forEach((uid) => {
                   $(`[component="user/reputation"][data-uid="${uid}"]`).text(helpers.formattedNumber(newReputation))
@@ -225,9 +225,9 @@ define('admin/manage/users', [
                   }
                 })
               }).catch(alerts.error)
-            }
-          }
-        }
+            },
+          },
+        },
       })
       modal.on('shown.bs.modal', () => {
         modal.find('#new-reputation').selectRange(0, modal.find('#new-reputation').val().length)
@@ -268,7 +268,7 @@ define('admin/manage/users', [
           buttons: {
             close: {
               label: '[[global:close]]',
-              className: 'btn-link'
+              className: 'btn-link',
             },
             submit: {
               label: '[[admin/manage/users:alerts.button-ban-x, ' + uids.length + ']]',
@@ -286,14 +286,14 @@ define('admin/manage/users', [
                 Promise.all(uids.map(function (uid) {
                   return api.put('/users/' + uid + '/ban', {
                     until,
-                    reason: formData.reason
+                    reason: formData.reason,
                   })
                 })).then(() => {
                   onSuccess('[[admin/manage/users:alerts.ban-success]]', '.ban', true)
                 }).catch(alerts.error)
-              }
-            }
-          }
+              },
+            },
+          },
         })
       })
     })
@@ -314,7 +314,7 @@ define('admin/manage/users', [
           buttons: {
             close: {
               label: '[[global:close]]',
-              className: 'btn-link'
+              className: 'btn-link',
             },
             submit: {
               label: '[[user:unban-account]]',
@@ -326,14 +326,14 @@ define('admin/manage/users', [
 
                 Promise.all(uids.map(function (uid) {
                   return api.del('/users/' + uid + '/ban', {
-                    reason: formData.reason || ''
+                    reason: formData.reason || '',
                   })
                 })).then(() => {
                   onSuccess('[[admin/manage/users:alerts.unban-success]]', '.ban', false)
                 }).catch(alerts.error)
-              }
-            }
-          }
+              },
+            },
+          },
         })
       })
     })
@@ -363,7 +363,7 @@ define('admin/manage/users', [
           update('.no-email', !newEmail)
           $('.users-table [component="user/select/single"]:checked').parents('.user-row').find('.validated-by-admin .email').text(newEmail)
           // $('.users-table [component="user/select/single"]:checked').parents('.user-row').find('.no-email').
-        }
+        },
       })
     })
 
@@ -418,7 +418,7 @@ define('admin/manage/users', [
         }
         await Promise.all(uids.map(uid => api.put('/users/' + uid + '/password', {
           currentPassword: '',
-          newPassword
+          newPassword,
         })))
       }
 
@@ -434,7 +434,7 @@ define('admin/manage/users', [
         buttons: {
           cancel: {
             label: '[[admin/manage/users:alerts.button-cancel]]',
-            className: 'btn-link'
+            className: 'btn-link',
           },
           change: {
             label: '[[admin/manage/users:alerts.button-change]]',
@@ -444,9 +444,9 @@ define('admin/manage/users', [
                 modal.modal('hide')
               }).catch(alerts.error)
               return false
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
 
@@ -543,7 +543,7 @@ define('admin/manage/users', [
             buttons: {
               cancel: {
                 label: '[[admin/manage/users:alerts.button-cancel]]',
-                className: 'btn-link'
+                className: 'btn-link',
               },
               create: {
                 label: '[[admin/manage/users:alerts.button-create]]',
@@ -551,9 +551,9 @@ define('admin/manage/users', [
                 callback: function () {
                   createUser.call(this)
                   return false
-                }
-              }
-            }
+                },
+              },
+            },
           })
           modal.on('shown.bs.modal', function () {
             modal.find('#create-user-name').focus()
@@ -579,7 +579,7 @@ define('admin/manage/users', [
       const user = {
         username,
         email,
-        password
+        password,
       }
 
       api.post('/users', user)
@@ -606,7 +606,7 @@ define('admin/manage/users', [
       loadSearchPage({
         searchBy: $('#user-search-by').val(),
         query: $('#user-search').val(),
-        page: 1
+        page: 1,
       })
     }
     $('#user-search').on('keyup', utils.debounce(doSearch, 250))
@@ -625,7 +625,7 @@ define('admin/manage/users', [
       const url = config.relative_path + '/admin/manage/users?' + qs
       if (history.pushState) {
         history.pushState({
-          url
+          url,
         }, null, window.location.protocol + '//' + window.location.host + url)
       }
     }).fail(function (xhrErr) {

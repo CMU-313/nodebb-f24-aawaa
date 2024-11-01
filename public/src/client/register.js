@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/register', [
-  'translator', 'slugify', 'api', 'bootbox', 'forum/login', 'zxcvbn', 'jquery-form'
+  'translator', 'slugify', 'api', 'bootbox', 'forum/login', 'zxcvbn', 'jquery-form',
 ], function (translator, slugify, api, bootbox, Login, zxcvbn) {
   const Register = {}
   let validationError = false
@@ -73,7 +73,7 @@ define('forum/register', [
 
         registerBtn.parents('form').ajaxSubmit({
           headers: {
-            'x-csrf-token': config.csrf_token
+            'x-csrf-token': config.csrf_token,
           },
           success: function (data) {
             registerBtn.removeClass('disabled')
@@ -105,7 +105,7 @@ define('forum/register', [
                 registerBtn.removeClass('disabled')
               }
             })
-          }
+          },
         })
       })
     })
@@ -130,7 +130,7 @@ define('forum/register', [
     } else {
       Promise.allSettled([
         api.head(`/users/bySlug/${userslug}`, {}),
-        api.head(`/groups/${username}`, {})
+        api.head(`/groups/${username}`, {}),
       ]).then((results) => {
         if (results.every(obj => obj.status === 'rejected')) {
           showSuccess(usernameInput, username_notify, successIcon)

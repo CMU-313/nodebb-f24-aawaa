@@ -365,7 +365,7 @@ module.exports = function (utils, load, warn) {
 
       return Promise.all([
         this.translate(text),
-        this.translate(attrText)
+        this.translate(attrText),
       ]).then(function (ref) {
         const translated = ref[0]
         const translatedAttrs = ref[1]
@@ -627,7 +627,7 @@ module.exports = function (utils, load, warn) {
       // Delete the cached shorthand strings if present
       delete adaptor.timeagoShort
       import(/* webpackChunkName: "timeago/[request]" */ 'timeago/locales/jquery.timeago.' + langCode).then(callback)
-    }
+    },
   }
 
   return adaptor

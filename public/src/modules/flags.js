@@ -46,7 +46,7 @@ define('flags', ['hooks', 'components', 'api', 'alerts'], function (hooks, compo
       hooks.fire('action:flag.showModal', {
         modalEl: flagModal,
         type: data.type,
-        id: data.id
+        id: data.id,
       })
 
       flagModal.find('#flag-reason-custom').on('keyup blur change', checkFlagButtonEnable)
@@ -55,7 +55,7 @@ define('flags', ['hooks', 'components', 'api', 'alerts'], function (hooks, compo
 
   Flag.resolve = function (flagId) {
     api.put(`/flags/${flagId}`, {
-      state: 'resolved'
+      state: 'resolved',
     }).then(() => {
       alerts.success('[[flags:resolved]]')
       hooks.fire('action:flag.resolved', { flagId })

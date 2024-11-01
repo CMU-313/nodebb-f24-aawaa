@@ -83,5 +83,8 @@ jobs:
       - name: Extract coverage info
         run: npm run coverage
 
+      - name: Run ESLint
+        run: npm run standard-js
+
       - name: Test coverage
         uses: coverallsapp/github-action@v2

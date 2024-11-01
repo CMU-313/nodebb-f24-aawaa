@@ -11,7 +11,7 @@ define('admin/manage/group', [
   'api',
   'bootbox',
   'alerts',
-  'admin/settings'
+  'admin/settings',
 ], function (
   memberList, iconSelect, translator, categorySelector, groupSearch,
   slugify, api, bootbox, alerts, settings
@@ -68,7 +68,7 @@ define('admin/manage/group', [
       onSelect: function (selectedCategory) {
         navigateToCategory(selectedCategory.cid)
       },
-      showLinks: true
+      showLinks: true,
     })
 
     const cidSelector = categorySelector.init($('.member-post-cids-selector [component="category-selector"]'), {
@@ -79,7 +79,7 @@ define('admin/manage/group', [
         $('#memberPostCids').val(cids.join(','))
         cidSelector.selectCategory(0)
         return false
-      }
+      },
     })
 
     groupSearch.init($('[component="group-selector"]'))
@@ -112,7 +112,7 @@ define('admin/manage/group', [
         hidden: $('#group-hidden').is(':checked'),
         memberPostCids: $('#memberPostCids').val(),
         disableJoinRequests: $('#group-disableJoinRequests').is(':checked'),
-        disableLeave: $('#group-disableLeave').is(':checked')
+        disableLeave: $('#group-disableLeave').is(':checked'),
       }).then(() => {
         const newName = $('#change-group-name').val()
 

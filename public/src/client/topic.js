@@ -16,7 +16,7 @@ define('forum/topic', [
   'api',
   'alerts',
   'bootbox',
-  'clipboard'
+  'clipboard',
 ], function (
   infinitescroll, threadTools, postTools,
   events, posts, navigator, sort, quickreply,
@@ -166,7 +166,7 @@ define('forum/topic', [
         },
         closefn: function () {
           storage.removeItem('topic:' + tid + ':bookmark')
-        }
+        },
       })
     }
   }
@@ -188,14 +188,14 @@ define('forum/topic', [
         })
         const html = await app.parseAndTranslate('modals/topic-thumbs-view', {
           src: clickedThumb.href,
-          thumbs
+          thumbs,
         })
 
         const modal = bootbox.dialog({
           size: 'lg',
           onEscape: true,
           backdrop: true,
-          message: html
+          message: html,
         })
         modal.on('click', '[component="topic/thumb/select"]', function () {
           $('[component="topic/thumb/select"]').removeClass('border-primary')
@@ -229,7 +229,7 @@ define('forum/topic', [
             .map((i, e) => e.textContent).get().join('\n')
         }
         return codeEl.text()
-      }
+      },
     })
 
     function addCopyCodeButton () {
@@ -319,7 +319,7 @@ define('forum/topic', [
           tooltip.css({
             top: linkRect.top + 30,
             left: postRect.left,
-            width: postWidth
+            width: postWidth,
           })
         }
       }
@@ -390,7 +390,7 @@ define('forum/topic', [
         }
 
         history.replaceState({
-          url: newUrl + search
+          url: newUrl + search,
         }, null, window.location.protocol + '//' + window.location.host + config.relative_path + '/' + newUrl + search)
       }
     }
@@ -416,7 +416,7 @@ define('forum/topic', [
 
         socket.emit('topics.bookmark', {
           tid: ajaxify.data.tid,
-          index: ajaxify.data.bookmark
+          index: ajaxify.data.bookmark,
         }, function (err) {
           if (err) {
             ajaxify.data.bookmark = currentBookmark

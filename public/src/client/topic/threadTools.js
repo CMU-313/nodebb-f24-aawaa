@@ -11,7 +11,7 @@ define('forum/topic/threadTools', [
   'bootbox',
   'alerts',
   'bootstrap',
-  'helpers'
+  'helpers',
 ], function (components, translator, handleBack, posts, api, hooks, bootbox, alerts, bootstrap, helpers) {
   const ThreadTools = {}
 
@@ -20,7 +20,7 @@ define('forum/topic/threadTools', [
 
     $('.topic-main-buttons [title]').tooltip({
       container: '#content',
-      animation: false
+      animation: false,
     })
 
     ThreadTools.observeTopicLabels($('[component="topic/labels"]'))
@@ -167,7 +167,7 @@ define('forum/topic/threadTools', [
           alert_id: 'follow_thread',
           message,
           type: 'success',
-          timeout: 5000
+          timeout: 5000,
         })
 
         hooks.fire('action:topics.changeWatching', { tid, type })
@@ -177,7 +177,7 @@ define('forum/topic/threadTools', [
           alert_id: 'topic_follow',
           title: '[[global:please-log-in]]',
           message: '[[topic:login-to-subscribe]]',
-          timeout: 5000
+          timeout: 5000,
         })
       })
 
@@ -217,7 +217,7 @@ define('forum/topic/threadTools', [
       const html = await app.parseAndTranslate('partials/topic/topic-menu-list', data)
       $(dropdownMenu).attr('data-loaded', 'true').html(html)
       hooks.fire('action:topic.tools.load', {
-        element: $(dropdownMenu)
+        element: $(dropdownMenu),
       })
     })
   }
@@ -262,7 +262,7 @@ define('forum/topic/threadTools', [
         buttons: {
           cancel: {
             label: '[[modules:bootbox.cancel]]',
-            className: 'btn-link'
+            className: 'btn-link',
           },
           save: {
             label: '[[global:save]]',
@@ -285,9 +285,9 @@ define('forum/topic/threadTools', [
               } else {
                 alerts.error('[[error:invalid-date]]')
               }
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
   }
@@ -335,7 +335,7 @@ define('forum/topic/threadTools', [
       app.parseAndTranslate('partials/topic/deleted-message', {
         deleter: data.user,
         deleted: true,
-        deletedTimestampISO: utils.toISOString(Date.now())
+        deletedTimestampISO: utils.toISOString(Date.now()),
       }, function (html) {
         components.get('topic/deleted/message').replaceWith(html)
         html.find('.timeago').timeago()
@@ -379,7 +379,7 @@ define('forum/topic/threadTools', [
     const titles = {
       follow: '[[topic:watching]]',
       unfollow: '[[topic:not-watching]]',
-      ignore: '[[topic:ignoring]]'
+      ignore: '[[topic:ignoring]]',
     }
 
     translator.translate(titles[state], function (translatedTitle) {

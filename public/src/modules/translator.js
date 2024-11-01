@@ -10,7 +10,7 @@ define('translator', ['jquery', 'utils'], function (jQuery, utils) {
         const payload = {
           language,
           namespace,
-          data
+          data,
         }
         require(['hooks'], function (hooks) {
           hooks.fire('action:translator.loadClient', payload)

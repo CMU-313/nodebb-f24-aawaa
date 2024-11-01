@@ -30,7 +30,7 @@ define('admin/appearance/customise', ['admin/settings', 'ace/ace'], function (Se
       theme: 'ace/theme/twilight',
       maxLines: 30,
       minLines: 30,
-      fontSize: 14
+      fontSize: 14,
     })
     editorEl.on('change', function () {
       app.flags = app.flags || {}

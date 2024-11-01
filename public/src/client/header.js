@@ -5,7 +5,7 @@ define('forum/header', [
   'forum/header/unread',
   'forum/header/notifications',
   'forum/header/chat',
-  'alerts'
+  'alerts',
 ], function (unread, notifications, chat, alerts) {
   const module = {}
 
@@ -50,7 +50,7 @@ define('forum/header', [
       placement: 'bottom',
       trigger: 'hover',
       container: 'body',
-      animation: false
+      animation: false,
     })
   }
 

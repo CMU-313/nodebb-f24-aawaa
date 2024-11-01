@@ -7,7 +7,7 @@ import {
   LineElement,
   PointElement,
   Tooltip,
-  Filler
+  Filler,
 } from 'chart.js'
 
 import * as categoryFilter from '../../modules/categoryFilter'
@@ -23,7 +23,7 @@ const selected = new Map([
   ['cids', []],
   ['assignee', []],
   ['targetUid', []],
-  ['reporterId', []]
+  ['reporterId', []],
 ])
 
 export function init () {
@@ -43,7 +43,7 @@ export function init () {
     updateButton: function ({ selectedCids: cids }) {
       selected.set('cids', cids)
       applyFilters()
-    }
+    },
   });
 
   ['assignee', 'targetUid', 'reporterId'].forEach((filter) => {
@@ -60,7 +60,7 @@ export function init () {
       },
       onHidden: function () {
         applyFilters()
-      }
+      },
     })
   })
 
@@ -279,10 +279,10 @@ export function handleGraphs () {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(151,187,205,1)',
-          data: ajaxify.data.analytics
-        }
-      ]
-    }
+          data: ajaxify.data.analytics,
+        },
+      ],
+    },
   }
 
   dailyCanvas.width = $(dailyCanvas).parent().width()
@@ -294,9 +294,9 @@ export function handleGraphs () {
       animation: false,
       scales: {
         y: {
-          beginAtZero: true
-        }
-      }
-    }
+          beginAtZero: true,
+        },
+      },
+    },
   })
 }

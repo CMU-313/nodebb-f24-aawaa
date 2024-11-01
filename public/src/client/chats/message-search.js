@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/chats/message-search', [
-  'components', 'alerts', 'forum/chats/messages'
+  'components', 'alerts', 'forum/chats/messages',
 ], function (components, alerts, messages) {
   const messageSearch = {}
   let roomId = 0
@@ -65,7 +65,7 @@ define('forum/chats/message-search', [
     clearEl.removeClass('hidden')
     socket.emit('modules.chats.searchMessages', {
       content: query,
-      roomId
+      roomId,
     }).then(displayResults)
       .catch(alerts.error)
   }
@@ -86,7 +86,7 @@ define('forum/chats/message-search', [
 
     const html = await app.parseAndTranslate('partials/chats/messages', {
       messages: data.messages,
-      isAdminOrGlobalMod: app.user.isAdmin || app.user.isGlobalMod
+      isAdminOrGlobalMod: app.user.isAdmin || app.user.isGlobalMod,
     })
 
     resultListEl.append(html)

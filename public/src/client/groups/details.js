@@ -12,7 +12,7 @@ define('forum/groups/details', [
   'categorySelector',
   'bootbox',
   'alerts',
-  'helpers'
+  'helpers',
 ], function (
   memberList,
   iconSelect,
@@ -43,7 +43,7 @@ define('forum/groups/details', [
           socket.emit('groups.cover.update', {
             groupName,
             imageData,
-            position
+            position,
           }, callback)
         },
         function () {
@@ -54,7 +54,7 @@ define('forum/groups/details', [
             allowSkippingCrop: true,
             restrictImageDimension: false,
             paramName: 'groupName',
-            paramValue: groupName
+            paramValue: groupName,
           }, function (imageUrlOnServer) {
             imageUrlOnServer = (!imageUrlOnServer.startsWith('http') ? config.relative_path : '') + imageUrlOnServer + '?' + Date.now()
             components.get('groups/cover').css('background-image', 'url(' + imageUrlOnServer + ')')
@@ -238,7 +238,7 @@ define('forum/groups/details', [
         cids = cids.filter((cid, index, array) => array.indexOf(cid) === index)
         $('#memberPostCids').val(cids.join(','))
         cidSelector.selectCategory(0)
-      }
+      },
     })
   }
 
@@ -347,7 +347,7 @@ define('forum/groups/details', [
       }
 
       socket.emit('groups.cover.remove', {
-        groupName: ajaxify.data.group.name
+        groupName: ajaxify.data.group.name,
       }, function (err) {
         if (!err) {
           ajaxify.refresh()

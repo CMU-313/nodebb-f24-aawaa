@@ -58,7 +58,7 @@ define('components', function () {
 
     'chat/recent/room': function (roomid) {
       return $('[component="chat/recent/room"][data-roomid="' + roomid + '"]')
-    }
+    },
   }
 
   components.get = function () {

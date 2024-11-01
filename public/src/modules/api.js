@@ -89,14 +89,14 @@ async function xhr (options) {
 
 export function get (route, data, onSuccess) {
   return call({
-    url: route + (data && Object.keys(data).length ? ('?' + $.param(data)) : '')
+    url: route + (data && Object.keys(data).length ? ('?' + $.param(data)) : ''),
   }, onSuccess)
 }
 
 export function head (route, data, onSuccess) {
   return call({
     url: route + (data && Object.keys(data).length ? ('?' + $.param(data)) : ''),
-    method: 'HEAD'
+    method: 'HEAD',
   }, onSuccess)
 }
 
@@ -106,8 +106,8 @@ export function post (route, data, onSuccess) {
     method: 'POST',
     data,
     headers: {
-      'x-csrf-token': config.csrf_token
-    }
+      'x-csrf-token': config.csrf_token,
+    },
   }, onSuccess)
 }
 
@@ -117,8 +117,8 @@ export function patch (route, data, onSuccess) {
     method: 'PATCH',
     data,
     headers: {
-      'x-csrf-token': config.csrf_token
-    }
+      'x-csrf-token': config.csrf_token,
+    },
   }, onSuccess)
 }
 
@@ -128,8 +128,8 @@ export function put (route, data, onSuccess) {
     method: 'PUT',
     data,
     headers: {
-      'x-csrf-token': config.csrf_token
-    }
+      'x-csrf-token': config.csrf_token,
+    },
   }, onSuccess)
 }
 
@@ -139,7 +139,7 @@ export function del (route, data, onSuccess) {
     method: 'DELETE',
     data,
     headers: {
-      'x-csrf-token': config.csrf_token
-    }
+      'x-csrf-token': config.csrf_token,
+    },
   }, onSuccess)
 }

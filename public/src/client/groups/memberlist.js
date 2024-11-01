@@ -50,9 +50,9 @@ define('forum/groups/memberlist', ['api', 'bootbox', 'alerts', 'helpers'], funct
                 addUsersToGroup(users).then(() => {
                   modal.modal('hide')
                 })
-              }
-            }
-          }
+              },
+            },
+          },
         })
         modal.on('click', '[data-username]', function () {
           const isSelected = $(this).attr('data-selected') === '1'
@@ -66,7 +66,7 @@ define('forum/groups/memberlist', ['api', 'bootbox', 'alerts', 'helpers'], funct
         modal.find('input').on('keyup', function () {
           api.get('/api/users', {
             query: $(this).val(),
-            paginate: false
+            paginate: false,
           }, function (err, result) {
             if (err) {
               return alerts.error(err)
@@ -126,7 +126,7 @@ define('forum/groups/memberlist', ['api', 'bootbox', 'alerts', 'helpers'], funct
 
     members.attr('loading', 1)
     const data = await api.get(`/groups/${ajaxify.data.group.slug}/members`, {
-      after: members.attr('data-nextstart')
+      after: members.attr('data-nextstart'),
     }).catch(alerts.error)
 
     if (data && data.users.length) {
@@ -151,8 +151,8 @@ define('forum/groups/memberlist', ['api', 'bootbox', 'alerts', 'helpers'], funct
     return await app.parseAndTranslate(templateName, 'group.members', {
       group: {
         members: users,
-        isOwner: ajaxify.data.group.isOwner
-      }
+        isOwner: ajaxify.data.group.isOwner,
+      },
     })
   }
 

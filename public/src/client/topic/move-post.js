@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/topic/move-post', [
-  'components', 'postSelect', 'translator', 'alerts', 'api'
+  'components', 'postSelect', 'translator', 'alerts', 'api',
 ], function (components, postSelect, translator, alerts, api) {
   const MovePost = {}
 
@@ -42,7 +42,7 @@ define('forum/topic/move-post', [
         moveCommit.attr('disabled', true)
         const data = {
           pids: postSelect.pids.slice(),
-          tid: targetTid
+          tid: targetTid,
         }
         if (config.undoTimeout > 0) {
           return alerts.alert({
@@ -58,7 +58,7 @@ define('forum/topic/move-post', [
               delete params.timeoutfn
               alerts.success('[[topic:topic-move-posts-undone]]')
               moveCommit.removeAttr('disabled')
-            }
+            },
           })
         }
 
@@ -142,7 +142,7 @@ define('forum/topic/move-post', [
     }
 
     Promise.all(data.pids.map(pid => api.put(`/posts/${pid}/move`, {
-      tid: data.tid
+      tid: data.tid,
     }))).then(() => {
       data.pids.forEach(function (pid) {
         components.get('post', 'pid', pid).fadeOut(500, function () {

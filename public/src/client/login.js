@@ -3,7 +3,7 @@
 
 define('forum/login', ['hooks', 'translator', 'jquery-form'], function (hooks, translator) {
   const Login = {
-    _capsState: false
+    _capsState: false,
   }
 
   Login.init = function () {
@@ -32,7 +32,7 @@ define('forum/login', ['hooks', 'translator', 'jquery-form'], function (hooks, t
         const hookData = await hooks.fire('filter:app.login', {
           username,
           password,
-          cancel: false
+          cancel: false,
         })
         if (hookData.cancel) {
           submitEl.removeClass('disabled')
@@ -48,7 +48,7 @@ define('forum/login', ['hooks', 'translator', 'jquery-form'], function (hooks, t
       hooks.fire('action:app.login')
       formEl.ajaxSubmit({
         headers: {
-          'x-csrf-token': config.csrf_token
+          'x-csrf-token': config.csrf_token,
         },
         beforeSend: function () {
           app.flags._login = true
@@ -81,7 +81,7 @@ define('forum/login', ['hooks', 'translator', 'jquery-form'], function (hooks, t
           if ($('#password:focus').length) {
             $('#password').select()
           }
-        }
+        },
       })
     })
 

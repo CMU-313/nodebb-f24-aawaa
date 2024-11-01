@@ -35,7 +35,7 @@ define('groupSearch', function () {
         el.find('.dropdown-toggle').css({ visibility: 'hidden' })
         searchEl.removeClass('hidden')
         searchEl.css({
-          'z-index': el.find('.dropdown-toggle').css('z-index') + 1
+          'z-index': el.find('.dropdown-toggle').css('z-index') + 1,
         })
       }
 

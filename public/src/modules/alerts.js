@@ -24,7 +24,7 @@ export function success (message, timeout) {
     title: '[[global:alert.success]]',
     message,
     type: 'success',
-    timeout: timeout !== undefined ? timeout : 5000
+    timeout: timeout !== undefined ? timeout : 5000,
   })
 }
 
@@ -34,7 +34,7 @@ export function info (message, timeout) {
     title: '[[global:alert.info]]',
     message,
     type: 'info',
-    timeout: timeout !== undefined ? timeout : 5000
+    timeout: timeout !== undefined ? timeout : 5000,
   })
 }
 
@@ -44,7 +44,7 @@ export function warning (message, timeout) {
     title: '[[global:alert.warning]]',
     message,
     type: 'warning',
-    timeout: timeout !== undefined ? timeout : 5000
+    timeout: timeout !== undefined ? timeout : 5000,
   })
 }
 
@@ -62,7 +62,7 @@ export function error (message, timeout) {
     title: '[[global:alert.error]]',
     message,
     type: 'danger',
-    timeout: timeout || 10000
+    timeout: timeout || 10000,
   })
 }
 

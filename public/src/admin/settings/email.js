@@ -128,7 +128,7 @@ define('admin/settings/email', ['ace/ace', 'alerts', 'admin/settings'], function
           enabledEl.checked = true
           alerts.alert({
             message: '[[admin/settings/email:smtp-transport.auto-enable-toast]]',
-            timeout: 5000
+            timeout: 5000,
           })
         }
       }

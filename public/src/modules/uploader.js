@@ -12,7 +12,7 @@ define('uploader', ['jquery-form'], function () {
       title: data.title || '[[global:upload-file]]',
       description: data.description || '',
       button: data.button || '[[global:upload]]',
-      accept: data.accept ? data.accept.replace(/,/g, '&#44; ') : ''
+      accept: data.accept ? data.accept.replace(/,/g, '&#44; ') : '',
     }, function (uploadModal) {
       uploadModal.modal('show')
       uploadModal.on('hidden.bs.modal', function () {
@@ -69,7 +69,7 @@ define('uploader', ['jquery-form'], function () {
     const uploadForm = uploadModal.find('#uploadForm')
     uploadForm.ajaxSubmit({
       headers: {
-        'x-csrf-token': config.csrf_token
+        'x-csrf-token': config.csrf_token,
       },
       error: function (xhr) {
         xhr = maybeParse(xhr)
@@ -99,7 +99,7 @@ define('uploader', ['jquery-form'], function () {
           module.hideAlerts(uploadModal)
           uploadModal.modal('hide')
         }, 750)
-      }
+      },
     })
   }
 

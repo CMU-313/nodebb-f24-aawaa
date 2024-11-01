@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/account/edit/password', [
-  'forum/account/header', 'translator', 'zxcvbn', 'api', 'alerts'
+  'forum/account/header', 'translator', 'zxcvbn', 'api', 'alerts',
 ], function (header, translator, zxcvbn, api, alerts) {
   const AccountEditPassword = {}
 
@@ -69,7 +69,7 @@ define('forum/account/edit/password', [
         btn.addClass('disabled').find('i').removeClass('hide')
         api.put('/users/' + ajaxify.data.theirid + '/password', {
           currentPassword: currentPassword.val(),
-          newPassword: password.val()
+          newPassword: password.val(),
         })
           .then(() => {
             if (parseInt(app.user.uid, 10) === parseInt(ajaxify.data.uid, 10)) {

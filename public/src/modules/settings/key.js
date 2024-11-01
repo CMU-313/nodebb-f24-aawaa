@@ -24,7 +24,7 @@ define('settings/key', function () {
     191: '/',
     219: '[',
     220: '\\',
-    221: ']'
+    221: ']',
   })
 
   function Key () {
@@ -221,7 +221,7 @@ define('settings/key', function () {
       } else if (empty || (key != null && key.code)) {
         return key
       }
-    }
+    },
   }
 
   function handleEvent (element, event) {

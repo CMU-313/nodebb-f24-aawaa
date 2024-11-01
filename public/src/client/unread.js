@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/unread', [
-  'forum/header/unread', 'topicSelect', 'components', 'topicList', 'categorySelector', 'alerts', 'api'
+  'forum/header/unread', 'topicSelect', 'components', 'topicList', 'categorySelector', 'alerts', 'api',
 ], function (headerUnread, topicSelect, components, topicList, categorySelector, alerts, api) {
   const Unread = {}
 
@@ -77,14 +77,14 @@ define('forum/unread', [
         {
           cid: 'selected',
           name: '[[unread:selected]]',
-          icon: ''
+          icon: '',
         },
         {
           cid: 'all',
           name: '[[unread:all]]',
-          icon: ''
-        }
-      ]
+          icon: '',
+        },
+      ],
     })
   }
 

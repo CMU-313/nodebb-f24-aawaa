@@ -21,7 +21,7 @@ define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function 
         socket.emit('admin.themes.set', {
           type: themeType,
           id: themeId,
-          src: cssSrc
+          src: cssSrc,
         }, function (err) {
           if (err) {
             return alerts.error(err)
@@ -39,7 +39,7 @@ define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function 
               require(['admin/modules/instance'], function (instance) {
                 instance.rebuildAndRestart()
               })
-            }
+            },
           })
         })
       }
@@ -53,7 +53,7 @@ define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function 
         if (confirm) {
           socket.emit('admin.themes.set', {
             type: 'local',
-            id: 'nodebb-theme-harmony'
+            id: 'nodebb-theme-harmony',
           }, function (err) {
             if (err) {
               return alerts.error(err)
@@ -65,7 +65,7 @@ define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function 
               type: 'success',
               title: '[[admin/appearance/themes:theme-changed]]',
               message: '[[admin/appearance/themes:revert-success]]',
-              timeout: 3500
+              timeout: 3500,
             })
           })
         }
@@ -83,7 +83,7 @@ define('admin/appearance/themes', ['bootbox', 'translator', 'alerts'], function 
         instListEl.append($('<li/ >').addClass('no-themes').translateHtml('[[admin/appearance/themes:no-themes]]'))
       } else {
         app.parseAndTranslate('admin/partials/theme_list', {
-          themes
+          themes,
         }, function (html) {
           instListEl.html(html)
           highlightSelectedTheme(config['theme:id'])

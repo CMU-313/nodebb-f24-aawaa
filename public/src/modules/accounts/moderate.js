@@ -5,7 +5,7 @@ define('forum/account/moderate', [
   'benchpress',
   'api',
   'bootbox',
-  'alerts'
+  'alerts',
 ], function (Benchpress, api, bootbox, alerts) {
   const AccountModerate = {}
 
@@ -23,7 +23,7 @@ define('forum/account/moderate', [
           : 0
         api.put('/users/' + theirid + '/ban', {
           until,
-          reason: formData.reason || ''
+          reason: formData.reason || '',
         }).then(() => {
           if (typeof onSuccess === 'function') {
             return onSuccess()
@@ -31,7 +31,7 @@ define('forum/account/moderate', [
 
           ajaxify.refresh()
         }).catch(alerts.error)
-      }
+      },
     })
   }
 
@@ -41,11 +41,11 @@ define('forum/account/moderate', [
       title: '[[user:unban-account]]',
       onSubmit: function (formData) {
         api.del('/users/' + theirid + '/ban', {
-          reason: formData.reason || ''
+          reason: formData.reason || '',
         }).then(() => {
           ajaxify.refresh()
         }).catch(alerts.error)
-      }
+      },
     })
   }
 
@@ -63,14 +63,14 @@ define('forum/account/moderate', [
 
         api.put('/users/' + theirid + '/mute', {
           until,
-          reason: formData.reason || ''
+          reason: formData.reason || '',
         }).then(() => {
           if (typeof onSuccess === 'function') {
             return onSuccess()
           }
           ajaxify.refresh()
         }).catch(alerts.error)
-      }
+      },
     })
   }
 
@@ -80,11 +80,11 @@ define('forum/account/moderate', [
       title: '[[user:unmute-account]]',
       onSubmit: function (formData) {
         api.del('/users/' + theirid + '/mute', {
-          reason: formData.reason || ''
+          reason: formData.reason || '',
         }).then(() => {
           ajaxify.refresh()
         }).catch(alerts.error)
-      }
+      },
     })
   }
 
@@ -98,7 +98,7 @@ define('forum/account/moderate', [
         buttons: {
           close: {
             label: '[[global:close]]',
-            className: 'btn-link'
+            className: 'btn-link',
           },
           submit: {
             label: options.title,
@@ -109,9 +109,9 @@ define('forum/account/moderate', [
               }, {})
 
               options.onSubmit(formData)
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
   }

@@ -7,7 +7,7 @@ import {
   LineElement,
   PointElement,
   Tooltip,
-  Filler
+  Filler,
 } from 'chart.js'
 
 import * as Benchpress from 'benchpressjs'
@@ -31,14 +31,14 @@ export function init () {
       alerts.alert({
         type: 'success',
         alert_id: 'blacklist-saved',
-        title: '[[ip-blacklist:alerts.applied-success]]'
+        title: '[[ip-blacklist:alerts.applied-success]]',
       })
     })
   })
 
   $('[data-action="test"]').on('click', function () {
     socket.emit('blacklist.validate', {
-      rules: blacklist.val()
+      rules: blacklist.val(),
     }, function (err, data) {
       if (err) {
         return alerts.error(err)
@@ -81,9 +81,9 @@ export function setupAnalytics () {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(186,139,175,1)',
-          data: ajaxify.data.analytics.hourly
-        }
-      ]
+          data: ajaxify.data.analytics.hourly,
+        },
+      ],
     },
     'blacklist:daily': {
       labels: dailyLabels,
@@ -98,10 +98,10 @@ export function setupAnalytics () {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(151,187,205,1)',
-          data: ajaxify.data.analytics.daily
-        }
-      ]
-    }
+          data: ajaxify.data.analytics.daily,
+        },
+      ],
+    },
   }
 
   const chartOpts = {
@@ -110,20 +110,20 @@ export function setupAnalytics () {
       y: {
         position: 'left',
         type: 'linear',
-        beginAtZero: true
-      }
-    }
+        beginAtZero: true,
+      },
+    },
   }
 
   new Chart(hourlyCanvas.getContext('2d'), {
     type: 'line',
     data: data['blacklist:hourly'],
-    options: chartOpts
+    options: chartOpts,
   })
 
   new Chart(dailyCanvas.getContext('2d'), {
     type: 'line',
     data: data['blacklist:daily'],
-    options: chartOpts
+    options: chartOpts,
   })
 }

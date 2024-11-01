@@ -7,7 +7,7 @@ import {
   LineElement,
   PointElement,
   Tooltip,
-  Filler
+  Filler,
 } from 'chart.js'
 
 import * as categorySelector from '../../modules/categorySelector'
@@ -29,7 +29,7 @@ export function init () {
       ajaxify.go('admin/manage/categories/' + selectedCategory.cid + '/analytics')
     },
     showLinks: true,
-    template: 'admin/partials/category/selector-dropdown-right'
+    template: 'admin/partials/category/selector-dropdown-right',
   })
 
   const hourlyCanvas = document.getElementById('pageviews:hourly')
@@ -52,7 +52,7 @@ export function init () {
     fill: true,
     tension: 0.25,
     pointHoverBackgroundColor: '#fff',
-    pointBorderColor: '#fff'
+    pointBorderColor: '#fff',
   }
 
   const data = {
@@ -65,9 +65,9 @@ export function init () {
           borderColor: 'rgba(186,139,175,1)',
           pointBackgroundColor: 'rgba(186,139,175,1)',
           pointHoverBorderColor: 'rgba(186,139,175,1)',
-          data: ajaxify.data.analytics['pageviews:hourly']
-        }
-      ]
+          data: ajaxify.data.analytics['pageviews:hourly'],
+        },
+      ],
     },
     'pageviews:daily': {
       labels: dailyLabels,
@@ -78,9 +78,9 @@ export function init () {
           borderColor: 'rgba(151,187,205,1)',
           pointBackgroundColor: 'rgba(151,187,205,1)',
           pointHoverBorderColor: 'rgba(151,187,205,1)',
-          data: ajaxify.data.analytics['pageviews:daily']
-        }
-      ]
+          data: ajaxify.data.analytics['pageviews:daily'],
+        },
+      ],
     },
     'topics:daily': {
       labels: dailyLabels.slice(-7),
@@ -91,9 +91,9 @@ export function init () {
           borderColor: 'rgba(171,70,66,1)',
           pointBackgroundColor: 'rgba(171,70,66,1)',
           pointHoverBorderColor: 'rgba(171,70,66,1)',
-          data: ajaxify.data.analytics['topics:daily']
-        }
-      ]
+          data: ajaxify.data.analytics['topics:daily'],
+        },
+      ],
     },
     'posts:daily': {
       labels: dailyLabels.slice(-7),
@@ -104,10 +104,10 @@ export function init () {
           borderColor: 'rgba(161,181,108,1)',
           pointBackgroundColor: 'rgba(161,181,108,1)',
           pointHoverBorderColor: 'rgba(161,181,108,1)',
-          data: ajaxify.data.analytics['posts:daily']
-        }
-      ]
-    }
+          data: ajaxify.data.analytics['posts:daily'],
+        },
+      ],
+    },
   }
 
   hourlyCanvas.width = $(hourlyCanvas).parent().width()
@@ -120,32 +120,32 @@ export function init () {
     animation: false,
     scales: {
       y: {
-        beginAtZero: true
-      }
-    }
+        beginAtZero: true,
+      },
+    },
   }
 
   new Chart(hourlyCanvas.getContext('2d'), {
     type: 'line',
     data: data['pageviews:hourly'],
-    options: chartOpts
+    options: chartOpts,
   })
 
   new Chart(dailyCanvas.getContext('2d'), {
     type: 'line',
     data: data['pageviews:daily'],
-    options: chartOpts
+    options: chartOpts,
   })
 
   new Chart(topicsCanvas.getContext('2d'), {
     type: 'line',
     data: data['topics:daily'],
-    options: chartOpts
+    options: chartOpts,
   })
 
   new Chart(postsCanvas.getContext('2d'), {
     type: 'line',
     data: data['posts:daily'],
-    options: chartOpts
+    options: chartOpts,
   })
 }

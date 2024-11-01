@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/topic/votes', [
-  'components', 'translator', 'api', 'hooks', 'bootbox', 'alerts', 'bootstrap'
+  'components', 'translator', 'api', 'hooks', 'bootbox', 'alerts', 'bootstrap',
 ], function (components, translator, api, hooks, bootbox, alerts, bootstrap) {
   const Votes = {}
   let _showTooltip = {}
@@ -66,7 +66,7 @@ define('forum/topic/votes', [
       el.attr('title', title);
       (new bootstrap.Tooltip(el, {
         container: '#content',
-        html: true
+        html: true,
       })).show()
     }
     let usernames = data.usernames
@@ -93,7 +93,7 @@ define('forum/topic/votes', [
     const method = currentState ? 'del' : 'put'
     const pid = post.attr('data-pid')
     api[method](`/posts/${pid}/vote`, {
-      delta
+      delta,
     }, function (err) {
       if (err) {
         if (!app.user.uid) {
@@ -105,7 +105,7 @@ define('forum/topic/votes', [
       hooks.fire('action:post.toggleVote', {
         pid,
         delta,
-        unvote: method === 'del'
+        unvote: method === 'del',
       })
     })
 
@@ -128,7 +128,7 @@ define('forum/topic/votes', [
           className: 'vote-modal',
           show: true,
           onEscape: true,
-          backdrop: true
+          backdrop: true,
         })
 
         dialog.on('click', function () {

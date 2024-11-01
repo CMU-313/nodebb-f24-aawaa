@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/account/settings', [
-  'forum/account/header', 'components', 'api', 'alerts', 'hooks'
+  'forum/account/header', 'components', 'api', 'alerts', 'hooks',
 ], function (header, components, api, alerts, hooks) {
   const AccountSettings = {}
   let savedSkin = ''

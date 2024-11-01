@@ -10,7 +10,7 @@ define('admin/manage/privileges', [
   'categorySelector',
   'mousetrap',
   'admin/modules/checkboxRowSelector',
-  'admin/settings'
+  'admin/settings',
 ], function (
   api, autocomplete, bootbox, alerts, translator,
   categorySelector, mousetrap, checkboxRowSelector, settings
@@ -33,7 +33,7 @@ define('admin/manage/privileges', [
       },
       localCategories: ajaxify.data.categories,
       privilege: 'find',
-      showLinks: true
+      showLinks: true,
     })
 
     Privileges.setupPrivilegeTable()
@@ -254,7 +254,7 @@ define('admin/manage/privileges', [
     const modal = bootbox.dialog({
       title: '[[admin/manage/categories:alert.find-user]]',
       message: '<input class="form-control input-lg" placeholder="[[admin/manage/categories:alert.user-search]]" />',
-      show: true
+      show: true,
     })
 
     modal.on('shown.bs.modal', function () {
@@ -273,7 +273,7 @@ define('admin/manage/privileges', [
     const modal = bootbox.dialog({
       title: '[[admin/manage/categories:alert.find-group]]',
       message: '<input class="form-control input-lg" placeholder="[[admin/manage/categories:alert.group-search]]" />',
-      show: true
+      show: true,
     })
 
     modal.on('shown.bs.modal', function () {
@@ -284,7 +284,7 @@ define('admin/manage/privileges', [
         if (ui.item.group.name === 'administrators') {
           return alerts.alert({
             type: 'warning',
-            message: '[[admin/manage/privileges:alert.admin-warning]]'
+            message: '[[admin/manage/privileges:alert.admin-warning]]',
           })
         }
         addGroupToCategory(ui.item.group.name, function () {
@@ -321,14 +321,14 @@ define('admin/manage/privileges', [
           toCid: cid,
           filter: getGroupPrivilegeFilter(),
           fromCid: selectedCategory.cid,
-          group
+          group,
         }, function (err) {
           if (err) {
             return alerts.error(err)
           }
           ajaxify.refresh()
         })
-      }
+      },
     })
   }
 
@@ -429,10 +429,10 @@ define('admin/manage/privileges', [
             name: group,
             nameEscaped: translator.escape(group),
             privileges: privilegeSet,
-            types: typesMap
-          }
-        ]
-      }
+            types: typesMap,
+          },
+        ],
+      },
     }, function (html) {
       const tbodyEl = document.querySelector('.privilege-table tbody')
       const btnIdx = $('.privilege-filters').first().find('button.btn-warning').index()
@@ -472,10 +472,10 @@ define('admin/manage/privileges', [
             'icon:text': user['icon:text'],
             'icon:bgColor': user['icon:bgColor'],
             privileges: privilegeSet,
-            types: typesMap
-          }
-        ]
-      }
+            types: typesMap,
+          },
+        ],
+      },
     })
 
     const tbodyEl = document.querySelectorAll('.privilege-table tbody')

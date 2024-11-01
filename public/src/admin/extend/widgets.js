@@ -7,7 +7,7 @@ define('admin/extend/widgets', [
   'jquery-ui/widgets/sortable',
   'jquery-ui/widgets/draggable',
   'jquery-ui/widgets/droppable',
-  'jquery-ui/widgets/datepicker'
+  'jquery-ui/widgets/datepicker',
 ], function (bootbox, alerts) {
   const Widgets = {}
 
@@ -55,7 +55,7 @@ define('admin/extend/widgets', [
         return $(e.target).parents('.widget-panel').clone()
       },
       distance: 10,
-      connectToSortable: '.widget-area'
+      connectToSortable: '.widget-area',
     })
 
     $('#widgets .available-containers .containers > [data-container-html]')
@@ -66,7 +66,7 @@ define('admin/extend/widgets', [
 
           return target.clone().addClass('block').width(target.width()).css('opacity', '0.5')
         },
-        distance: 10
+        distance: 10,
       })
       .each(function () {
         $(this).attr('data-container-html', $(this).attr('data-container-html').replace(/\\\{([\s\S]*?)\\\}/g, '{$1}'))
@@ -87,7 +87,7 @@ define('admin/extend/widgets', [
           .addClass('overflow-auto')
           .css({ 'max-height': 'calc(100vh - 200px)' })
       },
-      connectWith: 'div'
+      connectWith: 'div',
     }).on('click', '.delete-widget', function () {
       const panel = $(this).parents('.widget-panel')
 
@@ -124,7 +124,7 @@ define('admin/extend/widgets', [
                 if (widgetData[data[d].name]) {
                   if (!Array.isArray(widgetData[data[d].name])) {
                     widgetData[data[d].name] = [
-                      widgetData[data[d].name]
+                      widgetData[data[d].name],
                     ]
                   }
                   widgetData[data[d].name].push(data[d].value)
@@ -137,14 +137,14 @@ define('admin/extend/widgets', [
 
           widgets.push({
             widget: $(this).attr('data-widget'),
-            data: widgetData
+            data: widgetData,
           })
         })
 
         saveData.push({
           template,
           location,
-          widgets
+          widgets,
         })
       })
 
@@ -185,7 +185,7 @@ define('admin/extend/widgets', [
     el.find('.date-selector').datepicker({
       changeMonth: true,
       changeYear: true,
-      yearRange: currentYear + ':' + (currentYear + 100)
+      yearRange: currentYear + ':' + (currentYear + 100),
     })
   }
 
@@ -200,7 +200,7 @@ define('admin/extend/widgets', [
             el.find('.card-body .container-html').val(ui.draggable.attr('data-container-html'))
             el.find('.card-body').removeClass('hidden')
           },
-          hoverClass: 'container-hover'
+          hoverClass: 'container-hover',
         })
         .children('.card-header')
         .append('<div class="float-end pointer"><span class="delete-widget"><i class="fa fa-times-circle"></i></span></div><div class="float-start pointer"><span class="toggle-widget"><i class="fa fa-chevron-circle-down"></i></span>&nbsp;</div>')

@@ -10,7 +10,7 @@ define('share', ['hooks'], function (hooks) {
       window.open(url, '_blank', 'width=' + width + ',height=' + height + ',scrollbars=no,status=no')
       hooks.fire('action:share.open', {
         url,
-        urlToPost
+        urlToPost,
       })
       return false
     }

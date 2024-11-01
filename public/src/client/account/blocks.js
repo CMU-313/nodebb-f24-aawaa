@@ -5,7 +5,7 @@ define('forum/account/blocks', [
   'forum/account/header',
   'api',
   'hooks',
-  'alerts'
+  'alerts',
 ], function (header, api, hooks, alerts) {
   const Blocks = {}
 
@@ -28,7 +28,7 @@ define('forum/account/blocks', [
       api.get('/api/users', {
         query: username,
         searchBy: 'username',
-        paginate: false
+        paginate: false,
       }, function (err, data) {
         if (err) {
           return alerts.error(err)
@@ -44,7 +44,7 @@ define('forum/account/blocks', [
         }
 
         app.parseAndTranslate('account/blocks', 'edit', {
-          edit: data.users
+          edit: data.users,
         }, function (html) {
           blockListEl.find('[component="blocks/search/match"]').remove()
           html.insertAfter(noUsersEl)
@@ -71,7 +71,7 @@ define('forum/account/blocks', [
     return socket.emit('user.toggleBlock', {
       blockeeUid: uid,
       blockerUid: ajaxify.data.uid,
-      action
+      action,
     }).catch(alerts.error)
   }
 

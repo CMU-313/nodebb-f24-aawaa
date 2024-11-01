@@ -2,7 +2,7 @@
 'use strict'
 
 define('admin/settings', [
-  'uploader', 'mousetrap', 'hooks', 'alerts', 'settings', 'bootstrap'
+  'uploader', 'mousetrap', 'hooks', 'alerts', 'settings', 'bootstrap',
 ], function (uploader, mousetrap, hooks, alerts, settings, bootstrap) {
   const Settings = {}
 
@@ -41,13 +41,13 @@ define('admin/settings', [
       new bootstrap.ScrollSpy($('#spy-container')[0], {
         target: '#settings-navbar',
         rootMargin: '-10% 0px -70%',
-        smoothScroll: true
+        smoothScroll: true,
       })
 
       const scrollTo = $(`${window.location.hash}`)
       if (scrollTo.length) {
         $('html, body').animate({
-          scrollTop: (scrollTo.offset().top - offset) + 'px'
+          scrollTop: (scrollTo.offset().top - offset) + 'px',
         }, 400)
       }
       tocEl.removeClass('hidden')
@@ -104,7 +104,7 @@ define('admin/settings', [
             timeout: 2500,
             title: '[[admin/admin:changes-not-saved]]',
             message: `[[admin/admin:changes-not-saved-message, ${err.message}]]`,
-            type: 'danger'
+            type: 'danger',
           })
         }
 
@@ -158,7 +158,7 @@ define('admin/settings', [
           route: uploadBtn.attr('data-route'),
           params: {},
           showHelp: uploadBtn.attr('data-help') ? uploadBtn.attr('data-help') === 1 : undefined,
-          accept: uploadBtn.attr('data-accept')
+          accept: uploadBtn.attr('data-accept'),
         }, function (image) {
           $('#' + uploadBtn.attr('data-target')).val(image)
         })
@@ -170,7 +170,7 @@ define('admin/settings', [
     $('[data-field-type="tagsinput"]').tagsinput({
       tagClass: 'badge bg-info',
       confirmKeys: [13, 44],
-      trimValue: true
+      trimValue: true,
     })
     app.flags._unsaved = false
   }

@@ -4,7 +4,7 @@
 define('admin/manage/tags', [
   'bootbox',
   'alerts',
-  'admin/modules/selectable'
+  'admin/modules/selectable',
 ], function (bootbox, alerts, selectable) {
   const Tags = {}
 
@@ -37,7 +37,7 @@ define('admin/manage/tags', [
 
     createModalGo.on('click', function () {
       socket.emit('admin.tags.create', {
-        tag: createTagName.val()
+        tag: createTagName.val(),
       }, function (err) {
         if (err) {
           return alerts.error(err)
@@ -56,7 +56,7 @@ define('admin/manage/tags', [
     $('#tag-search').on('input propertychange', utils.debounce(function () {
       function renderTags (tags) {
         app.parseAndTranslate('admin/manage/tags', 'tags', {
-          tags
+          tags,
         }, function (html) {
           $('.tag-list').html(html)
           selectable.enable('.tag-management', '.tag-row')
@@ -67,7 +67,7 @@ define('admin/manage/tags', [
         return renderTags(ajaxify.data.tags)
       }
       socket.emit('topics.searchAndLoadTags', {
-        query
+        query,
       }, function (err, result) {
         if (err) {
           return alerts.error(err)
@@ -98,7 +98,7 @@ define('admin/manage/tags', [
                 tag = $(tag)
                 data.push({
                   value: tag.attr('data-tag'),
-                  newName: modal.find('[data-name="value"]').val()
+                  newName: modal.find('[data-name="value"]').val(),
                 })
               })
 
@@ -109,9 +109,9 @@ define('admin/manage/tags', [
                 alerts.success('[[admin/manage/tags:alerts.update-success]]')
                 ajaxify.refresh()
               })
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
   }
@@ -132,7 +132,7 @@ define('admin/manage/tags', [
           tags.push($(el).attr('data-tag'))
         })
         socket.emit('admin.tags.deleteTags', {
-          tags
+          tags,
         }, function (err) {
           if (err) {
             return alerts.error(err)

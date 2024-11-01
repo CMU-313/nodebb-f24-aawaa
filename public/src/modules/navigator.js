@@ -2,7 +2,7 @@
 'use strict'
 
 define('navigator', [
-  'forum/pagination', 'components', 'hooks', 'alerts', 'translator', 'storage'
+  'forum/pagination', 'components', 'hooks', 'alerts', 'translator', 'storage',
 ], function (pagination, components, hooks, alerts, translator, storage) {
   const navigator = {}
   let index = 0
@@ -106,7 +106,7 @@ define('navigator', [
       return await socket.emit('topics.getMyNextPostIndex', {
         tid: ajaxify.data.tid,
         index: Math.max(1, startIndex),
-        sort: config.topicPostSort
+        sort: config.topicPostSort,
       })
     }
     if (ajaxify.data.template.topic) {
@@ -125,7 +125,7 @@ define('navigator', [
       } else {
         alerts.alert({
           message: '[[topic:no-more-next-post]]',
-          type: 'info'
+          type: 'info',
         })
 
         lastNextIndex = 1
@@ -201,7 +201,7 @@ define('navigator', [
     }
     return await socket.emit('posts.getPostTimestampByIndex', {
       tid: ajaxify.data.tid,
-      index: index - 1
+      index: index - 1,
     })
   }
 
@@ -577,7 +577,7 @@ define('navigator', [
       }
     }
     $('body,html').animate({
-      scrollTop: $window.scrollTop() - $window.height()
+      scrollTop: $window.scrollTop() - $window.height(),
     })
   }
 
@@ -591,7 +591,7 @@ define('navigator', [
       }
     }
     $('body,html').animate({
-      scrollTop: $window.scrollTop() + $window.height()
+      scrollTop: $window.scrollTop() + $window.height(),
     })
   }
 
@@ -735,7 +735,7 @@ define('navigator', [
         return
       }
       $('html, body').animate({
-        scrollTop: scrollTop + 'px'
+        scrollTop: scrollTop + 'px',
       }, duration, onAnimateComplete)
     }
 

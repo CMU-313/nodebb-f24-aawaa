@@ -5,7 +5,7 @@ define('handleBack', [
   'components',
   'storage',
   'navigator',
-  'forum/pagination'
+  'forum/pagination',
 ], function (components, storage, navigator, pagination) {
   const handleBack = {}
   let loadTopicsMethod

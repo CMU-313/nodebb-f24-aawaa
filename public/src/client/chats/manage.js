@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/chats/manage', [
-  'api', 'alerts', 'translator', 'autocomplete', 'forum/chats/user-list'
+  'api', 'alerts', 'translator', 'autocomplete', 'forum/chats/user-list',
 ], function (api, alerts, translator, autocomplete, userList) {
   const manage = {}
 
@@ -28,13 +28,13 @@ define('forum/chats/manage', [
       const html = await app.parseAndTranslate('modals/manage-room', {
         groups,
         user: app.user,
-        room: ajaxify.data
+        room: ajaxify.data,
       })
       modal = bootbox.dialog({
         title: '[[modules:chat.manage-room]]',
         size: 'large',
         message: html,
-        onEscape: true
+        onEscape: true,
       })
 
       modal.attr('component', 'chat/manage-modal')
@@ -62,7 +62,7 @@ define('forum/chats/manage', [
       autocomplete.user(searchInput, function (event, selected) {
         errorEl.text('')
         api.post(`/chats/${roomId}/users`, {
-          uids: [selected.item.user.uid]
+          uids: [selected.item.user.uid],
         }).then((body) => {
           refreshParticipantsList(roomId, modal, body)
           searchInput.val('')
@@ -77,7 +77,7 @@ define('forum/chats/manage', [
         const notifSettingEl = modal.find('[component="chat/room/notification/setting"]')
         api.put(`/chats/${roomId}`, {
           groups: modal.find('[component="chat/room/groups"]').val(),
-          notificationSetting: notifSettingEl.val()
+          notificationSetting: notifSettingEl.val(),
         }).then((payload) => {
           ajaxify.data.groups = payload.groups
           ajaxify.data.notificationSetting = payload.notificationSetting

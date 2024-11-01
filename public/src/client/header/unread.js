@@ -6,7 +6,7 @@ define('forum/header/unread', ['hooks'], function (hooks) {
   const watchStates = {
     ignoring: 1,
     notwatching: 2,
-    watching: 3
+    watching: 3,
   }
 
   unread.initUnreadTopics = function () {

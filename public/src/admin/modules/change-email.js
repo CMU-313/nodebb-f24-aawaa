@@ -2,7 +2,7 @@
 'use strict'
 
 define('admin/modules/change-email', [
-  'api', 'bootbox', 'alerts'
+  'api', 'bootbox', 'alerts',
 ], function (api, bootbox, alerts) {
   const ChangeEmail = {}
 
@@ -17,7 +17,7 @@ define('admin/modules/change-email', [
       buttons: {
         cancel: {
           label: '[[admin/manage/users:alerts.button-cancel]]',
-          className: 'btn-link'
+          className: 'btn-link',
         },
         change: {
           label: '[[admin/manage/users:alerts.button-change]]',
@@ -26,15 +26,15 @@ define('admin/modules/change-email', [
             const newEmail = modal.find('#newEmail').val()
             api.post('/users/' + params.uid + '/emails', {
               skipConfirmation: true,
-              email: newEmail
+              email: newEmail,
             }).then(() => {
               modal.modal('hide')
               params.onSuccess(newEmail)
             }).catch(alerts.error)
             return false
-          }
-        }
-      }
+          },
+        },
+      },
     })
   }
 

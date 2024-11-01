@@ -3,7 +3,7 @@
 
 define('forum/post-queue', [
   'categoryFilter', 'categorySelector', 'api', 'alerts', 'bootbox',
-  'accounts/moderate', 'accounts/delete'
+  'accounts/moderate', 'accounts/delete',
 ], function (
   categoryFilter, categorySelector, api, alerts, bootbox,
   AccountModerate, AccountsDelete
@@ -14,7 +14,7 @@ define('forum/post-queue', [
     $('[data-bs-toggle="tooltip"]').tooltip()
 
     categoryFilter.init($('[component="category/dropdown"]'), {
-      privilege: 'moderate'
+      privilege: 'moderate',
     })
 
     handleActions()
@@ -72,7 +72,7 @@ define('forum/post-queue', [
       socket.emit('posts.editQueuedContent', {
         id,
         title: titleEdit ? textarea.val() : undefined,
-        content: titleEdit ? undefined : textarea.val()
+        content: titleEdit ? undefined : textarea.val(),
       }, function (err, data) {
         if (err) {
           return alerts.error(err)
@@ -98,14 +98,14 @@ define('forum/post-queue', [
           api.get(`/categories/${selectedCategory.cid}`, {}),
           socket.emit('posts.editQueuedContent', {
             id,
-            cid: selectedCategory.cid
-          })
+            cid: selectedCategory.cid,
+          }),
         ]).then(function (result) {
           const category = result[0]
           app.parseAndTranslate('post-queue', 'posts', {
             posts: [{
-              category
-            }]
+              category,
+            }],
           }, function (html) {
             if ($this.find('.category-text').length) {
               $this.find('.category-text').text(html.find('.topic-category .category-text').text())
@@ -115,7 +115,7 @@ define('forum/post-queue', [
             }
           })
         }).catch(alerts.error)
-      }
+      },
     })
     return false
   }
@@ -187,9 +187,9 @@ define('forum/post-queue', [
                 if (val) {
                   resolve(val)
                 }
-              }
-            }
-          }
+              },
+            },
+          },
         })
       })
     }
@@ -206,7 +206,7 @@ define('forum/post-queue', [
 
     socket.emit('posts.' + action, {
       id,
-      message: action === 'notify' ? await getMessage() : undefined
+      message: action === 'notify' ? await getMessage() : undefined,
     }, function (err) {
       if (err) {
         return alerts.error(err)

@@ -3,7 +3,7 @@
 
 define('forum/account/profile', [
   'forum/account/header',
-  'bootbox'
+  'bootbox',
 ], function (header, bootbox) {
   const Account = {}
 
@@ -17,7 +17,7 @@ define('forum/account/profile', [
     if (parseInt(ajaxify.data.emailChanged, 10) === 1) {
       bootbox.alert({
         message: '[[user:emailUpdate.change-instructions]]',
-        closeButton: false
+        closeButton: false,
       })
     }
 

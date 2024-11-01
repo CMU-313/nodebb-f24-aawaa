@@ -2,7 +2,7 @@
 'use strict'
 
 define('topicThumbs', [
-  'api', 'bootbox', 'alerts', 'uploader', 'benchpress', 'translator', 'jquery-ui/widgets/sortable'
+  'api', 'bootbox', 'alerts', 'uploader', 'benchpress', 'translator', 'jquery-ui/widgets/sortable',
 ], function (api, bootbox, alerts, uploader, Benchpress, translator) {
   const Thumbs = {}
 
@@ -11,7 +11,7 @@ define('topicThumbs', [
   Thumbs.getByPid = pid => api.get(`/posts/${pid}`, {}).then(post => Thumbs.get(post.tid))
 
   Thumbs.delete = (id, path) => api.del(`/topics/${id}/thumbs`, {
-    path
+    path,
   })
 
   Thumbs.deleteAll = (id) => {
@@ -24,7 +24,7 @@ define('topicThumbs', [
     uploader.show({
       title: '[[topic:composer.thumb-title]]',
       method: 'put',
-      route: config.relative_path + `/api/v3/topics/${id}/thumbs`
+      route: config.relative_path + `/api/v3/topics/${id}/thumbs`,
     }, function (url) {
       resolve(url)
     })
@@ -40,7 +40,7 @@ define('topicThumbs', [
     return new Promise((resolve) => {
       Promise.all([
         Thumbs.get(id),
-        pid ? Thumbs.getByPid(pid) : []
+        pid ? Thumbs.getByPid(pid) : [],
       ]).then(results => new Promise((resolve) => {
         const thumbs = results.reduce((memo, cur) => memo.concat(cur))
         numThumbs = thumbs.length
@@ -71,13 +71,13 @@ define('topicThumbs', [
                     })
                   })
                   return false
-                }
+                },
               },
               close: {
                 label: '[[global:close]]',
-                className: 'btn-primary'
-              }
-            }
+                className: 'btn-primary',
+              },
+            },
           })
           Thumbs.modal.handleDelete({ ...payload, modal })
           Thumbs.modal.handleSort({ modal, numThumbs })
@@ -99,7 +99,7 @@ define('topicThumbs', [
           const id = ev.target.closest('[data-id]').getAttribute('data-id')
           const path = ev.target.closest('[data-path]').getAttribute('data-path')
           api.del(`/topics/${id}/thumbs`, {
-            path
+            path,
           }).then(() => {
             Thumbs.modal.open(payload)
             require(['composer'], (composer) => {
@@ -115,7 +115,7 @@ define('topicThumbs', [
     if (numThumbs > 1) {
       const selectorEl = modal.find('.topic-thumbs-modal')
       selectorEl.sortable({
-        items: '[data-id]'
+        items: '[data-id]',
       })
       selectorEl.on('sortupdate', Thumbs.modal.handleSortChange)
     }

@@ -12,7 +12,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
       title: data.title || '[[global:upload-file]]',
       description: data.description || '',
       button: data.button || '[[global:upload]]',
-      accept: data.accept ? data.accept.replace(/,/g, '&#44; ') : ''
+      accept: data.accept ? data.accept.replace(/,/g, '&#44; ') : '',
     }, function (uploadModal) {
       uploadModal.modal('show')
       uploadModal.on('hidden.bs.modal', function () {
@@ -36,10 +36,10 @@ define('pictureCropper', ['alerts'], function (alerts) {
   module.handleImageCrop = function (data, callback) {
     $('#crop-picture-modal').remove()
     app.parseAndTranslate('modals/crop_picture', {
-      url: utils.escapeHTML(data.url)
+      url: utils.escapeHTML(data.url),
     }, async function (cropperModal) {
       cropperModal.modal({
-        backdrop: 'static'
+        backdrop: 'static',
       }).modal('show')
 
       // Set cropper image max-height based on viewport
@@ -57,12 +57,12 @@ define('pictureCropper', ['alerts'], function (alerts) {
           if (data.restrictImageDimension) {
             if (cropperTool.cropBoxData.width > data.imageDimension) {
               cropperTool.setCropBoxData({
-                width: data.imageDimension
+                width: data.imageDimension,
               })
             }
             if (cropperTool.cropBoxData.height > data.imageDimension) {
               cropperTool.setCropBoxData({
-                height: data.imageDimension
+                height: data.imageDimension,
               })
             }
           }
@@ -77,7 +77,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
             const dimension = (origDimension > data.imageDimension) ? data.imageDimension : origDimension
             cropperTool.setCropBoxData({
               width: dimension,
-              height: dimension
+              height: dimension,
             })
           }
 
@@ -114,7 +114,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
             socketUpload({
               data,
               imageData,
-              progressBarEl: cropperModal.find('#upload-progress-bar')
+              progressBarEl: cropperModal.find('#upload-progress-bar'),
             }, function (err, result) {
               if (err) {
                 cropperModal.find('#upload-progress-box').hide()
@@ -137,10 +137,10 @@ define('pictureCropper', ['alerts'], function (alerts) {
               autoCropArea: 1,
               ready: function () {
                 cropperModal.find('.crop-btn').trigger('click')
-              }
+              },
             })
           })
-        }
+        },
       })
     })
   }
@@ -157,7 +157,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
       const chunk = params.imageData.slice(socketData.progress, socketData.progress + chunkSize)
       socket.emit('uploads.upload', {
         chunk,
-        params: socketData
+        params: socketData,
       }, function (err, result) {
         if (err) {
           return alerts.error(err)
@@ -184,7 +184,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
     } catch (err) {
       const corsErrors = [
         'The operation is insecure.',
-        'Failed to execute \'toDataURL\' on \'HTMLCanvasElement\': Tainted canvases may not be exported.'
+        'Failed to execute \'toDataURL\' on \'HTMLCanvasElement\': Tainted canvases may not be exported.',
       ]
       if (corsErrors.indexOf(err.message) !== -1) {
         alerts.error('[[error:cors-error]]')
@@ -236,7 +236,7 @@ define('pictureCropper', ['alerts'], function (alerts) {
         restrictImageDimension: data.restrictImageDimension,
         imageDimension: data.imageDimension,
         paramName: data.paramName,
-        paramValue: data.paramValue
+        paramValue: data.paramValue,
       }, callback)
     }, false)
 

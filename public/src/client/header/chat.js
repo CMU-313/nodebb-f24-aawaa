@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/header/chat', [
-  'components', 'hooks', 'api'
+  'components', 'hooks', 'api',
 ], function (components, hooks, api) {
   const chat = {}
 

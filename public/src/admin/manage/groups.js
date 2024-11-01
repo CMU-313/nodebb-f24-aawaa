@@ -6,7 +6,7 @@ define('admin/manage/groups', [
   'slugify',
   'api',
   'bootbox',
-  'alerts'
+  'alerts',
 ], function (categorySelector, slugify, api, bootbox, alerts) {
   const Groups = {}
 
@@ -58,7 +58,7 @@ define('admin/manage/groups', [
               name: createGroupName.val(),
               description: $('#create-group-desc').val(),
               private: $('#create-group-private').is(':checked') ? 1 : 0,
-              hidden: $('#create-group-hidden').is(':checked') ? 1 : 0
+              hidden: $('#create-group-hidden').is(':checked') ? 1 : 0,
             }
 
             api.post('/groups', submitObj).then((response) => {
@@ -92,8 +92,8 @@ define('admin/manage/groups', [
       socket.emit('groups.search', {
         query: queryEl.val(),
         options: {
-          sort: 'date'
-        }
+          sort: 'date',
+        },
       }, function (err, groups) {
         if (err) {
           return alerts.error(err)
@@ -101,7 +101,7 @@ define('admin/manage/groups', [
 
         app.parseAndTranslate('admin/manage/groups', 'groups', {
           groups,
-          categories: ajaxify.data.categories
+          categories: ajaxify.data.categories,
         }, function (html) {
           groupsEl.find('[data-groupname]').remove()
           groupsEl.find('tbody').append(html)

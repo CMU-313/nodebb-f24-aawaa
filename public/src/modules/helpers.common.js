@@ -34,7 +34,7 @@ module.exports = function (utils, Benchpress, relative_path) {
     formattedNumber,
     generatePlaceholderWave,
     register,
-    __escape: identity
+    __escape: identity,
   }
 
   function identity (str) {
@@ -183,7 +183,7 @@ module.exports = function (utils, Benchpress, relative_path) {
         states.push({
           name: priv,
           state: privileges[priv],
-          type: types[priv]
+          type: types[priv],
         })
       }
     }
@@ -301,7 +301,7 @@ module.exports = function (utils, Benchpress, relative_path) {
     const attributes = new Map([
       ['title', userObj.username],
       ['data-uid', userObj.uid],
-      ['class', `avatar ${classNames}${rounded ? ' avatar-rounded' : ''}`]
+      ['class', `avatar ${classNames}${rounded ? ' avatar-rounded' : ''}`],
     ])
     const styles = [`--avatar-size: ${size};`]
     const attr2String = attributes => Array.from(attributes).reduce((output, [prop, value]) => {
@@ -347,7 +347,7 @@ module.exports = function (utils, Benchpress, relative_path) {
   function isoTimeToLocaleString (isoTime, locale = 'en-GB') {
     return new Date(isoTime).toLocaleString([locale], {
       dateStyle: 'short',
-      timeStyle: 'short'
+      timeStyle: 'short',
     }).replace(/,/g, '&#44;')
   }
 

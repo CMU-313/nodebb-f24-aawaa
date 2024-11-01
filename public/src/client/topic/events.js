@@ -9,7 +9,7 @@ define('forum/topic/events', [
   'components',
   'translator',
   'hooks',
-  'helpers'
+  'helpers',
 ], function (postTools, threadTools, posts, images, components, translator, hooks, helpers) {
   const Events = {}
 
@@ -47,7 +47,7 @@ define('forum/topic/events', [
     'posts.unvote': togglePostVote,
 
     'event:new_notification': onNewNotification,
-    'event:new_post': posts.onNewPost
+    'event:new_post': posts.onNewPost,
   }
 
   Events.init = function () {
@@ -148,7 +148,7 @@ define('forum/topic/events', [
         if (data.post.edited) {
           const editData = {
             editor: data.editor,
-            editedISO: utils.toISOString(data.post.edited)
+            editedISO: utils.toISOString(data.post.edited),
           }
 
           app.parseAndTranslate('partials/topic/post-editor', editData, function (html) {

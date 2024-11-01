@@ -36,7 +36,7 @@ define('forum/topic/replies', ['forum/topic/posts', 'hooks', 'alerts', 'api'], f
           'downvote:disabled': ajaxify.data['downvote:disabled'],
           'reputation:disabled': ajaxify.data['reputation:disabled'],
           loggedIn: !!app.user.uid,
-          hideReplies: config.hasOwnProperty('showNestedReplies') ? !config.showNestedReplies : true
+          hideReplies: config.hasOwnProperty('showNestedReplies') ? !config.showNestedReplies : true,
         }
         app.parseAndTranslate('topic', 'posts', tplData, async function (html) {
           const repliesEl = $('<ul>', { component: 'post/replies', class: 'list-unstyled' }).html(html).hide()
@@ -111,7 +111,7 @@ define('forum/topic/replies', ['forum/topic/posts', 'hooks', 'alerts', 'api'], f
 
     if (!avatars.find('[data-uid="' + post.uid + '"]').length && count < 7) {
       app.parseAndTranslate('topic', 'posts', {
-        posts: [{ replies: { count, hasMore: false, users: [post.user] } }]
+        posts: [{ replies: { count, hasMore: false, users: [post.user] } }],
       }, function (html) {
         avatars.prepend(html.find('[component="post/reply-count/avatars"]').html())
       })

@@ -20,8 +20,8 @@ app = window.app || {};
     autoConnect: false,
     path: config.relative_path + '/socket.io',
     query: {
-      _csrf: config.csrf_token
-    }
+      _csrf: config.csrf_token,
+    },
   }
 
   window.socket = io(config.websocketAddress, ioParams)
@@ -169,7 +169,7 @@ app = window.app || {};
           clickfn: function () {
             window.location.reload()
           },
-          type: 'warning'
+          type: 'warning',
         })
       }
 
@@ -209,7 +209,7 @@ app = window.app || {};
 
     reconnectEl.addClass('active').removeClass('hide').tooltip({
       placement: 'bottom',
-      animation: false
+      animation: false,
     })
   }
 
@@ -236,7 +236,7 @@ app = window.app || {};
           closeButton: false,
           callback: function () {
             window.location.href = config.relative_path + '/'
-          }
+          },
         })
       })
     })
@@ -250,7 +250,7 @@ app = window.app || {};
         closeButton: false,
         callback: function () {
           window.location.href = config.relative_path + '/'
-        }
+        },
       })
     })
   }

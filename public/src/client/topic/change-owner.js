@@ -4,7 +4,7 @@
 define('forum/topic/change-owner', [
   'postSelect',
   'autocomplete',
-  'alerts'
+  'alerts',
 ], function (postSelect, autocomplete, alerts) {
   const ChangeOwner = {}
 
@@ -25,7 +25,7 @@ define('forum/topic/change-owner', [
       modal.find('#change_owner_cancel').on('click', closeModal)
       modal.find('#username').on('keyup', checkButtonEnable)
       postSelect.init(onPostToggled, {
-        allowMainPostSelect: true
+        allowMainPostSelect: true,
       })
       showPostsSelected()
 

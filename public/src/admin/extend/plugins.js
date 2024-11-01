@@ -6,7 +6,7 @@ define('admin/extend/plugins', [
   'benchpress',
   'bootbox',
   'alerts',
-  'jquery-ui/widgets/sortable'
+  'jquery-ui/widgets/sortable',
 ], function (translator, Benchpress, bootbox, alerts) {
   const Plugins = {}
   Plugins.init = function () {
@@ -62,7 +62,7 @@ define('admin/extend/plugins', [
               require(['admin/modules/instance'], function (instance) {
                 instance.rebuildAndRestart()
               })
-            }
+            },
           })
         })
       }
@@ -76,20 +76,20 @@ define('admin/extend/plugins', [
             buttons: {
               cancel: {
                 label: '[[modules:bootbox.cancel]]',
-                className: 'btn-link'
+                className: 'btn-link',
               },
               save: {
                 label: '[[modules:bootbox.confirm]]',
                 className: 'btn-primary',
-                callback: toggleActivate
-              }
+                callback: toggleActivate,
+              },
             },
             onShown: function () {
               const saveEl = this.querySelector('button.btn-primary')
               if (saveEl) {
                 saveEl.focus()
               }
-            }
+            },
           })
         })
       } else {
@@ -178,7 +178,7 @@ define('admin/extend/plugins', [
 
     $('#plugin-submit-usage').on('click', function () {
       socket.emit('admin.config.setMultiple', {
-        submitPluginUsage: $(this).prop('checked') ? '1' : '0'
+        submitPluginUsage: $(this).prop('checked') ? '1' : '0',
       }, function (err) {
         if (err) {
           return alerts.error(err)
@@ -252,7 +252,7 @@ define('admin/extend/plugins', [
             require(['admin/modules/instance'], function (instance) {
               instance.rebuildAndRestart()
             })
-          }
+          },
         })
       })
     })
@@ -271,7 +271,7 @@ define('admin/extend/plugins', [
     btn.attr('disabled', true).find('i').attr('class', 'fa fa-refresh fa-spin')
     socket.emit('admin.plugins.upgrade', {
       id: pluginID,
-      version
+      version,
     }, function (err, isActive) {
       if (err) {
         return alerts.error(err)
@@ -291,7 +291,7 @@ define('admin/extend/plugins', [
             require(['admin/modules/instance'], function (instance) {
               instance.rebuildAndRestart()
             })
-          }
+          },
         })
       }
     })
@@ -303,7 +303,7 @@ define('admin/extend/plugins', [
 
     socket.emit('admin.plugins.toggleInstall', {
       id: pluginID,
-      version
+      version,
     }, function (err, pluginData) {
       if (err) {
         btn.removeAttr('disabled')
@@ -325,7 +325,7 @@ define('admin/extend/plugins', [
         title: '[[admin/extend/plugins:alert.' + (pluginData.installed ? 'installed' : 'uninstalled') + ']]',
         message: '[[admin/extend/plugins:alert.' + (pluginData.installed ? 'install-success' : 'uninstall-success') + ']]',
         type: 'info',
-        timeout: 5000
+        timeout: 5000,
       })
 
       if (typeof callback === 'function') {
@@ -340,9 +340,9 @@ define('admin/extend/plugins', [
       type: 'GET',
       data: {
         package: pluginId,
-        version: nbbVersion[0]
+        version: nbbVersion[0],
       },
-      dataType: 'json'
+      dataType: 'json',
     }).done(function (payload) {
       callback(undefined, payload)
     }).fail(callback)

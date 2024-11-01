@@ -16,7 +16,7 @@ define('forum/account/info', ['forum/account/header', 'alerts', 'forum/account/s
       const note = noteEl.val()
       socket.emit('user.setModerationNote', {
         uid: ajaxify.data.uid,
-        note
+        note,
       }, function (err, notes) {
         if (err) {
           return alerts.error(err)
@@ -49,13 +49,13 @@ define('forum/account/info', ['forum/account/header', 'alerts', 'forum/account/s
       socket.emit('user.editModerationNote', {
         uid: ajaxify.data.uid,
         id: parent.attr('data-id'),
-        note: textarea.val()
+        note: textarea.val(),
       }, function (err, notes) {
         if (err) {
           return alerts.error(err)
         }
         textarea.css({
-          height: textarea.prop('scrollHeight') + 'px'
+          height: textarea.prop('scrollHeight') + 'px',
         })
         editArea.addClass('hidden')
         contentArea.find('.content').html(notes[0].note)
@@ -73,7 +73,7 @@ define('forum/account/info', ['forum/account/header', 'alerts', 'forum/account/s
     $('[component="account/moderation-note/edit-area"] textarea').each((i, el) => {
       const $el = $(el)
       $el.css({
-        height: $el.prop('scrollHeight') + 'px'
+        height: $el.prop('scrollHeight') + 'px',
       }).parent().addClass('hidden')
     })
   }

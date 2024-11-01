@@ -7,7 +7,7 @@ define('notifications', [
   'navigator',
   'tinycon',
   'hooks',
-  'alerts'
+  'alerts',
 ], function (translator, components, navigator, Tinycon, hooks, alerts) {
   const Notifications = {}
 
@@ -63,7 +63,7 @@ define('notifications', [
 
           hooks.fire('action:notifications.loaded', {
             notifications: notifs,
-            list: notifList
+            list: notifList,
           })
           callback()
         })
@@ -150,7 +150,7 @@ define('notifications', [
     components.get('notifications/count').toggleClass('hidden', count <= 0).text(countText)
     const payload = {
       count,
-      updateFavicon: true
+      updateFavicon: true,
     }
     hooks.fire('action:notification.updateCount', payload)
 

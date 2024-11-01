@@ -20,14 +20,14 @@ define('accounts/invite', ['api', 'benchpress', 'bootbox', 'alerts'], function (
             buttons: {
               cancel: {
                 label: `[[${isACP() ? 'admin/manage/users:alerts.button-cancel' : 'modules:bootbox.cancel'}]]`,
-                className: 'btn-default'
+                className: 'btn-default',
               },
               invite: {
                 label: `[[${isACP() ? 'admin/manage/users:invite' : 'users:invite'}]]`,
                 className: 'btn-primary',
-                callback: Invite.send
-              }
-            }
+                callback: Invite.send,
+              },
+            },
           })
         })
       }).catch(alerts.error)
@@ -45,7 +45,7 @@ define('accounts/invite', ['api', 'benchpress', 'bootbox', 'alerts'], function (
         .filter(Boolean)
         .filter((m, i, arr) => i === arr.indexOf(m))
         .join(','),
-      groupsToJoin: $groups.val()
+      groupsToJoin: $groups.val(),
     }
 
     if (!data.emails) {

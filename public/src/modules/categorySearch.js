@@ -30,7 +30,7 @@ define('categorySearch', ['alerts', 'bootstrap', 'api'], function (alerts, boots
         el.find('.dropdown-toggle').css({ visibility: 'hidden' })
         searchEl.removeClass('hidden')
         searchEl.css({
-          'z-index': el.find('.dropdown-toggle').css('z-index') + 1
+          'z-index': el.find('.dropdown-toggle').css('z-index') + 1,
         })
       }
 
@@ -78,7 +78,7 @@ define('categorySearch', ['alerts', 'bootstrap', 'api'], function (alerts, boots
         selectedCids: options.selectedCids,
         privilege: options.privilege,
         states: options.states,
-        showLinks: options.showLinks
+        showLinks: options.showLinks,
       }, function (err, { categories }) {
         if (err) {
           return alerts.error(err)
@@ -95,7 +95,7 @@ define('categorySearch', ['alerts', 'bootstrap', 'api'], function (alerts, boots
       app.parseAndTranslate(options.template, {
         categoryItems: categories.slice(0, 200),
         selectedCategory: ajaxify.data.selectedCategory,
-        allCategoriesUrl: ajaxify.data.allCategoriesUrl
+        allCategoriesUrl: ajaxify.data.allCategoriesUrl,
       }, function (html) {
         el.find('[component="category/list"]')
           .html(html.find('[component="category/list"]').html())

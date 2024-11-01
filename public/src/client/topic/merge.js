@@ -33,15 +33,15 @@ define('forum/topic/merge', ['search', 'alerts', 'api'], function (search, alert
       search.enableQuickSearch({
         searchElements: {
           inputEl: modal.find('.topic-search-input'),
-          resultEl: modal.find('.quick-search-container')
+          resultEl: modal.find('.quick-search-container'),
         },
         searchOptions: {
-          in: 'titles'
+          in: 'titles',
         },
         dropdown: {
           maxWidth: '400px',
-          maxHeight: '350px'
-        }
+          maxHeight: '350px',
+        },
       })
       modal.on('click', '[data-tid]', function () {
         const addTid = $(this).attr('data-tid')
@@ -135,7 +135,7 @@ define('forum/topic/merge', ['search', 'alerts', 'api'], function (search, alert
     if (tids.length) {
       app.parseAndTranslate('modals/merge-topic', {
         config,
-        topics
+        topics,
       }, function (html) {
         modal.find('.topics-section').html(html.find('.topics-section').html())
         modal.find('.merge-main-topic-select').html(

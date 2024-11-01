@@ -13,7 +13,7 @@ define('settings/array', function () {
   function createRemoveButton (elements) {
     const rm = $(helper.createElement('button', {
       class: 'btn btn-sm btn-primary remove',
-      title: 'Remove Item'
+      title: 'Remove Item',
     }, '-'))
     rm.click(function (event) {
       event.preventDefault()
@@ -78,7 +78,7 @@ define('settings/array', function () {
     const newValue = element.data('new') || ''
     const add = $(helper.createElement('button', {
       class: 'btn btn-sm btn-primary add',
-      title: 'Expand Array'
+      title: 'Expand Array',
     }, '+'))
     add.click(function (event) {
       event.preventDefault()
@@ -138,7 +138,7 @@ define('settings/array', function () {
       if (empty || values.length) {
         return values
       }
-    }
+    },
   }
 
   return SettingsArray

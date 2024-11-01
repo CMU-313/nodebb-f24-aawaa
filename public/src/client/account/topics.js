@@ -4,7 +4,7 @@
 define('forum/account/topics', [
   'forum/account/header',
   'forum/infinitescroll',
-  'hooks'
+  'hooks',
 ], function (header, infinitescroll, hooks) {
   const AccountTopics = {}
 

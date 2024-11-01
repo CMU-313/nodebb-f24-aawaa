@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/chats/user-search', [
-  'components', 'api', 'alerts'
+  'components', 'api', 'alerts',
 ], function (components, api, alerts) {
   const userSearch = {}
   let users = []
@@ -39,7 +39,7 @@ define('forum/chats/user-search', [
     api.get('/api/users', {
       query: username,
       searchBy: 'username',
-      paginate: false
+      paginate: false,
     }).then(displayResults)
       .catch(alerts.error)
   }

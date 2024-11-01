@@ -3,7 +3,7 @@
 
 define('admin/extend/rewards', [
   'alerts',
-  'jquery-ui/widgets/sortable'
+  'jquery-ui/widgets/sortable',
 ], function (alerts) {
   const rewards = {}
 
@@ -51,7 +51,7 @@ define('admin/extend/rewards', [
       .sortable({
         handle: '[component="sort/handle"]',
         axis: 'y',
-        zIndex: 9999
+        zIndex: 9999,
       })
 
     $('#new').on('click', newReward)
@@ -139,11 +139,11 @@ define('admin/extend/rewards', [
         value: '',
         claimable: 1,
         rid: null,
-        id: null
+        id: null,
       }],
       conditions,
       conditionals,
-      rewards: available
+      rewards: available,
     }
 
     app.parseAndTranslate('admin/extend/rewards', 'active', data, function (li) {

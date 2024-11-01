@@ -11,7 +11,7 @@ define('forum/categories', ['categorySelector'], function (categorySelector) {
       privilege: 'find',
       onSelect: function (category) {
         ajaxify.go('/category/' + category.cid)
-      }
+      },
     })
   }
 

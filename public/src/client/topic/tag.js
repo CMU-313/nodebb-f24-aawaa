@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/topic/tag', [
-  'alerts', 'autocomplete', 'api', 'benchpress'
+  'alerts', 'autocomplete', 'api', 'benchpress',
 ], function (alerts, autocomplete, api, Benchpress) {
   const Tag = {}
   let tagModal
@@ -18,7 +18,7 @@ define('forum/topic/tag', [
 
     app.parseAndTranslate('modals/tag-topic', {
       topics,
-      tagWhitelist
+      tagWhitelist,
     }, function (html) {
       tagModal = html
 
@@ -40,7 +40,7 @@ define('forum/topic/tag', [
         const tagsinputEl = tagEl.tagsinput({
           tagClass: 'badge bg-info',
           confirmKeys: [13, 44],
-          trimValue: true
+          trimValue: true,
         })
         const input = tagsinputEl[0].$input
 
@@ -59,7 +59,7 @@ define('forum/topic/tag', [
 
         initAutocomplete({
           input,
-          container: tagsinputEl[0].$container
+          container: tagsinputEl[0].$container,
         })
       })
     })
@@ -72,7 +72,7 @@ define('forum/topic/tag', [
       appendTo: params.container,
       source: async (request, response) => {
         socket.emit('topics.autocompleteTags', {
-          query: request.term
+          query: request.term,
         }, function (err, tags) {
           if (err) {
             return alerts.error(err)
@@ -81,7 +81,7 @@ define('forum/topic/tag', [
             response(tags)
           }
         })
-      }
+      },
     })
   }
 

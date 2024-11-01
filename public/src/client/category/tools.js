@@ -7,7 +7,7 @@ define('forum/category/tools', [
   'components',
   'api',
   'bootbox',
-  'alerts'
+  'alerts',
 ], function (topicSelect, threadTools, components, api, bootbox, alerts) {
   const CategoryTools = {}
 
@@ -325,7 +325,7 @@ define('forum/category/tools', [
 
           socket.emit('topics.orderPinnedTopics', {
             tid,
-            order: baseIndex + newIndex
+            order: baseIndex + newIndex,
           }, function (err) {
             if (err) {
               return alerts.error(err)
@@ -334,7 +334,7 @@ define('forum/category/tools', [
               $(el).attr('data-index', baseIndex + index)
             })
           })
-        }
+        },
       })
     })
   }

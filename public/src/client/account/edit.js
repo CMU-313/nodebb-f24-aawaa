@@ -9,7 +9,7 @@ define('forum/account/edit', [
   'hooks',
   'bootbox',
   'alerts',
-  'admin/modules/change-email'
+  'admin/modules/change-email',
 ], function (header, picture, translator, api, hooks, bootbox, alerts, changeEmail) {
   const AccountEdit = {}
 
@@ -35,7 +35,7 @@ define('forum/account/edit', [
           email: ajaxify.data.email,
           onSuccess: function () {
             alerts.success('[[user:email-updated]]')
-          }
+          },
         })
         return false
       })
@@ -80,7 +80,7 @@ define('forum/account/edit', [
           confirmBtn.html('<i class="fa fa-spinner fa-spin"></i>')
           confirmBtn.prop('disabled', true)
           api.del(`/users/${ajaxify.data.uid}/account`, {
-            password: $('#confirm-password').val()
+            password: $('#confirm-password').val(),
           }, function (err) {
             function restoreButton () {
               translator.translate('[[modules:bootbox.confirm]]', function (confirmText) {

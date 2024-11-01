@@ -2,7 +2,7 @@
 'use strict'
 
 define('chat', [
-  'components', 'taskbar', 'translator', 'hooks', 'bootbox', 'alerts', 'api'
+  'components', 'taskbar', 'translator', 'hooks', 'bootbox', 'alerts', 'api',
 ], function (components, taskbar, translator, hooks, bootbox, alerts, api) {
   const module = {}
   let newMessage = false
@@ -20,7 +20,7 @@ define('chat', [
     hooks.fire('filter:chat.openChat', {
       modal: true,
       roomId,
-      uid
+      uid,
     }).then((hookData) => {
       if (!hookData.modal) {
         return ajaxify.go(`/chats/${roomId}`)
@@ -29,7 +29,7 @@ define('chat', [
         loadAndCenter(module.getModal(roomId))
       } else {
         api.get(`/chats/${roomId}`, {
-          uid: uid || app.user.uid
+          uid: uid || app.user.uid,
         }).then((roomData) => {
           roomData.users = roomData.users.filter(function (user) {
             return user && parseInt(user.uid, 10) !== parseInt(app.user.uid, 10)
@@ -45,7 +45,7 @@ define('chat', [
   module.newChat = function (touid, callback) {
     function createChat () {
       api.post('/chats', {
-        uids: [touid]
+        uids: [touid],
       }).then(({ roomId }) => {
         if (!ajaxify.data.template.chats) {
           module.openChat(roomId)
@@ -82,7 +82,7 @@ define('chat', [
   module.loadChatsDropdown = function (chatsListEl) {
     api.get('/chats', {
       uid: app.user.uid,
-      after: 0
+      after: 0,
     }).then((data) => {
       const rooms = data.rooms.map((room) => {
         if (room && room.teaser) {
@@ -218,7 +218,7 @@ define('chat', [
           title: '[[modules:chat.chatting-with]] ' + (data.roomName || username),
           touid: data.message.fromUser.uid,
           roomId: data.roomId,
-          isSelf: false
+          isSelf: false,
         })
       }
     })
@@ -238,10 +238,10 @@ define('chat', [
 
     const newTitle = $('<div></div>').html(data.newName).text()
     taskbar.update('chat', modal.attr('data-uuid'), {
-      title: newTitle
+      title: newTitle,
     })
     hooks.fire('action:chat.renamed', Object.assign(data, {
-      modal
+      modal,
     }))
   }
 
@@ -294,7 +294,7 @@ define('chat', [
   module.createModal = function (data, callback) {
     callback = callback || function () {}
     require([
-      'scrollStop', 'forum/chats', 'forum/chats/messages', 'forum/chats/message-search'
+      'scrollStop', 'forum/chats', 'forum/chats/messages', 'forum/chats/message-search',
     ], function (scrollStop, Chats, ChatsMessages, messageSearch) {
       app.parseAndTranslate('chat', data, function (chatModal) {
         const roomId = data.roomId
@@ -319,7 +319,7 @@ define('chat', [
           chatModal.find('.modal-content').resizable({
             handles: 'n, e, s, w, se',
             minHeight: 250,
-            minWidth: 400
+            minWidth: 400,
           })
 
           chatModal.find('.modal-content').on('resize', function (event, ui) {
@@ -339,7 +339,7 @@ define('chat', [
               module.focusInput(chatModal)
             },
             distance: 10,
-            handle: '.modal-header'
+            handle: '.modal-header',
           })
         })
 
@@ -409,7 +409,7 @@ define('chat', [
           pasteEl: chatModal,
           uploadFormEl: chatModal.find('[component="chat/upload"]'),
           uploadBtnEl: chatModal.find('[component="chat/upload/button"]'),
-          inputEl: chatModal.find('[component="chat/input"]')
+          inputEl: chatModal.find('[component="chat/input"]'),
         })
 
         ChatsMessages.addSocketListeners()
@@ -421,7 +421,7 @@ define('chat', [
           roomId: data.roomId,
           icon: 'fa-comment',
           state: '',
-          isSelf: data.isSelf
+          isSelf: data.isSelf,
         }, function () {
           taskbar.toggleNew(chatModal.attr('data-uuid'), !data.isSelf)
           hooks.fire('action:chat.loaded', chatModal)
@@ -458,7 +458,7 @@ define('chat', [
     socket.emit('modules.chats.leave', roomId)
     hooks.fire('action:chat.closed', {
       uuid,
-      modal: chatModal
+      modal: chatModal,
     })
   }
 
@@ -534,7 +534,7 @@ define('chat', [
     chatModal.attr('intervalId', 0)
     hooks.fire('action:chat.minimized', {
       uuid,
-      modal: chatModal
+      modal: chatModal,
     })
   }
 

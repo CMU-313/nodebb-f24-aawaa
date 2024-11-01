@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/account/edit/username', [
-  'forum/account/header', 'api', 'slugify', 'alerts'
+  'forum/account/header', 'api', 'slugify', 'alerts',
 ], function (header, api, slugify, alerts) {
   const AccountEditUsername = {}
 
@@ -13,7 +13,7 @@ define('forum/account/edit/username', [
       const userData = {
         uid: $('#inputUID').val(),
         username: $('#inputNewUsername').val(),
-        password: $('#inputCurrentPassword').val()
+        password: $('#inputCurrentPassword').val(),
       }
 
       if (!userData.username) {

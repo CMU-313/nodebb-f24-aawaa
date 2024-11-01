@@ -87,7 +87,7 @@ define('taskbar', ['translator', 'hooks'], function (translator, hooks) {
       module,
       uuid,
       options,
-      element
+      element,
     }
 
     hooks.fire('filter:taskbar.push', data)
@@ -187,7 +187,7 @@ define('taskbar', ['translator', 'hooks'], function (translator, hooks) {
         .attr({
           title,
           'data-module': data.module,
-          'data-uuid': data.uuid
+          'data-uuid': data.uuid,
         })
         .addClass(data.options.state !== undefined ? data.options.state : 'active')
 

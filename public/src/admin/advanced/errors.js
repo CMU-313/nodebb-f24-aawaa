@@ -7,7 +7,7 @@ import {
   LineElement,
   PointElement,
   Tooltip,
-  Filler
+  Filler,
 } from 'chart.js'
 
 import * as bootbox from 'bootbox'
@@ -70,9 +70,9 @@ function setupCharts () {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(186,139,175,1)',
-          data: ajaxify.data.analytics['not-found']
-        }
-      ]
+          data: ajaxify.data.analytics['not-found'],
+        },
+      ],
     },
     toobusy: {
       labels: dailyLabels,
@@ -87,34 +87,34 @@ function setupCharts () {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(151,187,205,1)',
-          data: ajaxify.data.analytics.toobusy
-        }
-      ]
-    }
+          data: ajaxify.data.analytics.toobusy,
+        },
+      ],
+    },
   }
   const chartOptions = {
     responsive: true,
     scales: {
       y: {
-        beginAtZero: true
-      }
+        beginAtZero: true,
+      },
     },
     plugins: {
       legend: {
-        display: false
-      }
-    }
+        display: false,
+      },
+    },
   }
 
   new Chart(notFoundCanvas.getContext('2d'), {
     type: 'line',
     data: data['not-found'],
-    options: chartOptions
+    options: chartOptions,
   })
 
   new Chart(tooBusyCanvas.getContext('2d'), {
     type: 'line',
     data: data.toobusy,
-    options: chartOptions
+    options: chartOptions,
   })
 }

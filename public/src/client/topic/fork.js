@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/topic/fork', [
-  'components', 'postSelect', 'alerts', 'categorySelector'
+  'components', 'postSelect', 'alerts', 'categorySelector',
 ], function (components, postSelect, alerts, categorySelector) {
   const Fork = {}
   let forkModal
@@ -21,7 +21,7 @@ define('forum/topic/fork', [
     }
 
     app.parseAndTranslate('modals/fork-topic', {
-      selectedCategory
+      selectedCategory,
     }, function (html) {
       forkModal = html
 
@@ -33,7 +33,7 @@ define('forum/topic/fork', [
         onSelect: function (category) {
           selectedCategory = category
         },
-        privilege: 'moderate'
+        privilege: 'moderate',
       })
 
       forkModal.find('#fork_thread_cancel').on('click', closeForkModal)
@@ -65,7 +65,7 @@ define('forum/topic/fork', [
       title: forkModal.find('#fork-title').val(),
       pids: postSelect.pids,
       fromTid,
-      cid: selectedCategory.cid
+      cid: selectedCategory.cid,
     }, function (err, newTopic) {
       function fadeOutAndRemove (pid) {
         components.get('post', 'pid', pid).fadeOut(500, function () {
@@ -84,7 +84,7 @@ define('forum/topic/fork', [
         type: 'success',
         clickfn: function () {
           ajaxify.go('topic/' + newTopic.slug)
-        }
+        },
       })
 
       postSelect.pids.forEach(function (pid) {

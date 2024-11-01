@@ -8,7 +8,7 @@ define('admin/manage/categories', [
   'api',
   'Sortable',
   'bootbox',
-  'alerts'
+  'alerts',
 ], function (translator, Benchpress, categorySelector, api, Sortable, bootbox, alerts) {
   Sortable = Sortable.default
   const Categories = {}
@@ -23,7 +23,7 @@ define('admin/manage/categories', [
       },
       cacheList: false,
       localCategories: [],
-      template: 'admin/partials/category/selector-dropdown-right'
+      template: 'admin/partials/category/selector-dropdown-right',
     })
     Categories.render(ajaxify.data.categoriesTree)
 
@@ -75,9 +75,9 @@ define('admin/manage/categories', [
               } else {
                 return false
               }
-            }
-          }
-        }
+            },
+          },
+        },
       })
     })
 
@@ -107,19 +107,19 @@ define('admin/manage/categories', [
           save: {
             label: '[[global:create]]',
             className: 'btn-primary',
-            callback: submit
-          }
-        }
+            callback: submit,
+          },
+        },
       })
       const options = {
         localCategories: [
           {
             cid: 0,
             name: '[[admin/manage/categories:parent-category-none]]',
-            icon: 'fa-none'
-          }
+            icon: 'fa-none',
+          },
         ],
-        template: 'admin/partials/category/selector-dropdown-left'
+        template: 'admin/partials/category/selector-dropdown-left',
       }
       const parentSelector = categorySelector.init(modal.find('#parentCidGroup [component="category-selector"]'), options)
       const cloneFromSelector = categorySelector.init(modal.find('#cloneFromCidGroup [component="category-selector"]'), options)
@@ -163,7 +163,7 @@ define('admin/manage/categories', [
         title: '[[admin/manage/categories:alert.created]]',
         message: '[[admin/manage/categories:alert.create-success]]',
         type: 'success',
-        timeout: 2000
+        timeout: 2000,
       })
 
       ajaxify.go('admin/manage/categories/' + data.cid)
@@ -189,7 +189,7 @@ define('admin/manage/categories', [
   Categories.toggle = function (cids, disabled) {
     const listEl = document.querySelector('.categories [data-cid="0"]')
     Promise.all(cids.map(cid => api.put('/categories/' + cid, {
-      disabled: disabled ? 1 : 0
+      disabled: disabled ? 1 : 0,
     }).then(() => {
       const categoryEl = listEl.querySelector(`li[data-cid="${cid}"]`)
       categoryEl.classList[disabled ? 'add' : 'remove']('disabled')
@@ -212,7 +212,7 @@ define('admin/manage/categories', [
       // this makes sure order is correct when drag & drop is used on pages > 1
       const baseIndex = (ajaxify.data.pagination.currentPage - 1) * ajaxify.data.categoriesPerPage
       modified[cid] = {
-        order: baseIndex + e.newIndex + 1
+        order: baseIndex + e.newIndex + 1,
       }
 
       if (isCategoryUpdate) {
@@ -277,7 +277,7 @@ define('admin/manage/categories', [
       app.parseAndTranslate('admin/partials/categories/category-rows', {
         cid: parentCategory.cid,
         categories,
-        parentCategory
+        parentCategory,
       }, function (html) {
         if (container.find('.category-row').length) {
           container.find('.category-row').after(html)
@@ -304,7 +304,7 @@ define('admin/manage/categories', [
           dataIdAttr: 'data-cid',
           ghostClass: 'placeholder',
           onAdd: itemDidAdd,
-          onEnd: itemDragDidEnd
+          onEnd: itemDragDidEnd,
         })
       })
     }

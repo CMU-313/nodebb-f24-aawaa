@@ -36,7 +36,7 @@ app.onDomReady();
           message: logoutMessage,
           callback: function () {
             window.location.reload()
-          }
+          },
         })
       })
     }, 3600000)
@@ -51,7 +51,7 @@ app.onDomReady();
 
       $('[data-bs-toggle="tooltip"]').tooltip({
         animation: false,
-        container: '#content'
+        container: '#content',
       })
 
       if ($('.settings').length) {

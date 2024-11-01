@@ -68,7 +68,7 @@ define('admin/settings/api', ['settings', 'clipboard', 'bootbox', 'benchpress', 
 
           ajaxify.data.tokens.push(tokenObj)
           const rowEl = (await app.parseAndTranslate(ajaxify.data.template.name, 'tokens', {
-            tokens: [tokenObj]
+            tokens: [tokenObj],
           })).get(0)
 
           tokensTableBody.append(rowEl)
@@ -89,9 +89,9 @@ define('admin/settings/api', ['settings', 'clipboard', 'bootbox', 'benchpress', 
         submit: {
           label: '[[modules:bootbox.submit]]',
           className: 'btn-primary',
-          callback: parseForm
-        }
-      }
+          callback: parseForm,
+        },
+      },
     })
   }
 
@@ -111,7 +111,7 @@ define('admin/settings/api', ['settings', 'clipboard', 'bootbox', 'benchpress', 
         try {
           const tokenObj = await api.put(`/admin/tokens/${token}`, { uid, description })
           const newEl = (await app.parseAndTranslate(ajaxify.data.template.name, 'tokens', {
-            tokens: [tokenObj]
+            tokens: [tokenObj],
           })).get(0)
 
           rowEl.replaceWith(newEl)
@@ -133,9 +133,9 @@ define('admin/settings/api', ['settings', 'clipboard', 'bootbox', 'benchpress', 
         submit: {
           label: '[[modules:bootbox.submit]]',
           className: 'btn-primary',
-          callback: parseForm
-        }
-      }
+          callback: parseForm,
+        },
+      },
     })
   }
 
@@ -165,7 +165,7 @@ define('admin/settings/api', ['settings', 'clipboard', 'bootbox', 'benchpress', 
         try {
           const tokenObj = await api.post(`/admin/tokens/${token}/roll`)
           const newEl = (await app.parseAndTranslate(ajaxify.data.template.name, 'tokens', {
-            tokens: [tokenObj]
+            tokens: [tokenObj],
           })).get(0)
 
           rowEl.replaceWith(newEl)

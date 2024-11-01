@@ -5,13 +5,13 @@ define('accounts/picture', [
   'pictureCropper',
   'api',
   'bootbox',
-  'alerts'
+  'alerts',
 ], (pictureCropper, api, bootbox, alerts) => {
   const Picture = {}
 
   Picture.openChangeModal = () => {
     socket.emit('user.getProfilePictures', {
-      uid: ajaxify.data.uid
+      uid: ajaxify.data.uid,
     }, function (err, pictures) {
       if (err) {
         return alerts.error(err)
@@ -34,8 +34,8 @@ define('accounts/picture', [
           username: ajaxify.data.username,
           picture: ajaxify.data.picture,
           'icon:text': ajaxify.data['icon:text'],
-          'icon:bgColor': ajaxify.data['icon:bgColor']
-        }
+          'icon:bgColor': ajaxify.data['icon:bgColor'],
+        },
       }, function (html) {
         const modal = bootbox.dialog({
           className: 'picture-switcher',
@@ -47,13 +47,13 @@ define('accounts/picture', [
             close: {
               label: '[[global:close]]',
               callback: onCloseModal,
-              className: 'btn-link'
+              className: 'btn-link',
             },
             update: {
               label: '[[global:save-changes]]',
-              callback: saveSelection
-            }
-          }
+              callback: saveSelection,
+            },
+          },
         })
 
         modal.on('shown.bs.modal', updateImages)
@@ -136,7 +136,7 @@ define('accounts/picture', [
 
     if (iconBgColor) {
       headerIconEl.css({
-        'background-color': iconBgColor
+        'background-color': iconBgColor,
       })
     }
   }
@@ -178,7 +178,7 @@ define('accounts/picture', [
         allowSkippingCrop: false,
         title: '[[user:upload-picture]]',
         description: '[[user:upload-a-picture]]',
-        accept: ajaxify.data.allowedProfileImageExtensions
+        accept: ajaxify.data.allowedProfileImageExtensions,
       }, function (url) {
         onUploadComplete(url)
       })
@@ -205,7 +205,7 @@ define('accounts/picture', [
             aspectRatio: 1,
             allowSkippingCrop: false,
             paramName: 'uid',
-            paramValue: ajaxify.data.theirid
+            paramValue: ajaxify.data.theirid,
           }, onUploadComplete)
 
           return false
@@ -217,7 +217,7 @@ define('accounts/picture', [
 
     modal.find('[data-action="remove-uploaded"]').on('click', function () {
       socket.emit('user.removeUploadedPicture', {
-        uid: ajaxify.data.theirid
+        uid: ajaxify.data.theirid,
       }, function (err) {
         modal.modal('hide')
         if (err) {

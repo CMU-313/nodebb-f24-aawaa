@@ -2,10 +2,10 @@
 'use strict'
 
 define('search', [
-  'translator', 'storage', 'hooks', 'alerts', 'bootstrap'
+  'translator', 'storage', 'hooks', 'alerts', 'bootstrap',
 ], function (translator, storage, hooks, alerts, bootstrap) {
   const Search = {
-    current: {}
+    current: {},
   }
 
   Search.init = function (searchOptions) {
@@ -43,19 +43,19 @@ define('search', [
 
     const searchElements = {
       inputEl: searchInput,
-      resultEl: quickSearchContainer
+      resultEl: quickSearchContainer,
     }
 
     Search.enableQuickSearch({
       searchOptions,
-      searchElements
+      searchElements,
     })
 
     searchButton.off('click').on('click', function (e) {
       if (!config.loggedIn && !app.user.privileges['search:content']) {
         alerts.alert({
           message: '[[error:search-requires-login]]',
-          timeout: 3000
+          timeout: 3000,
         })
         ajaxify.go('login')
         return false
@@ -73,7 +73,7 @@ define('search', [
       data.in = searchOptions.in
       hooks.fire('action:search.submit', {
         searchOptions: data,
-        searchElements
+        searchElements,
       })
       Search.query(data, function () {
         input.val('')
@@ -151,7 +151,7 @@ define('search', [
           Search.highlightMatches(options.searchOptions.term, highlightEls)
           hooks.fire('action:search.quick.complete', {
             data,
-            options
+            options,
           })
         })
       })
@@ -268,12 +268,12 @@ define('search', [
     const query = {
       ...data,
       term,
-      in: searchIn
+      in: searchIn,
     }
 
     hooks.fire('action:search.createQueryString', {
       query,
-      data
+      data,
     })
 
     return decodeURIComponent($.param(query))

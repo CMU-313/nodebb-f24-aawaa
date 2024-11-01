@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/groups/list', [
-  'forum/infinitescroll', 'benchpress', 'api', 'bootbox', 'alerts'
+  'forum/infinitescroll', 'benchpress', 'api', 'bootbox', 'alerts',
 ], function (infinitescroll, Benchpress, api, bootbox, alerts) {
   const Groups = {}
 
@@ -14,7 +14,7 @@ define('forum/groups/list', [
       bootbox.prompt('[[groups:new-group.group-name]]', function (name) {
         if (name && name.length) {
           api.post('/groups', {
-            name
+            name,
           }).then((res) => {
             ajaxify.go('groups/' + res.slug)
           }).catch(alerts.error)
@@ -39,11 +39,11 @@ define('forum/groups/list', [
 
     infinitescroll.loadMore('/groups', {
       sort: $('#search-sort').val(),
-      after: $('[component="groups/container"]').attr('data-nextstart')
+      after: $('[component="groups/container"]').attr('data-nextstart'),
     }, function (data, done) {
       if (data && data.groups.length) {
         Benchpress.render('partials/groups/list', {
-          groups: data.groups
+          groups: data.groups,
         }).then(function (html) {
           $('#groups-list').append(html)
           done()
@@ -69,8 +69,8 @@ define('forum/groups/list', [
         sort: sortEl.val(),
         filterHidden: true,
         showMembers: true,
-        hideEphemeralGroups: true
-      }
+        hideEphemeralGroups: true,
+      },
     }, function (err, groups) {
       if (err) {
         return alerts.error(err)
@@ -79,7 +79,7 @@ define('forum/groups/list', [
         return group.name !== 'registered-users' && group.name !== 'guests'
       })
       Benchpress.render('partials/groups/list', {
-        groups
+        groups,
       }).then(function (html) {
         groupsEl.empty().append(html)
       })

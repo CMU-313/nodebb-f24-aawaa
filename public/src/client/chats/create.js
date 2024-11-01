@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/chats/create', [
-  'components', 'api', 'alerts', 'forum/chats/user-search'
+  'components', 'api', 'alerts', 'forum/chats/user-search',
 ], function (components, api, alerts, userSearch) {
   const create = {}
   create.init = function () {
@@ -20,7 +20,7 @@ define('forum/chats/create', [
     }
     const html = await app.parseAndTranslate('modals/create-room', {
       user: app.user,
-      groups
+      groups,
     })
 
     const modal = bootbox.dialog({
@@ -56,15 +56,15 @@ define('forum/chats/create', [
               roomName,
               uids,
               type,
-              groups
+              groups,
             }).then(({ roomId }) => {
               ajaxify.go('chats/' + roomId)
               modal.modal('hide')
             }).catch(alerts.error)
             return false
-          }
-        }
-      }
+          },
+        },
+      },
     })
 
     const chatRoomUsersList = modal.find('[component="chat/room/users"]')
@@ -73,7 +73,7 @@ define('forum/chats/create', [
       onSelect: async function (user) {
         const html = await app.parseAndTranslate('modals/create-room', 'selectedUsers', { selectedUsers: [user] })
         chatRoomUsersList.append(html)
-      }
+      },
     })
 
     chatRoomUsersList.on('click', '[component="chat/room/users/remove"]', function () {

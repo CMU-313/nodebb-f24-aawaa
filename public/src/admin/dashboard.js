@@ -10,7 +10,7 @@ import {
   ArcElement,
   Tooltip,
   Filler,
-  Legend
+  Legend,
 } from 'chart.js'
 
 import * as Benchpress from 'benchpressjs'
@@ -34,22 +34,22 @@ Chart.register(
 
 const intervals = {
   rooms: false,
-  graphs: false
+  graphs: false,
 }
 let isMobile = false
 const graphData = {
   rooms: {},
-  traffic: {}
+  traffic: {},
 }
 const currentGraph = {
   units: 'hours',
-  until: undefined
+  until: undefined,
 }
 
 const DEFAULTS = {
   roomInterval: 10000,
   graphInterval: 15000,
-  realtimeInterval: 1500
+  realtimeInterval: 1500,
 }
 
 const usedTopicColors = []
@@ -105,13 +105,13 @@ const graphs = {
   traffic: null,
   registered: null,
   presence: null,
-  topics: null
+  topics: null,
 }
 
 const topicColors = [
   '#bf616a', '#5B90BF', '#d08770', '#ebcb8b',
   '#a3be8c', '#96b5b4', '#8fa1b3', '#b48ead',
-  '#ab7967', '#46BFBD'
+  '#ab7967', '#46BFBD',
 ]
 
 /* eslint-disable */
@@ -174,7 +174,7 @@ function setupGraphs (callback) {
     t.translateKey('admin/dashboard:reading-posts', []),
     t.translateKey('admin/dashboard:browsing-topics', []),
     t.translateKey('admin/dashboard:recent', []),
-    t.translateKey('admin/dashboard:unread', [])
+    t.translateKey('admin/dashboard:unread', []),
   ]).then(function (translations) {
     const tension = 0.25
     const data = {
@@ -190,7 +190,7 @@ function setupGraphs (callback) {
           pointHoverBackgroundColor: '#fff',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(220,220,220,1)',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
           label: translations[1],
@@ -202,7 +202,7 @@ function setupGraphs (callback) {
           pointHoverBackgroundColor: '#ab4642',
           pointBorderColor: '#fff',
           pointHoverBorderColor: '#ab4642',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
           label: translations[2],
@@ -214,7 +214,7 @@ function setupGraphs (callback) {
           pointHoverBackgroundColor: '#ba8baf',
           pointBorderColor: '#fff',
           pointHoverBorderColor: '#ba8baf',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
           label: translations[3],
@@ -226,7 +226,7 @@ function setupGraphs (callback) {
           pointHoverBackgroundColor: '#f7ca88',
           pointBorderColor: '#fff',
           pointHoverBorderColor: '#f7ca88',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         },
         {
           label: translations[4],
@@ -238,9 +238,9 @@ function setupGraphs (callback) {
           pointHoverBackgroundColor: 'rgba(151,187,205,1)',
           pointBorderColor: '#fff',
           pointHoverBorderColor: 'rgba(151,187,205,1)',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        }
-      ]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        },
+      ],
     }
 
     trafficCanvas.width = $(trafficCanvas).parent().width()
@@ -262,39 +262,39 @@ function setupGraphs (callback) {
             type: 'linear',
             title: {
               display: true,
-              text: translations[0]
+              text: translations[0],
             },
-            beginAtZero: true
+            beginAtZero: true,
           },
           'right-y-axis': {
             position: 'right',
             type: 'linear',
             title: {
               display: true,
-              text: translations[4]
+              text: translations[4],
             },
-            beginAtZero: true
-          }
+            beginAtZero: true,
+          },
         },
         plugins: {
           legend: {
-            position: 'bottom'
-          }
+            position: 'bottom',
+          },
         },
         interaction: {
           intersect: false,
-          mode: 'index'
-        }
-      }
+          mode: 'index',
+        },
+      },
     })
 
     const doughnutOpts = {
       responsive: true,
       plugins: {
         legend: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      },
     }
     graphs.registered = new Chart(registeredCtx, {
       type: 'doughnut',
@@ -303,10 +303,10 @@ function setupGraphs (callback) {
         datasets: [{
           data: [1, 1],
           backgroundColor: ['#F7464A', '#46BFBD'],
-          hoverBackgroundColor: ['#FF5A5E', '#5AD3D1']
-        }]
+          hoverBackgroundColor: ['#FF5A5E', '#5AD3D1'],
+        }],
       },
-      options: doughnutOpts
+      options: doughnutOpts,
     })
 
     graphs.presence = new Chart(presenceCtx, {
@@ -316,10 +316,10 @@ function setupGraphs (callback) {
         datasets: [{
           data: [1, 1, 1, 1, 1],
           backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#9FB194'],
-          hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#A8B3C5']
-        }]
+          hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#A8B3C5'],
+        }],
       },
-      options: doughnutOpts
+      options: doughnutOpts,
     })
 
     graphs.topics = new Chart(topicsCtx, {
@@ -329,10 +329,10 @@ function setupGraphs (callback) {
         datasets: [{
           data: [],
           backgroundColor: [],
-          hoverBackgroundColor: []
-        }]
+          hoverBackgroundColor: [],
+        }],
       },
-      options: doughnutOpts
+      options: doughnutOpts,
     })
 
     updateTrafficGraph()
@@ -364,9 +364,9 @@ function setupGraphs (callback) {
             submit: {
               label: '[[global:search]]',
               className: 'btn-primary',
-              callback: submit
-            }
-          }
+              callback: submit,
+            },
+          },
         }).on('shown.bs.modal', function () {
           const date = new Date()
           const today = date.toISOString().slice(0, 10)
@@ -423,7 +423,7 @@ function updateTrafficGraph (units, until, amount) {
     graph: 'traffic',
     units: units || 'hours',
     until,
-    amount
+    amount,
   }, function (err, data) {
     if (err) {
       return alerts.error(err)
@@ -461,7 +461,7 @@ function updateTrafficGraph (units, until, amount) {
     const newHref = $.param({
       units: units || 'hours',
       until,
-      count: amount
+      count: amount,
     })
     apiEl.attr('href', config.relative_path + '/api/admin/analytics?' + newHref)
   })
@@ -495,7 +495,7 @@ function updateTopicsGraph (topics) {
     translator.translate('[[admin/dashboard:no-users-browsing]]', function (translated) {
       topics = [{
         title: translated,
-        count: 1
+        count: 1,
       }]
       updateTopicsGraph(topics)
     })

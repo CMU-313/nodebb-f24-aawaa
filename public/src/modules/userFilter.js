@@ -68,7 +68,7 @@ define('userFilter', ['api', 'hooks', 'slugify', 'benchpress'], function (api, h
       })
 
       const html = await app.parseAndTranslate(options.template, 'userFilterResults', {
-        userFilterResults: result.users
+        userFilterResults: result.users,
       })
       el.find('[component="user/filter/results"]').html(html)
 

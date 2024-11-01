@@ -2,7 +2,7 @@
 'use strict'
 
 define('categorySelector', [
-  'categorySearch', 'bootbox', 'hooks', 'translator'
+  'categorySearch', 'bootbox', 'hooks', 'translator',
 ], function (categorySearch, bootbox, hooks, translator) {
   const categorySelector = {}
 
@@ -21,7 +21,7 @@ define('categorySelector', [
 
     const selector = {
       el,
-      selectedCategory: null
+      selectedCategory: null,
     }
 
     el.on('click', '[data-cid]', function () {
@@ -42,7 +42,7 @@ define('categorySelector', [
       const categoryEl = selector.el.find('[data-cid="' + cid + '"]')
       selector.selectedCategory = {
         cid,
-        name: categoryEl.attr('data-name')
+        name: categoryEl.attr('data-name'),
       }
 
       if (categoryEl.length) {
@@ -84,9 +84,9 @@ define('categorySelector', [
           save: {
             label: '[[global:select]]',
             className: 'btn-primary',
-            callback: submit
-          }
-        }
+            callback: submit,
+          },
+        },
       })
 
       const selector = categorySelector.init(modal.find('[component="category-selector"]'), options)

@@ -3,7 +3,7 @@
 
 define('forum/chats/messages', [
   'components', 'hooks', 'bootbox', 'alerts',
-  'messages', 'api', 'forum/topic/images', 'imagesloaded'
+  'messages', 'api', 'forum/topic/images', 'imagesloaded',
 ], function (
   components, hooks, bootbox, alerts, messagesModule, api, images, imagesLoaded
 ) {
@@ -42,7 +42,7 @@ define('forum/chats/messages', [
         title: '[[global:alert.error]]',
         message: err.message,
         type: 'danger',
-        timeout: 10000
+        timeout: 10000,
       })
     })
   }
@@ -52,7 +52,7 @@ define('forum/chats/messages', [
     parent.find('[component="chat/message/length"]').text(element.val().length)
     parent.find('[component="chat/message/remaining"]').text(config.maximumChatMessageLength - element.val().length)
     hooks.fire('action:chat.updateRemainingLength', {
-      parent
+      parent,
     })
   }
 
@@ -109,7 +109,7 @@ define('forum/chats/messages', [
     }
 
     hooks.fire('action:chat.received', {
-      messageEl: newMessage
+      messageEl: newMessage,
     })
   }
 
@@ -125,7 +125,7 @@ define('forum/chats/messages', [
   messages.parseMessage = function (data, callback) {
     const tplData = {
       messages: data,
-      isAdminOrGlobalMod: app.user.isAdmin || app.user.isGlobalMod
+      isAdminOrGlobalMod: app.user.isAdmin || app.user.isGlobalMod,
     }
     if (Array.isArray(data)) {
       app.parseAndTranslate('partials/chats/messages', tplData).then(callback)
@@ -198,7 +198,7 @@ define('forum/chats/messages', [
   messages.prepEdit = async function (msgEl, mid, roomId) {
     const { content: raw } = await api.get(`/chats/${roomId}/messages/${mid}/raw`)
     const editEl = await app.parseAndTranslate('partials/chats/edit-message', {
-      rawContent: raw
+      rawContent: raw,
     })
     const messageBody = msgEl.find('[component="chat/message/body"]')
     const messageControls = msgEl.find('[component="chat/message/controls"]')
@@ -220,7 +220,7 @@ define('forum/chats/messages', [
 
     const chats = await app.require('forum/chats')
     const autoCompleteEl = chats.createAutoComplete(0, textarea, {
-      placement: 'bottom'
+      placement: 'bottom',
     })
 
     function finishEdit () {
@@ -257,7 +257,7 @@ define('forum/chats/messages', [
       messageId: mid,
       roomId,
       editEl,
-      messageBody
+      messageBody,
     })
   }
 
@@ -281,7 +281,7 @@ define('forum/chats/messages', [
         if (msgEl.length) {
           const componentsToReplace = [
             '[component="chat/message/body"]',
-            '[component="chat/message/edited"]'
+            '[component="chat/message/edited"]',
           ]
           componentsToReplace.forEach((cmp) => {
             msgEl.find(cmp).replaceWith(html.find(cmp))

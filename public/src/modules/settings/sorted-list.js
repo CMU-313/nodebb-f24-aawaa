@@ -5,7 +5,7 @@ define('settings/sorted-list', [
   'benchpress',
   'bootbox',
   'hooks',
-  'jquery-ui/widgets/sortable'
+  'jquery-ui/widgets/sortable',
 ], function (benchpress, bootbox, hooks) {
   let Settings
 
@@ -31,7 +31,7 @@ define('settings/sorted-list', [
         listEl: $container.find('[data-type="list"]'),
         key: $container.attr('data-sorted-list'),
         formTpl: $container.attr('data-form-template'),
-        formValues: {}
+        formValues: {},
       })
 
       const formHtml = await benchpress.render(formTpl, formValues)
@@ -75,7 +75,7 @@ define('settings/sorted-list', [
           containerEl: $container.get(0),
           listEl: listEl.get(0),
           hash,
-          key
+          key,
         })
       }
 
@@ -92,7 +92,7 @@ define('settings/sorted-list', [
       let data = Settings.helper.serializeForm(form);
       ({ item: data } = await hooks.fire('filter:settings.sorted-list.loadItem', { item: data }))
       parse($target, itemUUID, data)
-    }
+    },
   }
 
   function setupRemoveButton ($container, itemUUID) {

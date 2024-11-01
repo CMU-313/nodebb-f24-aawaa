@@ -7,7 +7,7 @@ import {
   LineElement,
   PointElement,
   Tooltip,
-  Filler
+  Filler,
 } from 'chart.js'
 
 import * as Benchpress from 'benchpressjs'
@@ -58,9 +58,9 @@ export function init ({ set, dataset }) {
             pointHoverBackgroundColor: 'rgba(151,187,205,1)',
             pointBorderColor: '#fff',
             pointHoverBorderColor: 'rgba(151,187,205,1)',
-            data: dataset || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-          }
-        ]
+            data: dataset || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          },
+        ],
       }
 
       canvas.width = $(canvas).parent().width()
@@ -79,15 +79,15 @@ export function init ({ set, dataset }) {
               beginAtZero: true,
               title: {
                 display: true,
-                text: key
-              }
-            }
+                text: key,
+              },
+            },
           },
           interaction: {
             intersect: false,
-            mode: 'index'
-          }
-        }
+            mode: 'index',
+          },
+        },
       })
 
       if (!dataset) {
@@ -127,9 +127,9 @@ function handleUpdateControls ({ set }) {
           submit: {
             label: '[[global:search]]',
             className: 'btn-primary',
-            callback: submit
-          }
-        }
+            callback: submit,
+          },
+        },
       }).on('shown.bs.modal', function () {
         const date = new Date()
         const today = date.toISOString().slice(0, 10)
@@ -199,13 +199,13 @@ function update (
       const newHref = $.param({
         units: units || 'hours',
         until,
-        count: amount
+        count: amount,
       })
       apiEl.attr('href', `${config.relative_path}/api/v3/admin/analytics/${ajaxify.data.set}?${newHref}`)
       const url = ajaxify.removeRelativePath(ajaxify.data.url.slice(1))
       ajaxify.updateHistory(`${url}?${newHref}`, true)
       hooks.fire('action:admin.dashboard.updateGraph', {
-        graph: _current
+        graph: _current,
       })
       resolve(_current)
     })

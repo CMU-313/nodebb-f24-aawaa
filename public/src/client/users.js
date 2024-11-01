@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/users', [
-  'benchpress', 'api', 'alerts', 'accounts/invite'
+  'benchpress', 'api', 'alerts', 'accounts/invite',
 ], function (Benchpress, api, alerts, AccountInvite) {
   const Users = {}
 
@@ -41,7 +41,7 @@ define('forum/users', [
 
     const query = {
       section: activeSection,
-      page: 1
+      page: 1,
     }
 
     if (!username) {

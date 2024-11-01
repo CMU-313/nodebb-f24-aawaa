@@ -39,7 +39,7 @@ define('settings/select', function () {
       if (empty || value) {
         return value
       }
-    }
+    },
   }
 
   return SettingsSelect

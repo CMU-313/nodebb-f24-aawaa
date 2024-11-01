@@ -10,7 +10,7 @@ define('forum/category', [
   'categorySelector',
   'hooks',
   'alerts',
-  'api'
+  'api',
 ], function (infinitescroll, share, navigator, topicList, sort, categorySelector, hooks, alerts, api) {
   const Category = {}
 
@@ -48,7 +48,7 @@ define('forum/category', [
       parentCid: ajaxify.data.cid,
       onSelect: function (category) {
         ajaxify.go('/category/' + category.cid)
-      }
+      },
     })
 
     hooks.fire('action:topics.loaded', { topics: ajaxify.data.topics })
@@ -131,7 +131,7 @@ define('forum/category', [
       after,
       direction,
       query: params,
-      categoryTopicSort: params.sort || config.categoryTopicSort
+      categoryTopicSort: params.sort || config.categoryTopicSort,
     }, function (data, done) {
       hooks.fire('action:topics.loaded', { topics: data.topics })
       callback(data, done)

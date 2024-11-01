@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/flags/detail', [
-  'components', 'translator', 'benchpress', 'accounts/moderate', 'accounts/delete', 'api', 'bootbox', 'alerts'
+  'components', 'translator', 'benchpress', 'accounts/moderate', 'accounts/delete', 'api', 'bootbox', 'alerts',
 ], function (components, translator, Benchpress, AccountModerate, AccountsDelete, api, bootbox, alerts) {
   const Detail = {}
 
@@ -56,13 +56,13 @@ define('forum/flags/detail', [
 
               api.post(`/flags/${ajaxify.data.flagId}/notes`, {
                 note: result,
-                datetime
+                datetime,
               }).then((payload) => {
                 alerts.success('[[flags:note-added]]')
                 Detail.reloadNotes(payload.notes)
                 Detail.reloadHistory(payload.history)
               }).catch(alerts.error)
-            }
+            },
           })
           break
         }
@@ -70,7 +70,7 @@ define('forum/flags/detail', [
         case 'appendNote':
           api.post(`/flags/${ajaxify.data.flagId}/notes`, {
             note: noteEl.value,
-            datetime: parseInt(noteEl.getAttribute('data-datetime'), 10)
+            datetime: parseInt(noteEl.getAttribute('data-datetime'), 10),
           }).then((payload) => {
             alerts.success('[[flags:note-added]]')
             Detail.reloadNotes(payload.notes)
@@ -169,7 +169,7 @@ define('forum/flags/detail', [
   Detail.reloadNotes = function (notes) {
     ajaxify.data.notes = notes
     Benchpress.render('flags/detail', {
-      notes
+      notes,
     }, 'notes').then(function (html) {
       const wrapperEl = components.get('flag/notes')
       wrapperEl.empty()
@@ -180,7 +180,7 @@ define('forum/flags/detail', [
 
   Detail.reloadHistory = function (history) {
     app.parseAndTranslate('flags/detail', 'history', {
-      history
+      history,
     }, function (html) {
       const wrapperEl = components.get('flag/history')
       wrapperEl.empty()

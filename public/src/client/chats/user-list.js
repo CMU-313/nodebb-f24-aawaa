@@ -61,7 +61,7 @@ define('forum/chats/user-list', ['api'], function (api) {
       if (listEl.scrollTop() > bottom) {
         const lastIndex = listEl.find('[data-index]').last().attr('data-index')
         const data = await api.get(`/chats/${roomId}/users`, {
-          start: parseInt(lastIndex, 10) + 1
+          start: parseInt(lastIndex, 10) + 1,
         })
         if (data && data.users.length) {
           callback(listEl, data)

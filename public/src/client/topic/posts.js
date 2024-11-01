@@ -10,7 +10,7 @@ define('forum/topic/posts', [
   'components',
   'translator',
   'hooks',
-  'helpers'
+  'helpers',
 ], function (pagination, infinitescroll, postTools, images, navigator, components, translator, hooks, helpers) {
   const Posts = { }
 
@@ -270,7 +270,7 @@ define('forum/topic/posts', [
       after: after + (direction > 0 ? 1 : 0),
       count: config.postsPerPage,
       direction,
-      topicPostSort: utils.params().sort || config.topicPostSort
+      topicPostSort: utils.params().sort || config.topicPostSort,
     }, function (data, done) {
       indicatorEl.fadeOut()
 

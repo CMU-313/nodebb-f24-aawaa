@@ -8,7 +8,7 @@ define('admin/settings/navigation', [
   'alerts',
   'jquery-ui/widgets/draggable',
   'jquery-ui/widgets/droppable',
-  'jquery-ui/widgets/sortable'
+  'jquery-ui/widgets/sortable',
 ], function (translator, iconSelect, Benchpress, alerts) {
   const navigation = {}
   let available
@@ -20,11 +20,11 @@ define('admin/settings/navigation', [
       connectToSortable: '#active-navigation',
       helper: 'clone',
       distance: 10,
-      stop: drop
+      stop: drop,
     })
 
     $('#active-navigation').sortable().droppable({
-      accept: $('#available li .drag-item')
+      accept: $('#available li .drag-item'),
     })
 
     $('#enabled').on('click', '.iconPicker', function () {
@@ -78,7 +78,7 @@ define('admin/settings/navigation', [
       ? {
           iconClass: 'fa-navicon',
           groups: available[0].groups,
-          enabled: true
+          enabled: true,
         }
       : available[id]
 
@@ -109,7 +109,7 @@ define('admin/settings/navigation', [
 
     Promise.all([
       renderNav,
-      renderForm
+      renderForm,
     ]).then(() => selectIndex(data.index))
   }
 
@@ -130,7 +130,7 @@ define('admin/settings/navigation', [
         if (data[input.name]) {
           if (!Array.isArray(data[input.name])) {
             data[input.name] = [
-              data[input.name]
+              data[input.name],
             ]
           }
           data[input.name].push(input.value)

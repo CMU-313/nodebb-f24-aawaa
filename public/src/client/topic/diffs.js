@@ -17,7 +17,7 @@ define('forum/topic/diffs', ['api', 'bootbox', 'alerts', 'forum/topic/images'], 
           message: $html,
           size: 'large',
           onEscape: true,
-          backdrop: true
+          backdrop: true,
         })
 
         if (!data.timestamps.length) {
@@ -62,7 +62,7 @@ define('forum/topic/diffs', ['api', 'bootbox', 'alerts', 'forum/topic/images'], 
       data.deleted = !!parseInt(data.deleted, 10)
 
       app.parseAndTranslate('partials/posts_list', 'posts', {
-        posts: [data]
+        posts: [data],
       }, function ($html) {
         $postContainer.empty().append($html)
         $postContainer.find('.timeago').timeago()
@@ -102,12 +102,12 @@ define('forum/topic/diffs', ['api', 'bootbox', 'alerts', 'forum/topic/images'], 
           return {
             username: revision.username,
             timestamp,
-            pretty: new Date(timestamp).toLocaleString(config.userLang.replace('_', '-'), localeStringOpts)
+            pretty: new Date(timestamp).toLocaleString(config.userLang.replace('_', '-'), localeStringOpts),
           }
         }),
         numDiffs: data.timestamps.length,
         editable: data.editable,
-        deletable: data.deletable
+        deletable: data.deletable,
       }, function ($html) {
         resolve($html)
       }]

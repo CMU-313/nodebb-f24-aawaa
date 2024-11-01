@@ -11,7 +11,7 @@ define('forum/account/header', [
   'accounts/picture',
   'api',
   'bootbox',
-  'alerts'
+  'alerts',
 ], function (coverPhoto, pictureCropper, components, translator,
   AccountsDelete, AccountsModerate, AccountsPicture, api, bootbox, alerts) {
   const AccountHeader = {}
@@ -85,7 +85,7 @@ define('forum/account/header', [
         socket.emit('user.updateCover', {
           uid: ajaxify.data.uid,
           imageData,
-          position
+          position,
         }, callback)
       },
       function () {
@@ -97,7 +97,7 @@ define('forum/account/header', [
           restrictImageDimension: false,
           paramName: 'uid',
           paramValue: ajaxify.data.theirid,
-          accept: '.png,.jpg,.bmp'
+          accept: '.png,.jpg,.bmp',
         }, function (imageUrlOnServer) {
           imageUrlOnServer = (!imageUrlOnServer.startsWith('http') ? config.relative_path : '') + imageUrlOnServer + '?' + Date.now()
           components.get('account/cover').css('background-image', 'url(' + imageUrlOnServer + ')')
@@ -124,7 +124,7 @@ define('forum/account/header', [
     require(['flags'], function (flags) {
       flags.showFlagModal({
         type: 'user',
-        id: ajaxify.data.uid
+        id: ajaxify.data.uid,
       })
     })
   }
@@ -133,7 +133,7 @@ define('forum/account/header', [
     socket.emit('user.toggleBlock', {
       blockeeUid: ajaxify.data.uid,
       blockerUid: app.user.uid,
-      action
+      action,
     }, function (err, blocked) {
       if (err) {
         return alerts.error(err)
@@ -154,7 +154,7 @@ define('forum/account/header', [
         }
 
         socket.emit('user.removeCover', {
-          uid: ajaxify.data.uid
+          uid: ajaxify.data.uid,
         }, function (err) {
           if (!err) {
             ajaxify.refresh()

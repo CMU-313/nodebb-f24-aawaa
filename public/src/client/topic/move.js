@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/topic/move', [
-  'categorySelector', 'alerts', 'hooks'
+  'categorySelector', 'alerts', 'hooks',
 ], function (categorySelector, alerts, hooks) {
   const Move = {}
   let modal
@@ -31,7 +31,7 @@ define('forum/topic/move', [
 
       categorySelector.init(modal.find('[component="category-selector"]'), {
         onSelect: onCategorySelected,
-        privilege: 'moderate'
+        privilege: 'moderate',
       })
 
       modal.find('#move_thread_commit').on('click', onCommitClicked)
@@ -60,7 +60,7 @@ define('forum/topic/move', [
         tids: Move.tids ? Move.tids.slice() : null,
         cid: selectedCategory.cid,
         currentCid: Move.currentCid,
-        onComplete: Move.onComplete
+        onComplete: Move.onComplete,
       }
       if (config.undoTimeout > 0) {
         return alerts.alert({
@@ -75,7 +75,7 @@ define('forum/topic/move', [
           clickfn: function (alert, params) {
             delete params.timeoutfn
             alerts.success('[[topic:topic-move-undone]]')
-          }
+          },
         })
       }
 

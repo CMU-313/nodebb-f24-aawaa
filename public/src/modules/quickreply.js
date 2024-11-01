@@ -3,7 +3,7 @@
 
 define('quickreply', [
   'components', 'composer', 'composer/autocomplete', 'api',
-  'alerts', 'uploadHelpers', 'mousetrap', 'storage', 'hooks'
+  'alerts', 'uploadHelpers', 'mousetrap', 'storage', 'hooks',
 ], function (
   components, composer, autocomplete, api,
   alerts, uploadHelpers, mousetrap, storage, hooks
@@ -18,9 +18,9 @@ define('quickreply', [
       strategies: [],
       options: {
         style: {
-          'z-index': 100
-        }
-      }
+          'z-index': 100,
+        },
+      },
     }
 
     destroyAutoComplete()
@@ -48,7 +48,7 @@ define('quickreply', [
           text = text + (text ? '\n' : '') + (upload.isImage ? '!' : '') + `[${upload.filename}](${upload.url})`
         })
         element.val(text)
-      }
+      },
     })
 
     let ready = true
@@ -65,7 +65,7 @@ define('quickreply', [
         tid: ajaxify.data.tid,
         handle: isAnon ? 'anonymous' : undefined,
         content: replyMsg,
-        scheduledDate: replyAt || null
+        scheduledDate: replyAt || null,
       }
       const replyLen = replyMsg.length
       if (replyLen < parseInt(config.minimumPostLength, 10)) {
@@ -92,7 +92,7 @@ define('quickreply', [
             timeout: 10000,
             clickfn: function () {
               ajaxify.go(`/post-queue/${data.id}`)
-            }
+            },
           })
         }
 
@@ -124,7 +124,7 @@ define('quickreply', [
       composer.newReply({
         tid: ajaxify.data.tid,
         title: ajaxify.data.titleRaw,
-        body: textEl.val()
+        body: textEl.val(),
       })
       textEl.val('')
     })

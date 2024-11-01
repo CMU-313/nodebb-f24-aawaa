@@ -118,7 +118,7 @@ define('settings/object', function () {
       if (empty || Object.keys(value).length) {
         return value
       }
-    }
+    },
   }
 
   return SettingsObject

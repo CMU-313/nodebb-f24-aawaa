@@ -25,7 +25,7 @@ define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], func
       timeout: 0,
       closefn: () => {
         storage.setItem('email-confirm-dismiss', 1)
-      }
+      },
     }
 
     if (!app.user.email && !app.user.isEmailConfirmSent) {
@@ -83,7 +83,7 @@ define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], func
         type: 'success',
         title: '[[global:welcome-back]] ' + app.user.username + '!',
         message: '[[global:you-have-successfully-logged-in]]',
-        timeout: 5000
+        timeout: 5000,
       })
 
       params.delete('loggedin')
@@ -91,7 +91,7 @@ define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], func
 
     if (registerMessage) {
       bootbox.alert({
-        message: utils.escapeHTML(decodeURIComponent(registerMessage))
+        message: utils.escapeHTML(decodeURIComponent(registerMessage)),
       })
 
       params.delete('register')
@@ -113,7 +113,7 @@ define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], func
       closeButton: false,
       callback: function () {
         window.location.reload()
-      }
+      },
     })
   }
 
@@ -124,7 +124,7 @@ define('messages', ['bootbox', 'translator', 'storage', 'alerts', 'hooks'], func
       closeButton: false,
       callback: function () {
         window.location.reload()
-      }
+      },
     })
   }
 

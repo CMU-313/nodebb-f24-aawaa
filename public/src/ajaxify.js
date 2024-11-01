@@ -124,7 +124,7 @@ ajaxify.widgets = { render };
     url = ajaxify.removeRelativePath(url.replace(/^\/|\/$/g, ''))
 
     const payload = {
-      url
+      url,
     }
 
     hooks.logs.collect()
@@ -140,7 +140,7 @@ ajaxify.widgets = { render };
     ajaxify.requestedPage = null
     if (window.history && window.history.pushState) {
       window.history[!quiet ? 'pushState' : 'replaceState']({
-        url
+        url,
       }, url, config.relative_path + '/' + url)
     }
   }
@@ -354,7 +354,7 @@ ajaxify.widgets = { render };
     }
     const data = {
       tpl_url,
-      scripts: [location + tpl_url]
+      scripts: [location + tpl_url],
     }
 
     // Hint: useful if you want to load a module on a specific page (append module name to `scripts`)
@@ -410,7 +410,7 @@ ajaxify.widgets = { render };
       url: config.relative_path + '/api/' + url,
       cache: false,
       headers: {
-        'X-Return-To': app.previousUrl
+        'X-Return-To': app.previousUrl,
       },
       success: function (data, textStatus, xhr) {
         if (!data) {
@@ -421,9 +421,9 @@ ajaxify.widgets = { render };
           return callback({
             data: {
               status: 302,
-              responseJSON: data
+              responseJSON: data,
             },
-            textStatus: 'error'
+            textStatus: 'error',
           })
         }
 
@@ -442,9 +442,9 @@ ajaxify.widgets = { render };
         }
         callback({
           data,
-          textStatus
+          textStatus,
         })
-      }
+      },
     })
   }
 
@@ -459,7 +459,7 @@ ajaxify.widgets = { render };
         const moduleObj = { exports: {} }
         renderFunction(moduleObj)
         callback(moduleObj.exports)
-      }
+      },
     }).fail(function () {
       console.error('Unable to load template: ' + template)
       callback(new Error('[[error:unable-to-load-template]]'))
@@ -500,7 +500,7 @@ $(document).ready(function () {
     if (ev !== null && ev.state) {
       if (ev.state.url === null && ev.state.returnPath !== undefined) {
         window.history.replaceState({
-          url: ev.state.returnPath
+          url: ev.state.returnPath,
         }, ev.state.returnPath, config.relative_path + '/' + ev.state.returnPath)
       } else if (ev.state.url !== undefined) {
         ajaxify.handleTransientElements()

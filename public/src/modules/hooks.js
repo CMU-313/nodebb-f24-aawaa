@@ -10,8 +10,8 @@ define('hooks', [], () => {
 
     },
     logs: {
-      _collection: new Set()
-    }
+      _collection: new Set(),
+    },
   }
 
   Hooks.logs.collect = () => {

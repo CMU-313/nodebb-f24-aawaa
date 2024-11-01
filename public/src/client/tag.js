@@ -2,7 +2,7 @@
 'use strict'
 
 define('forum/tag', [
-  'topicList', 'api', 'alerts', 'hooks', 'translator', 'bootstrap', 'components'
+  'topicList', 'api', 'alerts', 'hooks', 'translator', 'bootstrap', 'components',
 ], function (topicList, api, alerts, hooks, translator, bootstrap, components) {
   const Tag = {}
 
@@ -34,7 +34,7 @@ define('forum/tag', [
           alert_id: 'follow_tag',
           message,
           type: type === 'follow' ? 'success' : 'info',
-          timeout: 5000
+          timeout: 5000,
         })
 
         hooks.fire('action:tags.changeWatching', { tag: ajaxify.data.tag, type })
@@ -44,7 +44,7 @@ define('forum/tag', [
     function setFollowState (state) {
       const titles = {
         follow: '[[tags:watching]]',
-        unfollow: '[[tags:not-watching]]'
+        unfollow: '[[tags:not-watching]]',
       }
 
       translator.translate(titles[state], function (translatedTitle) {

@@ -36,7 +36,7 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
         el.find('.dropdown-toggle').css({ visibility: 'hidden' })
         searchEl.removeClass('hidden')
         searchEl.css({
-          'z-index': el.find('.dropdown-toggle').css('z-index') + 1
+          'z-index': el.find('.dropdown-toggle').css('z-index') + 1,
         })
       }
 
@@ -152,7 +152,7 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
       }
       socket.emit('topics.tagFilterSearch', {
         query,
-        cids
+        cids,
       }, function (err, data) {
         if (err) {
           return alerts.error(err)
@@ -169,7 +169,7 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
 
       app.parseAndTranslate(options.template, {
         tagItems: tags.slice(0, 200),
-        selectedTag: ajaxify.data.selectedTag
+        selectedTag: ajaxify.data.selectedTag,
       }, function (html) {
         el.find('[component="tag/filter/list"]')
           .html(html.find('[component="tag/filter/list"]').html())
@@ -185,14 +185,14 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
   function updateFilterButton (el, selectedTags) {
     if (selectedTags.length > 0) {
       renderButton({
-        label: selectedTags.join(', ')
+        label: selectedTags.join(', '),
       })
     } else {
       renderButton()
     }
     function renderButton (selectedTag) {
       app.parseAndTranslate('partials/tags/filter-dropdown-content', {
-        selectedTag
+        selectedTag,
       }, function (html) {
         el.find('button').replaceWith($('<div/>').html(html).find('button'))
       })

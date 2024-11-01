@@ -11,7 +11,7 @@ define('forum/topic/postTools', [
   'bootbox',
   'alerts',
   'hooks',
-  'helpers'
+  'helpers',
 ], function (share, navigator, components, translator, votes, api, bootbox, alerts, hooks, helpers) {
   const PostTools = {}
 
@@ -46,7 +46,7 @@ define('forum/topic/postTools', [
         return
       }
       dropdownMenu.html(helpers.generatePlaceholderWave([
-        3, 5, 9, 7, 10, 'divider', 10
+        3, 5, 9, 7, 10, 'divider', 10,
       ]))
 
       const postEl = $this.parents('[data-pid]')
@@ -67,7 +67,7 @@ define('forum/topic/postTools', [
         new clipboard('[data-clipboard-text]')
 
         hooks.fire('action:post.tools.load', {
-          element: dropdownMenu
+          element: dropdownMenu,
         })
       })
     })
@@ -120,7 +120,7 @@ define('forum/topic/postTools', [
       translator.translate(`[[topic:link-back, ${ajaxify.data.titleRaw}, ${config.relative_path}/topic/${ajaxify.data.slug}]]`, function (body) {
         hooks.fire('action:composer.topic.new', {
           cid: ajaxify.data.cid,
-          body
+          body,
         })
       })
     })
@@ -150,7 +150,7 @@ define('forum/topic/postTools', [
       require(['flags'], function (flags) {
         flags.showFlagModal({
           type: 'post',
-          id: pid
+          id: pid,
         })
       })
     })
@@ -160,7 +160,7 @@ define('forum/topic/postTools', [
       require(['flags'], function (flags) {
         flags.showFlagModal({
           type: 'user',
-          id: uid
+          id: uid,
         })
       })
     })
@@ -180,7 +180,7 @@ define('forum/topic/postTools', [
 
       if (checkDuration(postEditDuration, timestamp, 'post-edit-duration-expired')) {
         hooks.fire('action:composer.post.edit', {
-          pid: getData(btn, 'data-pid')
+          pid: getData(btn, 'data-pid'),
         })
       }
     })
@@ -292,14 +292,14 @@ define('forum/topic/postTools', [
           title: ajaxify.data.titleRaw,
           username,
           body: selectedNode.text,
-          selectedPid: selectedNode.pid
+          selectedPid: selectedNode.pid,
         })
       } else {
         hooks.fire('action:composer.post.new', {
           tid,
           pid: toPid,
           title: ajaxify.data.titleRaw,
-          body: username ? username + ' ' : ($('[component="topic/quickreply/text"]').val() || '')
+          body: username ? username + ' ' : ($('[component="topic/quickreply/text"]').val() || ''),
         })
       }
     })
@@ -318,7 +318,7 @@ define('forum/topic/postTools', [
           pid: toPid,
           username,
           title: ajaxify.data.titleRaw,
-          text
+          text,
         })
       }
 
@@ -468,7 +468,7 @@ define('forum/topic/postTools', [
           callback: function () {
             staleReplyAnyway = true
             callback()
-          }
+          },
         },
         create: {
           label: '[[topic:stale.create]]',
@@ -478,12 +478,12 @@ define('forum/topic/postTools', [
               hooks.fire('action:composer.topic.new', {
                 cid: ajaxify.data.cid,
                 body,
-                fromStaleTopic: true
+                fromStaleTopic: true,
               })
             })
-          }
-        }
-      }
+          },
+        },
+      },
     })
 
     warning.modal()
@@ -556,7 +556,7 @@ define('forum/topic/postTools', [
       const tooltipWidth = selectionTooltip.outerWidth(true)
       selectionTooltip.css({
         top: lastRect.bottom + $(window).scrollTop(),
-        left: tooltipWidth > lastRect.width ? lastRect.left : lastRect.left + lastRect.width - tooltipWidth
+        left: tooltipWidth > lastRect.width ? lastRect.left : lastRect.left + lastRect.width - tooltipWidth,
       })
     }
   }

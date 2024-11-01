@@ -9,7 +9,7 @@ const escapeCharMap = Object.freeze({
   '"': '&quot;',
   "'": '&#x27;',
   '`': '&#x60;',
-  '=': '&#x3D;'
+  '=': '&#x3D;',
 })
 function replaceChar (c) {
   return escapeCharMap[c]
@@ -269,7 +269,7 @@ const HTMLEntities = Object.freeze({
   'spades;': 9824,
   'clubs;': 9827,
   'hearts;': 9829,
-  'diams;': 9830
+  'diams;': 9830,
 })
 
 /* eslint-disable no-redeclare */
@@ -350,7 +350,7 @@ const utils = {
       'en-US': 'en',
       'fa-IR': 'fa',
       'pt-BR': 'pt-br',
-      nb: 'no'
+      nb: 'no',
     }
     return mapping.hasOwnProperty(userLang) ? mapping[userLang] : userLang
   },
@@ -396,7 +396,7 @@ const utils = {
     tiff: 'image/tiff',
     xbm: 'image/x-xbitmap',
     xpm: 'image/x-xpixmap',
-    xwd: 'image/x-xwindowdump'
+    xwd: 'image/x-xwindowdump',
   },
 
   fileMimeType: function (path) {
@@ -720,7 +720,7 @@ const utils = {
   },
   generateSaveId: function (uid) {
     return ['composer', uid, Date.now()].join(':')
-  }
+  },
 }
 
 module.exports = utils

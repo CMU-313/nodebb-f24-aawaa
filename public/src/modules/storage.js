@@ -44,7 +44,7 @@ define('storage', function () {
     Object.defineProperty(Storage.prototype, 'length', {
       get: function () {
         return this._keys.length
-      }
+      },
     })
   }
 

@@ -22,7 +22,7 @@ define('forum/infinitescroll', ['hooks', 'alerts', 'api'], function (hooks, aler
     $(window).off('scroll', startScrollTimeout).on('scroll', startScrollTimeout)
 
     if ($body.height() <= $(window).height()) {
-      callback(1)
+      callback(null, 1)
     }
   }
 

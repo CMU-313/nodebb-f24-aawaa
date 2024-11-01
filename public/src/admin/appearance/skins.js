@@ -2,7 +2,7 @@
 'use strict'
 
 define('admin/appearance/skins', [
-  'translator', 'alerts', 'settings', 'hooks', 'slugify'
+  'translator', 'alerts', 'settings', 'hooks', 'slugify',
 ], function (translator, alerts, settings, hooks, slugify) {
   const Skins = {}
 
@@ -10,7 +10,7 @@ define('admin/appearance/skins', [
     // Populate skins from Bootswatch API
     $.ajax({
       method: 'get',
-      url: 'https://bootswatch.com/api/5.json'
+      url: 'https://bootswatch.com/api/5.json',
     }).done((bsData) => {
       hooks.on('action:settings.sorted-list.loaded', (data) => {
         if (data.hash === 'custom-skins') {
@@ -50,7 +50,7 @@ define('admin/appearance/skins', [
         socket.emit('admin.themes.set', {
           type: 'bootswatch',
           id: themeId,
-          src: cssSrc
+          src: cssSrc,
         }, function (err) {
           if (err) {
             return alerts.error(err)
@@ -62,7 +62,7 @@ define('admin/appearance/skins', [
             type: 'info',
             title: '[[admin/appearance/skins:skin-updated]]',
             message: themeId ? ('[[admin/appearance/skins:applied-success, ' + themeName + ']]') : '[[admin/appearance/skins:revert-success]]',
-            timeout: 5000
+            timeout: 5000,
           })
         })
       }
@@ -82,10 +82,10 @@ define('admin/appearance/skins', [
           screenshot_url: theme.thumbnail,
           url: theme.preview,
           css: theme.cssCdn,
-          skin: true
+          skin: true,
         }
       }),
-      showRevert: true
+      showRevert: true,
     }, function (html) {
       themeContainer.html(html)
 

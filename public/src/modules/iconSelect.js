@@ -220,7 +220,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
     { id: 'chart-area', label: 'Area Chart (solid)', style: 'solid' },
     { id: 'apple', label: 'Apple (brands)', style: 'brands' },
     { id: 'android', label: 'Android (brands)', style: 'brands' },
-    { id: 'address-book', label: 'Address Book (solid)', style: 'solid' }
+    { id: 'address-book', label: 'Address Book (solid)', style: 'solid' },
   ]
   iconSelect.init = function (el, onModified) {
     onModified = onModified || function () { }
@@ -232,7 +232,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
       } catch (err) {
         selected = {
           icon: '',
-          style: ''
+          style: '',
         }
       }
     }
@@ -260,7 +260,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
               el.val('')
               el.attr('value', '')
               onModified(el, '', [])
-            }
+            },
           },
           success: {
             label: 'Select',
@@ -285,9 +285,9 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
               }
 
               onModified(el, newIcon.icon, newIcon.styles)
-            }
-          }
-        }
+            },
+          },
+        },
       })
 
       picker.on('show.bs.modal', function () {
@@ -379,7 +379,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
     'li',
     'border',
     'swap-opacity',
-    'sr-only(-focusable)?'
+    'sr-only(-focusable)?',
   ]
 
   const excludedClassRegex = RegExp(`\\bfa-(${excludedClassList.join('|')})\\b`, 'i')
@@ -401,7 +401,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
     }
     return {
       icon,
-      styles
+      styles,
     }
   }
 
@@ -409,7 +409,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
     const request = await fetch('https://api.fontawesome.com', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         query: `query {
@@ -423,8 +423,8 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
 							}
 						}
 					}
-				}`.replace(/(\n| {2,}|\t{2,})/g, '') // very simple minification
-      })
+				}`.replace(/(\n| {2,}|\t{2,})/g, ''), // very simple minification
+      }),
     })
     const response = await request.json()
     const icons = response.data.search.filter(icon => icon.familyStylesByLicense.free.length > 0).flatMap((icon) => {
@@ -441,7 +441,7 @@ define('iconSelect', ['benchpress', 'bootbox'], function (Benchpress, bootbox) {
           id: icon.id,
           label: `${icon.label} (${style.style})`,
           style: style.style,
-          family: style.family
+          family: style.family,
         })
       })
       return result

@@ -9,7 +9,7 @@ define('forum/search', [
   'api',
   'translator',
   'categoryFilter',
-  'userFilter'
+  'userFilter',
 ], function (searchModule, storage, hooks, alerts, api, translator, categoryFilter, userFilter) {
   const Search = {}
   let selectedUsers = []
@@ -45,7 +45,7 @@ define('forum/search', [
         replies: updateReplyCountFilter,
         time: updateTimeFilter,
         sort: updateSortFilter,
-        tag: updateTagFilter
+        tag: updateTagFilter,
       }
 
       if (updateFns[$(this).attr('data-filter-name')]) {
@@ -116,7 +116,7 @@ define('forum/search', [
   function getSearchDataFromDOM () {
     const form = $('#advanced-search')
     const searchData = {
-      in: $('#search-in').val()
+      in: $('#search-in').val(),
     }
     searchData.term = $('#search-input').val()
     if (['posts', 'titlesposts', 'titles', 'bookmarks'].includes(searchData.in)) {
@@ -136,7 +136,7 @@ define('forum/search', [
 
     hooks.fire('action:search.getSearchDataFromDOM', {
       form,
-      data: searchData
+      data: searchData,
     })
 
     return searchData
@@ -149,7 +149,7 @@ define('forum/search', [
 
   function fillOutForm () {
     const params = utils.params({
-      disableToType: true
+      disableToType: true,
     })
 
     const searchData = searchModule.getSearchPreferences()
@@ -209,7 +209,7 @@ define('forum/search', [
       $('#post-sort-direction').val(formData.sortDirection || 'desc')
 
       hooks.fire('action:search.fillOutForm', {
-        form: formData
+        form: formData,
       })
     }
   }
@@ -221,7 +221,7 @@ define('forum/search', [
         'matchWords', 'in', 'showAs',
         'replies', 'repliesFilter',
         'timeFilter', 'timeRange',
-        'sortBy', 'sortDirection'
+        'sortBy', 'sortDirection',
       ]
       const saveData = {}
       fieldsToSave.forEach((key) => {
@@ -283,9 +283,9 @@ define('forum/search', [
         {
           cid: 'watched',
           name: '[[category:watched-categories]]',
-          icon: ''
-        }
-      ]
+          icon: '',
+        },
+      ],
     })
   }
 
@@ -308,7 +308,7 @@ define('forum/search', [
         el.find('[component="user/filter/button"]').toggleClass(
           'active-filter', isActive
         ).find('.filter-label').translateText(labelText)
-      }
+      },
     })
   }
 
@@ -316,7 +316,7 @@ define('forum/search', [
     selectedTags = _selectedTags
     async function renderSelectedTags () {
       const html = await app.parseAndTranslate('partials/search-filters', 'tagFilterSelected', {
-        tagFilterSelected: selectedTags
+        tagFilterSelected: selectedTags,
       })
       el.find('[component="tag/filter/selected"]').html(html)
     }
@@ -326,7 +326,7 @@ define('forum/search', [
         value,
         valueEscaped: escapedTag,
         valueEncoded: encodeURIComponent(escapedTag),
-        class: escapedTag.replace(/\s/g, '-')
+        class: escapedTag.replace(/\s/g, '-'),
       }
     }
 
@@ -338,7 +338,7 @@ define('forum/search', [
           result = await socket.emit('topics.searchAndLoadTags', { query })
         } else {
           result = {
-            tags: [tagValueToObject(query)]
+            tags: [tagValueToObject(query)],
           }
         }
       }
@@ -356,7 +356,7 @@ define('forum/search', [
       })
 
       const html = await app.parseAndTranslate('partials/search-filters', 'tagFilterResults', {
-        tagFilterResults: result.tags
+        tagFilterResults: result.tags,
       })
       el.find('[component="tag/filter/results"]').html(html)
       el.find('[component="tag/filter/results"] [data-tag]').on('click', async function () {
