@@ -51,6 +51,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Run ESLint
+        run: npx eslint .
+
+
       - name: Setup for Redis
         env:
           SETUP: >-
@@ -85,9 +89,6 @@ jobs:
 
       - name: Extract coverage info
         run: npm run coverage
-
-      - name: Run ESLint
-        run: npm run standard-js
 
       - name: Test coverage
         uses: coverallsapp/github-action@v2
