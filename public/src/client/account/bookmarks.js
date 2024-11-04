@@ -1,16 +1,16 @@
-'use strict';
-
+/* global define, $ */
+'use strict'
 
 define('forum/account/bookmarks', ['forum/account/header', 'forum/account/posts'], function (header, posts) {
-	const Bookmarks = {};
+  const Bookmarks = {}
 
-	Bookmarks.init = function () {
-		header.init();
+  Bookmarks.init = function () {
+    header.init()
 
-		$('[component="post/content"] img:not(.not-responsive)').addClass('img-fluid');
+    $('[component="post/content"] img:not(.not-responsive)').addClass('img-fluid')
 
-		posts.handleInfiniteScroll('account/bookmarks');
-	};
+    posts.handleInfiniteScroll('account/bookmarks')
+  }
 
-	return Bookmarks;
-});
+  return Bookmarks
+})

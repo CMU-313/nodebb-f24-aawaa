@@ -48,6 +48,16 @@ jobs:
         with:
           useLockFile: false
 
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install StandardJS Explicitly  # Ensures StandardJS is present
+        run: npm install standard --save-dev
+
+      - name: Run ESLint  # Runs ESLint with explicit config path
+        run: npx eslint . -c ./.eslintrc.json
+
+
       - name: Setup for Redis
         env:
           SETUP: >-

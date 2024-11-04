@@ -1,14 +1,14 @@
-'use strict';
-
+/* global define, app */
+'use strict'
 
 define('forum/popular', ['topicList'], function (topicList) {
-	const Popular = {};
+  const Popular = {}
 
-	Popular.init = function () {
-		app.enterRoom('popular_topics');
+  Popular.init = function () {
+    app.enterRoom('popular_topics')
 
-		topicList.init('popular');
-	};
+    topicList.init('popular')
+  }
 
-	return Popular;
-});
+  return Popular
+})

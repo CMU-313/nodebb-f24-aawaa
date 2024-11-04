@@ -1,0 +1,26 @@
+{
+    "extends": "standard",
+    "rules": {
+      "camelcase": "off",
+      "no-tabs": "off",
+      "no-prototype-builtins": "off",
+      "new-cap": "off",
+      "n/no-deprecated-api": "off",
+      "no-mixed-spaces-and-tabs": "off",
+      "no-new": "off",
+      "array-callback-return": "off",
+      "no-unmodified-loop-condition": "off",
+      "no-global-assign": "off",
+      "no-return-assign": "off",
+      "no-return-in-global-scope": "off",
+      "no-global-return": "off"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "script"
+    },
+    "env": {
+      "node": true
+    }
+  }
+  

@@ -1,19 +1,19 @@
-'use strict';
-
+/* global define, $, app, ajaxify */
+'use strict'
 
 define('forum/categories', ['categorySelector'], function (categorySelector) {
-	const categories = {};
+  const categories = {}
 
-	categories.init = function () {
-		app.enterRoom('categories');
+  categories.init = function () {
+    app.enterRoom('categories')
 
-		categorySelector.init($('[component="category-selector"]'), {
-			privilege: 'find',
-			onSelect: function (category) {
-				ajaxify.go('/category/' + category.cid);
-			},
-		});
-	};
+    categorySelector.init($('[component="category-selector"]'), {
+      privilege: 'find',
+      onSelect: function (category) {
+        ajaxify.go('/category/' + category.cid)
+      },
+    })
+  }
 
-	return categories;
-});
+  return categories
+})
