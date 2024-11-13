@@ -1,6 +1,7 @@
 {
     "name": "nodebb",
     "license": "GPL-3.0",
+    "type": "module",
     "description": "NodeBB Forum",
     "version": "3.8.4",
     "homepage": "https://www.nodebb.org",
