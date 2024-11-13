@@ -43,8 +43,8 @@ At the start of the question, there is a toggle button that can switch the
 question between "resolved" and "unresolved".
 There is issue with the backend structure for storing data and accurately 
 retrieve the status.
-Run ./nodebb build tpl Navigate to any question post. If a new topic is created 
-it is default to "unresolved" After topic is posted, user can toggle between 
+Run ./nodebb build tplNavigate to any question post.If a new topic is created 
+it is default to "unresolved"After topic is posted, user can toggle between 
 resolved and unresolved.
 
 
