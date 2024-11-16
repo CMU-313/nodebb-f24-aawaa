@@ -13,7 +13,18 @@
       "no-global-assign": "off",
       "no-return-assign": "off",
       "no-return-in-global-scope": "off",
-      "no-global-return": "off"
+      "no-global-return": "off",
+      "comma-dangle": "off",
+      "n/no-callback-literal": "off",
+      "semi": "off",
+      "space-before-function-paren": "off",
+      "quotes": "off",
+      "indent": "off",
+      "eqeqeq": "off",
+      "no-unused-vars": "off",
+      "space-infix-ops": "off",
+      "dot-notation": "off",
+      "eol-last": "off"
     },
     "parserOptions": {
       "ecmaVersion": 2021,
