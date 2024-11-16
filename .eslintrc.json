@@ -47,10 +47,12 @@
         "public/src/modules/alerts.js",
         "public/src/modules/api.js"
       ],
-      "rules": {
-        "no-var": "off",
-        "parser": "off",
+      "parserOptions": {
+        "ecmaVersion": 2021,
         "sourceType": "script"
+      },
+      "rules": {
+        "no-var": "off"
       }
     }
   ]
