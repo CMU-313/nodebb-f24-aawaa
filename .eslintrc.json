@@ -42,18 +42,28 @@
         "public/src/admin/modules/dashboard-line-graph.js",
         "public/src/client/flags/list.js",
         "public/src/client/ip-blacklist.js",
-        "public/src/client/topic.js",
         "public/src/modules/ace-editor.js",
         "public/src/modules/alerts.js",
         "public/src/modules/api.js"
       ],
-      "parserOptions": {
-        "ecmaVersion": 2021,
-        "sourceType": "script"
-      },
       "rules": {
-        "no-var": "off"
+        "no-var": "off",
+        "import/export": "off"
+      },
+      "parserOptions": {
+        "sourceType": "script"
       }
     }
+  ],
+  "ignorePatterns": [
+    "public/src/admin/advanced/errors.js",
+    "public/src/admin/dashboard.js",
+    "public/src/admin/manage/category-analytics.js",
+    "public/src/admin/modules/dashboard-line-graph.js",
+    "public/src/client/flags/list.js",
+    "public/src/client/ip-blacklist.js",
+    "public/src/modules/ace-editor.js",
+    "public/src/modules/alerts.js",
+    "public/src/modules/api.js"
   ]
 }
