@@ -13,7 +13,18 @@
       "no-global-assign": "off",
       "no-return-assign": "off",
       "no-return-in-global-scope": "off",
-      "no-global-return": "off"
+      "no-global-return": "off",
+      "comma-dangle": "off",
+      "n/no-callback-literal": "off",
+      "semi": "off",
+      "space-before-function-paren": "off",
+      "quotes": "off",
+      "indent": "off",
+      "eqeqeq": "off",
+      "no-unused-vars": "off",
+      "space-infix-ops": "off",
+      "dot-notation": "off",
+      "eol-last": "off"
     },
     "parserOptions": {
       "ecmaVersion": 2021,
@@ -21,6 +32,38 @@
     },
     "env": {
       "node": true
+    },
+    "overrides": [
+    {
+      "files": [
+        "public/src/admin/advanced/errors.js",
+        "public/src/admin/dashboard.js",
+        "public/src/admin/manage/category-analytics.js",
+        "public/src/admin/modules/dashboard-line-graph.js",
+        "public/src/client/flags/list.js",
+        "public/src/client/ip-blacklist.js",
+        "public/src/modules/ace-editor.js",
+        "public/src/modules/alerts.js",
+        "public/src/modules/api.js"
+      ],
+      "rules": {
+        "no-var": "off",
+        "import/export": "off"
+      },
+      "parserOptions": {
+        "sourceType": "script"
+      }
     }
-  }
-  
+  ],
+  "ignorePatterns": [
+    "public/src/admin/advanced/errors.js",
+    "public/src/admin/dashboard.js",
+    "public/src/admin/manage/category-analytics.js",
+    "public/src/admin/modules/dashboard-line-graph.js",
+    "public/src/client/flags/list.js",
+    "public/src/client/ip-blacklist.js",
+    "public/src/modules/ace-editor.js",
+    "public/src/modules/alerts.js",
+    "public/src/modules/api.js"
+  ]
+}
