@@ -13,7 +13,10 @@
       "no-global-assign": "off",
       "no-return-assign": "off",
       "no-return-in-global-scope": "off",
-      "no-global-return": "off"
+      "no-global-return": "off",
+      "no-unused-vars": "off",
+      "n/no-callback-literal": "off",
+      "comma-dangle": "off"
     },
     "parserOptions": {
       "ecmaVersion": 2021,
@@ -21,6 +24,25 @@
     },
     "env": {
       "node": true
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "public/src/admin/advanced/errors.js",
+          "public/src/admin/dashboard.js",
+          "public/src/admin/manage/category-analytics.js",
+          "public/src/admin/modules/dashboard-line-graph.js",
+          "public/src/client/flags/list.js",
+          "public/src/client/ip-blacklist.js",
+          "public/src/modules/ace-editor.js",
+          "public/src/modules/alerts.js",
+          "public/src/modules/api.js"
+        ],
+        "parserOptions": {
+          "sourceType": "module"
+        }
+      }
+    ]
   }
+
   
